@@ -1,0 +1,80 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gigshield
+      POSTGRES_USER: gigshield
+      POSTGRES_PASSWORD: ${GIGSHIELD_POSTGRES_PASSWORD:-gigshield_dev_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gigshield -d gigshield"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      GIGSHIELD_ENV: ${GIGSHIELD_ENV:-development}
+      GIGSHIELD_APP_VERSION: ${GIGSHIELD_APP_VERSION:-2.1.0}
+      GIGSHIELD_LOG_LEVEL: ${GIGSHIELD_LOG_LEVEL:-INFO}
+      GIGSHIELD_DEMO_MODE: ${GIGSHIELD_DEMO_MODE:-true}
+      GIGSHIELD_RATE_LIMIT_PER_MINUTE: ${GIGSHIELD_RATE_LIMIT_PER_MINUTE:-120}
+      GIGSHIELD_ENABLE_BACKGROUND_JOBS: ${GIGSHIELD_ENABLE_BACKGROUND_JOBS:-true}
+      GIGSHIELD_TRIGGER_POLL_INTERVAL_SECONDS: ${GIGSHIELD_TRIGGER_POLL_INTERVAL_SECONDS:-300}
+      GIGSHIELD_CLAIM_REVIEW_INTERVAL_SECONDS: ${GIGSHIELD_CLAIM_REVIEW_INTERVAL_SECONDS:-180}
+      GIGSHIELD_OTP_EXPIRY_SECONDS: ${GIGSHIELD_OTP_EXPIRY_SECONDS:-300}
+      GIGSHIELD_OTP_COOLDOWN_SECONDS: ${GIGSHIELD_OTP_COOLDOWN_SECONDS:-60}
+      GIGSHIELD_DATABASE_URL: ${GIGSHIELD_DATABASE_URL:-postgresql+psycopg2://gigshield:${GIGSHIELD_POSTGRES_PASSWORD:-gigshield_dev_password}@postgres:5432/gigshield}
+      GIGSHIELD_ALLOWED_ORIGINS: ${GIGSHIELD_ALLOWED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+      GIGSHIELD_JWT_SECRET: ${GIGSHIELD_JWT_SECRET:-change-me-before-production}
+      GIGSHIELD_DEMO_OTP: ${GIGSHIELD_DEMO_OTP:-1234}
+      GIGSHIELD_SEED_DEMO_DATA: ${GIGSHIELD_SEED_DEMO_DATA:-true}
+      GIGSHIELD_SUPPORT_EMAIL: ${GIGSHIELD_SUPPORT_EMAIL:-support@gigshield.example}
+      GIGSHIELD_SUPPORT_PHONE: ${GIGSHIELD_SUPPORT_PHONE:-+91-00000-00000}
+      GIGSHIELD_ADMIN_USERNAME: ${GIGSHIELD_ADMIN_USERNAME:-admin@gigshield.local}
+      GIGSHIELD_ADMIN_PASSWORD: ${GIGSHIELD_ADMIN_PASSWORD:-GigShieldAdmin123!}
+      GIGSHIELD_TWILIO_ACCOUNT_SID: ${GIGSHIELD_TWILIO_ACCOUNT_SID:-}
+      GIGSHIELD_TWILIO_AUTH_TOKEN: ${GIGSHIELD_TWILIO_AUTH_TOKEN:-}
+      GIGSHIELD_TWILIO_FROM_NUMBER: ${GIGSHIELD_TWILIO_FROM_NUMBER:-}
+      GIGSHIELD_KYC_BASE_URL: ${GIGSHIELD_KYC_BASE_URL:-}
+      GIGSHIELD_KYC_API_KEY: ${GIGSHIELD_KYC_API_KEY:-}
+      GIGSHIELD_PAYMENT_GATEWAY_BASE_URL: ${GIGSHIELD_PAYMENT_GATEWAY_BASE_URL:-}
+      GIGSHIELD_PAYMENT_GATEWAY_API_KEY: ${GIGSHIELD_PAYMENT_GATEWAY_API_KEY:-}
+      GIGSHIELD_RAZORPAY_KEY_ID: ${GIGSHIELD_RAZORPAY_KEY_ID:-}
+      GIGSHIELD_RAZORPAY_KEY_SECRET: ${GIGSHIELD_RAZORPAY_KEY_SECRET:-}
+      GIGSHIELD_GUIDEWIRE_BASE_URL: ${GIGSHIELD_GUIDEWIRE_BASE_URL:-}
+      GIGSHIELD_GUIDEWIRE_CLIENT_ID: ${GIGSHIELD_GUIDEWIRE_CLIENT_ID:-}
+      GIGSHIELD_GUIDEWIRE_CLIENT_SECRET: ${GIGSHIELD_GUIDEWIRE_CLIENT_SECRET:-}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

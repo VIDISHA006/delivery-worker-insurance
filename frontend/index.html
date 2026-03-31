@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigShield — Parametric Income Protection for Gig Workers</title>
+    <meta name="description" content="GigShield: Zero-touch parametric income protection for India's Q-Commerce delivery partners. AI-powered pricing, instant UPI payouts, zero claims to file.">
+    <meta name="theme-color" content="#0a0e1a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Top Navigation -->
+        <nav id="main-nav">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <div class="brand-logo">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect width="28" height="28" rx="8" fill="url(#logo-grad)"/>
+                            <path d="M14 6L20 10V18L14 22L8 18V10L14 6Z" fill="white" fill-opacity="0.9"/>
+                            <path d="M14 10L17 12V16L14 18L11 16V12L14 10Z" fill="url(#logo-grad)" fill-opacity="0.8"/>
+                            <defs>
+                                <linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28">
+                                    <stop stop-color="#0F6CBD"/>
+                                    <stop offset="1" stop-color="#0F766E"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="brand-text">GigShield</span>
+                    <span class="phase-badge">Phase 2</span>
+                </div>
+            </div>
+            <div class="nav-center">
+                <button class="nav-tab active" data-view="worker" id="nav-worker">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a3 3 0 100 6 3 3 0 000-6zM4 9a2 2 0 00-2 2v1a2 2 0 002 2h8a2 2 0 002-2v-1a2 2 0 00-2-2H4z"/></svg>
+                    <span data-i18n="nav.worker">Worker App</span>
+                </button>
+                <button class="nav-tab" data-view="admin" id="nav-admin">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4v4H2V2zm0 6h4v4H2V8zm6-6h4v4H8V2zm0 6h4v4H8V8z"/></svg>
+                    <span data-i18n="nav.admin">Admin Portal</span>
+                </button>
+            </div>
+            <div class="nav-right">
+                <div class="lang-switcher" id="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="hi">हिं</button>
+                    <button class="lang-btn" data-lang="kn">ಕ</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- WORKER APP VIEW -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div id="worker-view" class="view active">
+            <div class="sub-nav">
+                <button class="sub-tab active" data-page="onboarding" id="sub-onboarding" data-i18n="tab.onboarding">Onboarding</button>
+                <button class="sub-tab" data-page="dashboard" id="sub-dashboard" data-i18n="tab.dashboard">Dashboard</button>
+                <button class="sub-tab" data-page="claims" id="sub-claims" data-i18n="tab.claims">Claims</button>
+                <button class="sub-tab" data-page="premium" id="sub-premium" data-i18n="tab.premium">Premium</button>
+                <button class="sub-tab" data-page="settings" id="sub-settings" data-i18n="tab.settings">Settings</button>
+            </div>
+
+            <!-- ── ONBOARDING PAGE ───────────────────────────────── -->
+            <div id="page-onboarding" class="page active">
+                <div class="onboarding-layout">
+                    <div class="onboarding-hero">
+                        <div class="hero-badge-wrapper">
+                            <span class="hero-badge">
+                                <span class="badge-dot"></span>
+                                DEVTrails 2026 · Guidewire · Q-Commerce
+                            </span>
+                        </div>
+                        <h1 class="hero-title" data-i18n="hero.title">When it rains, your income doesn't have to stop.</h1>
+                        <p class="hero-subtitle" data-i18n="hero.subtitle">GigShield automatically detects weather disruptions and sends income-replacement payouts to your UPI — no claims, no paperwork, no waiting.</p>
+
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <span class="stat-number">₹89</span>
+                                <span class="stat-label" data-i18n="hero.stat1">Max weekly premium</span>
+                            </div>
+                            <div class="hero-stat-divider"></div>
+                            <div class="hero-stat">
+                                <span class="stat-number">&lt;2h</span>
+                                <span class="stat-label" data-i18n="hero.stat2">Payout SLA</span>
+                            </div>
+                            <div class="hero-stat-divider"></div>
+                            <div class="hero-stat">
+                                <span class="stat-number">Zero</span>
+                                <span class="stat-label" data-i18n="hero.stat3">Claims to file</span>
+                            </div>
+                        </div>
+
+                        <div class="trust-features">
+                            <div class="trust-feature">
+                                <div class="tf-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg></div>
+                                <div class="tf-text">
+                                    <strong data-i18n="trust.1.title">Zero-Touch Claims</strong>
+                                    <span data-i18n="trust.1.desc">Payouts triggered automatically by weather APIs — no forms ever</span>
+                                </div>
+                            </div>
+                            <div class="trust-feature">
+                                <div class="tf-icon tf-green"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg></div>
+                                <div class="tf-text">
+                                    <strong data-i18n="trust.2.title">AI-Powered Pricing</strong>
+                                    <span data-i18n="trust.2.desc">XGBoost ML model calculates fair premiums based on real risk data</span>
+                                </div>
+                            </div>
+                            <div class="trust-feature">
+                                <div class="tf-icon tf-purple"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
+                                <div class="tf-text">
+                                    <strong data-i18n="trust.3.title">Dual-Trigger Verified</strong>
+                                    <span data-i18n="trust.3.desc">Two independent data sources must confirm before any payout fires</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="onboarding-form-side">
+                        <div class="onboarding-container">
+                            <!-- Step Progress -->
+                            <div class="step-progress">
+                                <div class="step active" data-step="1"><span>1</span><label data-i18n="step.register">Register</label></div>
+                                <div class="step-line"></div>
+                                <div class="step" data-step="2"><span>2</span><label data-i18n="step.otp">Verify OTP</label></div>
+                                <div class="step-line"></div>
+                                <div class="step" data-step="3"><span>3</span><label data-i18n="step.kyc">KYC</label></div>
+                                <div class="step-line"></div>
+                                <div class="step" data-step="4"><span>4</span><label data-i18n="step.quote">Quote</label></div>
+                                <div class="step-line"></div>
+                                <div class="step" data-step="5"><span>5</span><label data-i18n="step.upi">UPI Setup</label></div>
+                            </div>
+
+                            <!-- Step 1: Registration -->
+                            <div id="step-1" class="form-step active">
+                                <div class="card" id="register-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">👤</div>
+                                        <div>
+                                            <h2 data-i18n="reg.title">Worker Registration</h2>
+                                            <p class="card-desc" data-i18n="reg.desc">Enter your details to get started</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label data-i18n="reg.name">Full Name</label>
+                                            <input type="text" id="reg-name" placeholder="e.g., Ravi Kumar" value="Ravi Kumar">
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-i18n="reg.phone">Phone Number</label>
+                                            <input type="tel" id="reg-phone" placeholder="10-digit mobile" value="9988776655">
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-i18n="reg.platform">Platform</label>
+                                            <select id="reg-platform">
+                                                <option value="zepto">Zepto</option>
+                                                <option value="blinkit">Blinkit</option>
+                                                <option value="dunzo">Dunzo</option>
+                                                <option value="swiggy_instamart">Swiggy Instamart</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-i18n="reg.zone">Zone</label>
+                                            <select id="reg-zone">
+                                                <option value="Indiranagar">Indiranagar</option>
+                                                <option value="Koramangala">Koramangala</option>
+                                                <option value="Whitefield">Whitefield</option>
+                                                <option value="Rajajinagar">Rajajinagar</option>
+                                                <option value="HSR Layout">HSR Layout</option>
+                                                <option value="Marathahalli">Marathahalli</option>
+                                                <option value="Electronic City">Electronic City</option>
+                                                <option value="Jayanagar">Jayanagar</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-i18n="reg.income">Weekly Income (₹)</label>
+                                            <input type="number" id="reg-income" placeholder="5200" value="5200">
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-i18n="reg.vehicle">Vehicle</label>
+                                            <select id="reg-vehicle">
+                                                <option value="2-wheeler">2-Wheeler</option>
+                                                <option value="bicycle">Bicycle</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="consent-panel">
+                                        <label class="consent-row"><input type="checkbox" id="reg-consent-terms"><span data-i18n="consent.terms">I agree to the Terms of Service.</span></label>
+                                        <label class="consent-row"><input type="checkbox" id="reg-consent-privacy"><span data-i18n="consent.privacy">I have reviewed the Privacy Notice and support contact details.</span></label>
+                                        <label class="consent-row"><input type="checkbox" id="reg-consent-automation"><span data-i18n="consent.ai">I understand pricing and fraud checks may use automated models, with human review available on appeal.</span></label>
+                                    </div>
+                                    <button class="btn-primary btn-full" onclick="registerWorker()" id="btn-register">
+                                        <span data-i18n="reg.submit">Register & Get OTP</span> →
+                                    </button>
+                                    <p class="auth-switch"><a href="#" onclick="toggleAuth('login')" data-i18n="reg.login_link">Already have an account? Login</a></p>
+                                </div>
+
+                                <div class="glass-card" id="login-card" style="display:none;">
+                                    <div class="card-header">
+                                        <div class="card-icon">👤</div>
+                                        <div>
+                                            <h2 data-i18n="login.title">Worker Login</h2>
+                                            <p class="card-desc" data-i18n="login.desc">Welcome back to GigShield</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label data-i18n="login.phone">Phone Number</label><input type="tel" id="login-phone" placeholder="10-digit mobile" value="9876543210"></div>
+                                    <div class="form-group" style="margin-top:12px"><label data-i18n="login.otp">OTP</label><input type="text" id="login-otp" placeholder="1234" value="1234"></div>
+                                    <p class="hint" id="login-otp-status" data-i18n="login.hint">Request a one-time password to sign in.</p>
+                                    <div class="btn-stack">
+                                        <button class="btn-secondary btn-full" onclick="requestLoginOtp()" data-i18n="login.send_otp">Send OTP</button>
+                                        <button class="btn-primary btn-full" onclick="loginWorker()"><span data-i18n="login.submit">Login</span> →</button>
+                                    </div>
+                                    <p class="auth-switch"><a href="#" onclick="toggleAuth('register')" data-i18n="login.register_link">New worker? Register here</a></p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: OTP -->
+                            <div id="step-2" class="form-step">
+                                <div class="glass-card">
+                                    <div class="card-header"><div class="card-icon">📲</div><div><h2 data-i18n="otp.title">Verify Phone</h2><p class="card-desc" data-i18n="otp.desc">Enter the OTP sent to your phone</p></div></div>
+                                    <div class="otp-container">
+                                        <input type="text" class="otp-input" id="otp-1" maxlength="1" value="1">
+                                        <input type="text" class="otp-input" id="otp-2" maxlength="1" value="2">
+                                        <input type="text" class="otp-input" id="otp-3" maxlength="1" value="3">
+                                        <input type="text" class="otp-input" id="otp-4" maxlength="1" value="4">
+                                    </div>
+                                    <p class="hint" id="register-otp-status" data-i18n="otp.hint">A 4-digit code has been sent via SMS.</p>
+                                    <div class="btn-stack">
+                                        <button class="btn-secondary btn-full" onclick="resendRegistrationOtp()" data-i18n="otp.resend">Resend OTP</button>
+                                        <button class="btn-primary btn-full" onclick="verifyOTP()"><span data-i18n="otp.verify">Verify OTP</span> →</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: KYC -->
+                            <div id="step-3" class="form-step">
+                                <div class="glass-card">
+                                    <div class="card-header"><div class="card-icon">🆔</div><div><h2 data-i18n="kyc.title">Aadhaar e-KYC</h2><p class="card-desc" data-i18n="kyc.desc">Instant paperless verification via DigiLocker</p></div></div>
+                                    <div class="form-group">
+                                        <label data-i18n="kyc.aadhaar">Aadhaar Number</label>
+                                        <input type="text" id="kyc-aadhaar" placeholder="12-digit Aadhaar" value="234567890123">
+                                    </div>
+                                    <div class="kyc-chips">
+                                        <span class="chip chip-green">🔒 Encrypted</span>
+                                        <span class="chip chip-blue">⚡ Instant</span>
+                                        <span class="chip chip-purple">📄 Paperless</span>
+                                    </div>
+                                    <button class="btn-primary btn-full" onclick="verifyKYC()"><span data-i18n="kyc.verify">Verify Aadhaar</span> →</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Premium Quote -->
+                            <div id="step-4" class="form-step">
+                                <div class="glass-card">
+                                    <div class="card-header"><div class="card-icon">📍</div><div><h2 data-i18n="quote.title">Your Risk Profile & Premium</h2><p class="card-desc" data-i18n="quote.desc">AI-powered pricing based on zone risk factors</p></div></div>
+                                    <div id="premium-quote-card" class="premium-quote"></div>
+                                    <button class="btn-primary btn-full" onclick="goToStep(5)"><span data-i18n="quote.accept">Accept & Setup UPI</span> →</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: UPI -->
+                            <div id="step-5" class="form-step">
+                                <div class="glass-card">
+                                    <div class="card-header"><div class="card-icon">💳</div><div><h2 data-i18n="upi.title">UPI AutoPay Setup</h2><p class="card-desc" data-i18n="upi.desc">Set up weekly automatic payment</p></div></div>
+                                    <div class="form-group">
+                                        <label data-i18n="upi.id">UPI ID</label>
+                                        <input type="text" id="upi-id" placeholder="yourname@upi" value="ravikumar@upi">
+                                    </div>
+                                    <div class="autopay-info">
+                                        <div class="autopay-row"><span>💰 <span data-i18n="upi.deduction">Weekly Deduction</span></span><span id="autopay-amount" class="amount">₹ —</span></div>
+                                        <div class="autopay-row"><span>📅 <span data-i18n="upi.day">Deduction Day</span></span><span>Monday 06:00</span></div>
+                                        <div class="autopay-row"><span>🔓 <span data-i18n="upi.lockin">Lock-in</span></span><span class="green-text" data-i18n="upi.none">None — pause anytime</span></div>
+                                    </div>
+                                    <button class="btn-primary btn-full" onclick="setupUPI()">✅ <span data-i18n="upi.complete">Complete Onboarding & Buy Policy</span></button>
+                                </div>
+                            </div>
+
+                            <!-- Success Step -->
+                            <div id="step-success" class="form-step">
+                                <div class="glass-card success-card">
+                                    <div class="success-icon-wrapper"><div class="success-icon">🎉</div></div>
+                                    <h2 data-i18n="success.title">Welcome to GigShield!</h2>
+                                    <p data-i18n="success.desc">Your policy is now <strong>ACTIVE</strong>. You're covered.</p>
+                                    <div id="success-details" class="success-details"></div>
+                                    <button class="btn-primary btn-full" onclick="showDashboard()"><span data-i18n="success.go">Go to Dashboard</span> →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── DASHBOARD PAGE ────────────────────────────────── -->
+            <div id="page-dashboard" class="page">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <div>
+                            <h1 id="dash-greeting" data-i18n="dash.greeting">Welcome, Ravi</h1>
+                            <p class="dash-sub" id="dash-zone">Indiranagar, Bengaluru</p>
+                        </div>
+                        <div class="dash-header-right">
+                            <div class="dash-status" id="dash-policy-status"><span class="pulse-dot"></span> <span data-i18n="dash.active">Policy Active</span></div>
+                            <button class="btn-ghost" onclick="logout()" data-i18n="dash.logout">Logout</button>
+                        </div>
+                    </div>
+
+                    <!-- Policy Card -->
+                    <div class="glass-card policy-card">
+                        <div class="policy-header">
+                            <div><h3>🛡️ <span data-i18n="dash.policy">Active Policy</span></h3><span class="policy-plan" id="dash-plan">Standard Plan</span></div>
+                            <div class="policy-premium"><span class="premium-label" data-i18n="dash.weekly">Weekly Premium</span><span class="premium-amount" id="dash-premium">₹ —</span></div>
+                        </div>
+                        <div class="policy-grid">
+                            <div class="policy-stat"><span class="stat-label" data-i18n="dash.coverage">Coverage</span><span class="stat-value" id="dash-coverage">₹ —</span></div>
+                            <div class="policy-stat"><span class="stat-label" data-i18n="dash.weeks">Weeks Active</span><span class="stat-value" id="dash-weeks">—</span></div>
+                            <div class="policy-stat"><span class="stat-label" data-i18n="dash.paid">Total Paid</span><span class="stat-value" id="dash-total-paid">₹ —</span></div>
+                            <div class="policy-stat"><span class="stat-label" data-i18n="dash.claimed">Total Claimed</span><span class="stat-value" id="dash-total-claimed">₹ —</span></div>
+                        </div>
+                        <div class="policy-actions">
+                            <button class="btn-secondary" onclick="renewPolicy()">🔄 <span data-i18n="dash.renew">Renew</span></button>
+                            <button class="btn-ghost" onclick="pausePolicy()">⏸️ <span data-i18n="dash.pause">Pause</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Zone Live Status -->
+                    <div class="glass-card">
+                        <h3>🌦️ <span data-i18n="dash.zone_status">Zone Live Status</span></h3>
+                        <div id="zone-status-grid" class="zone-status-grid"></div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="charts-grid">
+                        <div class="glass-card chart-card">
+                            <div class="section-kicker" data-i18n="dash.chart_fin">Financial Overview</div>
+                            <h3 data-i18n="dash.chart_prot">Protection Balance</h3>
+                            <canvas id="worker-protection-chart" class="chart-canvas"></canvas>
+                        </div>
+                        <div class="glass-card chart-card">
+                            <div class="section-kicker" data-i18n="dash.chart_risk">Live Risk</div>
+                            <h3 data-i18n="dash.chart_radar">Zone Signal Radar</h3>
+                            <canvas id="worker-signal-chart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card chart-card">
+                        <div class="section-kicker" data-i18n="dash.chart_perf">Claims Performance</div>
+                        <h3 data-i18n="dash.chart_trend">Payout Trend</h3>
+                        <canvas id="worker-claims-chart" class="chart-canvas"></canvas>
+                    </div>
+
+                    <!-- Recent Claims -->
+                    <div class="glass-card">
+                        <h3>📋 <span data-i18n="dash.recent">Recent Claims</span></h3>
+                        <div id="dash-claims-list" class="claims-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CLAIMS PAGE ───────────────────────────────────── -->
+            <div id="page-claims" class="page">
+                <div class="container">
+                    <h1>📋 <span data-i18n="claims.title">Claims History</span></h1>
+                    <p class="page-sub" data-i18n="claims.desc">Zero-touch claims — automatically processed when triggers fire</p>
+                    <p class="page-sub muted" id="claims-support-note"></p>
+
+                    <!-- Micro-survey Banner -->
+                    <div id="micro-survey-banner" class="glass-card survey-card hidden">
+                        <div class="survey-header">
+                            <span class="survey-badge">📊 Post-Payout Survey</span>
+                            <button class="btn-ghost" onclick="dismissSurvey()">✕</button>
+                        </div>
+                        <p data-i18n="survey.intro">Help us improve — answer 3 quick questions about your last payout:</p>
+                        <div class="survey-questions">
+                            <div class="survey-q">
+                                <p data-i18n="survey.q1">Did you experience the disruption in your work area?</p>
+                                <div class="survey-btns"><button class="btn-survey" onclick="answerSurvey(1,'yes')" data-i18n="survey.yes">Yes</button><button class="btn-survey" onclick="answerSurvey(1,'no')" data-i18n="survey.no">No</button></div>
+                            </div>
+                            <div class="survey-q">
+                                <p data-i18n="survey.q2">Was the payout amount helpful?</p>
+                                <div class="survey-btns"><button class="btn-survey" onclick="answerSurvey(2,'low')" data-i18n="survey.low">Too Low</button><button class="btn-survey active" onclick="answerSurvey(2,'right')" data-i18n="survey.right">About Right</button><button class="btn-survey" onclick="answerSurvey(2,'high')" data-i18n="survey.high">More Than Expected</button></div>
+                            </div>
+                        </div>
+                        <button class="btn-primary btn-full" onclick="submitSurvey()" data-i18n="survey.submit">Submit & Get ₹5 Premium Discount</button>
+                    </div>
+
+                    <div id="claims-list-full" class="claims-list-full"></div>
+                </div>
+            </div>
+
+            <!-- ── PREMIUM PAGE ──────────────────────────────────── -->
+            <div id="page-premium" class="page">
+                <div class="container">
+                    <h1>💰 <span data-i18n="prem.title">Dynamic Premium Pricing</span></h1>
+                    <p class="page-sub" data-i18n="prem.desc">XGBoost ML model calculates zone-specific premiums from real environmental data</p>
+
+                    <div class="glass-card chart-card">
+                        <div class="section-kicker" data-i18n="prem.landscape">Pricing Landscape</div>
+                        <h3 data-i18n="prem.zone_chart">Zone Premium Comparison</h3>
+                        <canvas id="premium-landscape-chart" class="chart-canvas"></canvas>
+                    </div>
+
+                    <div id="premium-zones-grid" class="premium-zones-grid"></div>
+
+                    <div class="glass-card ml-card">
+                        <h3>🧠 <span data-i18n="prem.how">How the ML Model Works</span></h3>
+                        <div class="ml-grid">
+                            <div class="ml-row"><span class="ml-label">Model</span><span>XGBoost Gradient Boosted Decision Tree</span></div>
+                            <div class="ml-row"><span class="ml-label" data-i18n="prem.training">Training Data</span><span>3 years IMD + CPCB + BBMP data</span></div>
+                            <div class="ml-row"><span class="ml-label" data-i18n="prem.features">Features</span><span>7 risk factors per zone</span></div>
+                            <div class="ml-row"><span class="ml-label" data-i18n="prem.output">Output</span><span>Risk multiplier (0.37–0.63) × ₹142 base</span></div>
+                            <div class="ml-row"><span class="ml-label" data-i18n="prem.retrain">Retraining</span><span>Monthly on updated data</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SETTINGS PAGE ─────────────────────────────────── -->
+            <div id="page-settings" class="page">
+                <div class="container">
+                    <h1>⚙️ <span data-i18n="settings.title">Settings & Privacy</span></h1>
+                    <p class="page-sub" data-i18n="settings.desc">Account control, support, and data management</p>
+                    <div class="glass-card"><h3>👤 <span data-i18n="settings.account">Account</span></h3><div id="settings-account-summary" class="detail-rows"></div></div>
+                    <div class="glass-card"><h3>📞 <span data-i18n="settings.support">Support & Human Review</span></h3><div id="settings-support-details" class="detail-rows"></div></div>
+                    <div class="glass-card"><h3>📄 <span data-i18n="settings.legal">Terms & Privacy</span></h3><details class="legal-details" open><summary data-i18n="settings.legal_open">Open the legal summary</summary><p data-i18n="settings.legal_text">Workers can review pricing, policy status, claim history, and payout handling inside the app. If a claim is flagged or denied, support can review the case manually. Deleting your account removes personal profile data and payout identifiers while retaining anonymised financial records required for audit.</p></details></div>
+                    <div class="glass-card danger-card">
+                        <h3>🗑️ <span data-i18n="settings.delete">Delete Account</span></h3>
+                        <p class="card-desc" data-i18n="settings.delete_desc">This removes your personal profile data. This cannot be undone.</p>
+                        <div class="form-group"><label data-i18n="settings.otp">OTP Confirmation</label><input type="text" id="delete-account-otp" placeholder="Enter OTP"></div>
+                        <div class="form-group" style="margin-top:12px"><label data-i18n="settings.confirm">Type DELETE to confirm</label><input type="text" id="delete-account-confirm" placeholder="DELETE"></div>
+                        <button class="btn-danger btn-full" onclick="deleteAccount()" data-i18n="settings.delete_btn">Delete My Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- ADMIN PORTAL VIEW -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div id="admin-view" class="view">
+            <div id="admin-auth-locked" class="admin-lock">
+                <div class="glass-card admin-login-card">
+                    <div class="card-header"><div class="card-icon">🔐</div><div><h2>Admin Sign In</h2><p class="card-desc">Insurer operations portal — protected access</p></div></div>
+                    <div class="form-group"><label>Admin Username</label><input type="text" id="admin-username" placeholder="admin@gigshield.local"></div>
+                    <div class="form-group" style="margin-top:12px"><label>Password</label><input type="password" id="admin-password" placeholder="Password"></div>
+                    <button class="btn-primary btn-full" onclick="adminLogin()" style="margin-top:20px">Sign In to Admin Portal</button>
+                </div>
+            </div>
+
+            <div id="admin-auth-content" class="hidden">
+                <div class="sub-nav admin-sub-nav">
+                    <button class="sub-tab active" data-page="admin-dashboard" id="sub-admin-dashboard">Dashboard</button>
+                    <button class="sub-tab" data-page="admin-policies" id="sub-admin-policies">Policies</button>
+                    <button class="sub-tab" data-page="admin-claims" id="sub-admin-claims">Claims Queue</button>
+                    <button class="sub-tab" data-page="admin-triggers" id="sub-admin-triggers">Triggers</button>
+                    <button class="sub-tab" data-page="admin-analytics" id="sub-admin-analytics">Analytics</button>
+                    <button class="sub-tab hidden" id="admin-logout-btn" onclick="logoutAdmin()">Logout</button>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="page-admin-dashboard" class="page active">
+                    <div class="container">
+                        <div class="admin-header"><h1>📊 GigShield Admin Dashboard</h1><p>Insurer Portal — Real-time KPIs & Operations</p></div>
+                        <div id="kpi-grid" class="kpi-grid"></div>
+                        <div class="charts-grid">
+                            <div class="glass-card chart-card"><div class="section-kicker">Claim Pipeline</div><h3>Pipeline Mix</h3><canvas id="admin-pipeline-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card"><div class="section-kicker">Zone Pricing</div><h3>Zone Premium Comparison</h3><canvas id="admin-zone-premium-chart" class="chart-canvas"></canvas></div>
+                        </div>
+                        <div class="glass-card chart-card"><div class="section-kicker">Operations</div><h3>Daily Claims, Triggers & Payouts</h3><canvas id="admin-daily-activity-chart" class="chart-canvas"></canvas></div>
+                        <div class="glass-card"><div class="section-kicker">System Readiness</div><h3>Providers & Background Jobs</h3><div id="admin-readiness-panel" class="readiness-grid"></div></div>
+                    </div>
+                </div>
+
+                <!-- Admin Policies -->
+                <div id="page-admin-policies" class="page">
+                    <div class="container"><h1>📋 All Policies</h1><div id="admin-policies-table" class="table-wrapper"></div></div>
+                </div>
+
+                <!-- Admin Claims -->
+                <div id="page-admin-claims" class="page">
+                    <div class="container">
+                        <h1>🔍 Claims Review Queue</h1>
+                        <p class="page-sub">Review AMBER and RED tier claims requiring manual verification</p>
+                        <div id="admin-claims-queue" class="claims-queue"></div>
+                        <h2 style="margin-top:2rem">📋 All Claims</h2>
+                        <div id="admin-all-claims" class="table-wrapper"></div>
+                    </div>
+                </div>
+
+                <!-- Admin Triggers -->
+                <div id="page-admin-triggers" class="page">
+                    <div class="container">
+                        <h1>⚡ Trigger Control Center</h1>
+                        <p class="page-sub">Simulate triggers to demonstrate the zero-touch claims pipeline</p>
+                        <div class="glass-card trigger-sim-card">
+                            <h3>🧪 Simulate a Trigger Event</h3>
+                            <div class="trigger-sim-grid">
+                                <div class="form-group">
+                                    <label>Trigger Type</label>
+                                    <select id="sim-trigger-type">
+                                        <option value="rainfall">🌧️ Heavy Rainfall</option>
+                                        <option value="aqi">🌫️ Hazardous AQI</option>
+                                        <option value="heat">🔥 Extreme Heat</option>
+                                        <option value="curfew">🚧 Curfew / Strike</option>
+                                        <option value="flooding">🌊 Urban Flooding</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Zone</label>
+                                    <select id="sim-zone">
+                                        <option value="Indiranagar">Indiranagar</option>
+                                        <option value="Koramangala">Koramangala</option>
+                                        <option value="Whitefield">Whitefield</option>
+                                        <option value="Rajajinagar">Rajajinagar</option>
+                                        <option value="Marathahalli">Marathahalli</option>
+                                    </select>
+                                </div>
+                                <button class="btn-primary" onclick="simulateTrigger()" id="sim-btn">⚡ Fire Trigger</button>
+                            </div>
+                            <div id="trigger-result" class="trigger-result hidden"></div>
+                        </div>
+                        <div class="glass-card" style="margin-top:1.5rem"><h3>⚙️ Trigger Configuration — Dual-Signal Thresholds</h3><div id="trigger-config-table"></div></div>
+                        <div class="glass-card" style="margin-top:1.5rem"><h3>📜 Trigger History</h3><div id="trigger-history"></div></div>
+                    </div>
+                </div>
+
+                <!-- Admin Analytics -->
+                <div id="page-admin-analytics" class="page">
+                    <div class="container">
+                        <h1>📈 Analytics</h1>
+                        <div class="analytics-grid">
+                            <div class="glass-card chart-card"><div class="section-kicker">Pricing</div><h3>Premium vs Risk Score</h3><canvas id="analytics-premium-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card"><div class="section-kicker">Workforce</div><h3>Workers by Zone</h3><canvas id="analytics-zone-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card"><div class="section-kicker">Triggers</div><h3>Trigger Frequency</h3><canvas id="analytics-trigger-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card"><div class="section-kicker">Fraud</div><h3>Fraud Tier Distribution</h3><canvas id="analytics-fraud-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card analytics-wide"><div class="section-kicker">Activity</div><h3>7-Day Activity Timeline</h3><canvas id="analytics-activity-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card"><div class="section-kicker">Heatmap</div><h3>Operational Pressure by Zone</h3><div id="analytics-heatmap" class="heatmap-grid"></div></div>
+                            <div class="glass-card"><div class="section-kicker">Runtime</div><h3>Integration & Job Status</h3><div id="analytics-runtime-panel" class="readiness-grid"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Push Notification Simulation -->
+        <div id="push-notification" class="push-notif hidden">
+            <div class="push-icon" id="push-icon">🌧️</div>
+            <div class="push-content">
+                <strong id="push-title">GigShield Alert</strong>
+                <p id="push-body">Heavy rainfall detected in your area...</p>
+            </div>
+            <button class="push-dismiss" onclick="dismissPush()">✕</button>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast hidden"><span id="toast-message"></span></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

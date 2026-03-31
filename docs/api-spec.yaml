@@ -1,0 +1,1221 @@
+openapi: 3.1.0
+info:
+  title: GigShield API
+  description: Parametric Income Protection for Q-Commerce Delivery Partners
+  version: 2.1.0
+paths:
+  /api/auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: Login Worker
+      description: Login an existing worker with phone and OTP.
+      operationId: login_worker_api_auth_login_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OTPVerify'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/auth/register:
+    post:
+      tags:
+      - Authentication
+      summary: Register Worker
+      description: Register a new delivery worker.
+      operationId: register_worker_api_auth_register_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerRegister'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/auth/verify-otp:
+    post:
+      tags:
+      - Authentication
+      summary: Verify Otp
+      description: 'Verify phone OTP. Mock: accepts ''1234'' for any phone.'
+      operationId: verify_otp_api_auth_verify_otp_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OTPVerify'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/auth/kyc:
+    post:
+      tags:
+      - Authentication
+      summary: Verify Kyc
+      description: 'Aadhaar e-KYC verification. Mock: instant verification.'
+      operationId: verify_kyc_api_auth_kyc_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KYCVerify'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /api/auth/setup-upi:
+    post:
+      tags:
+      - Authentication
+      summary: Setup Upi
+      description: Setup UPI AutoPay mandate.
+      operationId: setup_upi_api_auth_setup_upi_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UPISetup'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /api/auth/admin/login:
+    post:
+      tags:
+      - Authentication
+      summary: Admin Login
+      description: Create an admin session for the operations portal.
+      operationId: admin_login_api_auth_admin_login_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminLoginRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/auth/me:
+    get:
+      tags:
+      - Authentication
+      summary: Get My Profile
+      description: Get the authenticated worker profile.
+      operationId: get_my_profile_api_auth_me_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerResponse'
+      security:
+      - HTTPBearer: []
+  /api/auth/profile/{worker_id}:
+    get:
+      tags:
+      - Authentication
+      summary: Get Profile
+      description: Admin-only worker profile lookup.
+      operationId: get_profile_api_auth_profile__worker_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: worker_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Worker Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/auth/workers:
+    get:
+      tags:
+      - Authentication
+      summary: List Workers
+      description: List all registered workers.
+      operationId: list_workers_api_auth_workers_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/auth/support:
+    get:
+      tags:
+      - Authentication
+      summary: Get Support Information
+      description: Public support and legal contact information.
+      operationId: get_support_information_api_auth_support_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/auth/account:
+    delete:
+      tags:
+      - Authentication
+      summary: Delete Account
+      description: Delete/anonymise the authenticated worker account.
+      operationId: delete_account_api_auth_account_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountDeleteRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /api/policies/create:
+    post:
+      tags:
+      - Policies
+      summary: Create Policy
+      description: Create a new insurance policy with dynamic premium.
+      operationId: create_policy_api_policies_create_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /api/policies/me:
+    get:
+      tags:
+      - Policies
+      summary: Get My Policies
+      description: Get all policies for the authenticated worker.
+      operationId: get_my_policies_api_policies_me_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/policies/{policy_id}/renew:
+    put:
+      tags:
+      - Policies
+      summary: Renew Policy
+      description: Renew policy for another week.
+      operationId: renew_policy_api_policies__policy_id__renew_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: policy_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Policy Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/policies/{policy_id}/pause:
+    put:
+      tags:
+      - Policies
+      summary: Pause Policy
+      description: Pause coverage — no lock-in, no penalty.
+      operationId: pause_policy_api_policies__policy_id__pause_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: policy_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Policy Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/policies/{policy_id}/activate:
+    put:
+      tags:
+      - Policies
+      summary: Activate Policy
+      description: Reactivate a paused policy.
+      operationId: activate_policy_api_policies__policy_id__activate_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: policy_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Policy Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/policies/all:
+    get:
+      tags:
+      - Policies
+      summary: List All Policies
+      description: 'Admin: List all policies.'
+      operationId: list_all_policies_api_policies_all_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/premium/calculate:
+    post:
+      tags:
+      - Premium
+      summary: Calculate Zone Premium
+      description: Calculate dynamic premium for a zone using XGBoost risk model.
+      operationId: calculate_zone_premium_api_premium_calculate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PremiumCalculateRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/premium/zones:
+    get:
+      tags:
+      - Premium
+      summary: Get All Premiums
+      description: Get current premiums for all zones.
+      operationId: get_all_premiums_api_premium_zones_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/premium/factors/{zone}:
+    get:
+      tags:
+      - Premium
+      summary: Get Zone Factors
+      description: Get detailed risk factors for a specific zone.
+      operationId: get_zone_factors_api_premium_factors__zone__get
+      parameters:
+      - name: zone
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Zone
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/premium/comparison:
+    get:
+      tags:
+      - Premium
+      summary: Compare Zone Premiums
+      description: Compare premiums across all zones for visualization.
+      operationId: compare_zone_premiums_api_premium_comparison_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/claims/me:
+    get:
+      tags:
+      - Claims
+      summary: Get My Claims
+      description: Get all claims for the authenticated worker with trigger details.
+      operationId: get_my_claims_api_claims_me_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/claims/worker/{worker_id}:
+    get:
+      tags:
+      - Claims
+      summary: Get Worker Claims
+      description: Admin-only worker claims lookup.
+      operationId: get_worker_claims_api_claims_worker__worker_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: worker_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Worker Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/claims/{claim_id}:
+    get:
+      tags:
+      - Claims
+      summary: Get Claim Detail
+      description: Get detailed claim information with fraud analysis.
+      operationId: get_claim_detail_api_claims__claim_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: claim_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Claim Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/claims/{claim_id}/approve:
+    put:
+      tags:
+      - Claims
+      summary: Approve
+      description: 'Admin: Approve a pending claim.'
+      operationId: approve_api_claims__claim_id__approve_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: claim_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Claim Id
+      - name: notes
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Notes
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/claims/{claim_id}/reject:
+    put:
+      tags:
+      - Claims
+      summary: Reject
+      description: 'Admin: Reject a pending claim.'
+      operationId: reject_api_claims__claim_id__reject_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: claim_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Claim Id
+      - name: notes
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Notes
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/claims/all/summary:
+    get:
+      tags:
+      - Claims
+      summary: All Claims Summary
+      description: Get summary of all claims for admin dashboard.
+      operationId: all_claims_summary_api_claims_all_summary_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/triggers/check/{zone}:
+    post:
+      tags:
+      - Triggers
+      summary: Check Zone Triggers
+      description: Check all 5 triggers for a zone (simulates 15-min polling cycle).
+      operationId: check_zone_triggers_api_triggers_check__zone__post
+      parameters:
+      - name: zone
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Zone
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/triggers/simulate/{trigger_type}:
+    post:
+      tags:
+      - Triggers
+      summary: Simulate Trigger
+      description: Simulate a trigger event for demo — fires trigger and processes
+        claims.
+      operationId: simulate_trigger_api_triggers_simulate__trigger_type__post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: trigger_type
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trigger Type
+      - name: zone
+        in: query
+        required: false
+        schema:
+          type: string
+          default: Indiranagar
+          title: Zone
+      - name: severity
+        in: query
+        required: false
+        schema:
+          type: string
+          default: severe
+          title: Severity
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/triggers/active:
+    get:
+      tags:
+      - Triggers
+      summary: Get Active Triggers
+      description: Get currently active triggers.
+      operationId: get_active_triggers_api_triggers_active_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/triggers/history:
+    get:
+      tags:
+      - Triggers
+      summary: Get Trigger History
+      description: Get trigger history.
+      operationId: get_trigger_history_api_triggers_history_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/triggers/{trigger_id}/resolve:
+    put:
+      tags:
+      - Triggers
+      summary: Resolve Trigger
+      description: Mark a trigger as resolved.
+      operationId: resolve_trigger_api_triggers__trigger_id__resolve_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: trigger_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Trigger Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/triggers/config:
+    get:
+      tags:
+      - Triggers
+      summary: Get Config
+      description: Get trigger configuration (thresholds, logic gates).
+      operationId: get_config_api_triggers_config_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/triggers/zone-status/{zone}:
+    get:
+      tags:
+      - Triggers
+      summary: Get Zone Live Status
+      description: Get live status of all environmental signals for a zone.
+      operationId: get_zone_live_status_api_triggers_zone_status__zone__get
+      parameters:
+      - name: zone
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Zone
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/admin/dashboard:
+    get:
+      tags:
+      - Admin
+      summary: Get Dashboard Kpis
+      description: Get all 8 dashboard KPIs.
+      operationId: get_dashboard_kpis_api_admin_dashboard_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/admin/claims/queue:
+    get:
+      tags:
+      - Admin
+      summary: Get Claims Queue
+      description: Get claims requiring manual review, sorted by fraud tier.
+      operationId: get_claims_queue_api_admin_claims_queue_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/admin/analytics:
+    get:
+      tags:
+      - Admin
+      summary: Get Analytics
+      description: Get analytics data for charts.
+      operationId: get_analytics_api_admin_analytics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /api/admin/payouts:
+    get:
+      tags:
+      - Admin
+      summary: Get Payout History
+      description: Get all payout transactions.
+      operationId: get_payout_history_api_admin_payouts_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+  /:
+    get:
+      summary: Root
+      operationId: root__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /health:
+    get:
+      summary: Health
+      description: Liveness probe.
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /ready:
+    get:
+      summary: Ready
+      description: Readiness probe with database connectivity and runtime metadata.
+      operationId: ready_ready_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /metrics:
+    get:
+      summary: Metrics
+      description: Operational snapshot for the hackathon deployment.
+      operationId: metrics_metrics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+components:
+  schemas:
+    AccountDeleteRequest:
+      properties:
+        otp:
+          type: string
+          title: Otp
+        confirmation_text:
+          type: string
+          title: Confirmation Text
+      type: object
+      required:
+      - otp
+      - confirmation_text
+      title: AccountDeleteRequest
+    AdminLoginRequest:
+      properties:
+        username:
+          type: string
+          title: Username
+        password:
+          type: string
+          title: Password
+      type: object
+      required:
+      - username
+      - password
+      title: AdminLoginRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    KYCVerify:
+      properties:
+        worker_id:
+          type: integer
+          title: Worker Id
+        aadhaar_number:
+          type: string
+          pattern: ^\d{12}$
+          title: Aadhaar Number
+      type: object
+      required:
+      - worker_id
+      - aadhaar_number
+      title: KYCVerify
+    OTPVerify:
+      properties:
+        phone:
+          type: string
+          title: Phone
+        otp:
+          type: string
+          title: Otp
+      type: object
+      required:
+      - phone
+      - otp
+      title: OTPVerify
+    PolicyCreate:
+      properties:
+        worker_id:
+          type: integer
+          title: Worker Id
+        plan_type:
+          type: string
+          title: Plan Type
+          default: standard
+      type: object
+      required:
+      - worker_id
+      title: PolicyCreate
+    PolicyResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        worker_id:
+          type: integer
+          title: Worker Id
+        plan_type:
+          type: string
+          title: Plan Type
+        weekly_premium:
+          type: number
+          title: Weekly Premium
+        coverage_amount:
+          type: number
+          title: Coverage Amount
+        status:
+          type: string
+          title: Status
+        auto_renew:
+          type: boolean
+          title: Auto Renew
+        start_date:
+          type: string
+          format: date-time
+          title: Start Date
+        end_date:
+          type: string
+          format: date-time
+          title: End Date
+        weeks_active:
+          type: integer
+          title: Weeks Active
+        total_premiums_paid:
+          type: number
+          title: Total Premiums Paid
+        total_claims_paid:
+          type: number
+          title: Total Claims Paid
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+      - id
+      - worker_id
+      - plan_type
+      - weekly_premium
+      - coverage_amount
+      - status
+      - auto_renew
+      - start_date
+      - end_date
+      - weeks_active
+      - total_premiums_paid
+      - total_claims_paid
+      - created_at
+      title: PolicyResponse
+    PremiumCalculateRequest:
+      properties:
+        zone:
+          type: string
+          title: Zone
+        worker_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Worker Id
+        week_of_year:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Week Of Year
+      type: object
+      required:
+      - zone
+      title: PremiumCalculateRequest
+    UPISetup:
+      properties:
+        worker_id:
+          type: integer
+          title: Worker Id
+        upi_id:
+          type: string
+          title: Upi Id
+      type: object
+      required:
+      - worker_id
+      - upi_id
+      title: UPISetup
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    WorkerRegister:
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          minLength: 2
+          title: Name
+        phone:
+          type: string
+          pattern: ^[6-9]\d{9}$
+          title: Phone
+        platform:
+          type: string
+          title: Platform
+          description: zepto, blinkit, dunzo, swiggy_instamart
+        zone:
+          type: string
+          title: Zone
+        city:
+          type: string
+          title: City
+          default: Bengaluru
+        vehicle_type:
+          type: string
+          title: Vehicle Type
+          default: 2-wheeler
+        partner_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Partner Id
+        weekly_income:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Weekly Income
+          default: 5200.0
+        accepted_terms:
+          type: boolean
+          title: Accepted Terms
+          default: false
+        accepted_privacy:
+          type: boolean
+          title: Accepted Privacy
+          default: false
+        accepted_automated_decisions:
+          type: boolean
+          title: Accepted Automated Decisions
+          default: false
+      type: object
+      required:
+      - name
+      - phone
+      - platform
+      - zone
+      title: WorkerRegister
+    WorkerResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        phone:
+          type: string
+          title: Phone
+        zone:
+          type: string
+          title: Zone
+        city:
+          type: string
+          title: City
+        platform:
+          type: string
+          title: Platform
+        vehicle_type:
+          type: string
+          title: Vehicle Type
+        upi_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Upi Id
+        risk_tier:
+          type: string
+          title: Risk Tier
+        weekly_income:
+          type: number
+          title: Weekly Income
+        aadhaar_verified:
+          type: boolean
+          title: Aadhaar Verified
+        phone_verified:
+          type: boolean
+          title: Phone Verified
+        onboarding_complete:
+          type: boolean
+          title: Onboarding Complete
+        is_deleted:
+          type: boolean
+          title: Is Deleted
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+      - id
+      - name
+      - phone
+      - zone
+      - city
+      - platform
+      - vehicle_type
+      - upi_id
+      - risk_tier
+      - weekly_income
+      - aadhaar_verified
+      - phone_verified
+      - onboarding_complete
+      - is_deleted
+      - created_at
+      title: WorkerResponse
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

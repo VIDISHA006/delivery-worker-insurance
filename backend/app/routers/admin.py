@@ -1,0 +1,241 @@
+"""Admin Dashboard Router — KPIs, analytics, review queue."""
+from datetime import datetime, timedelta
+
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from sqlalchemy import func
+
+from app.database import get_db
+from app.models import (
+    Worker, Policy, Claim, Trigger, PayoutHistory,
+    PolicyStatus, ClaimStatus, FraudTier, TriggerStatus,
+)
+from app.security import get_current_admin
+from app.services.provider_gateway import get_integration_status
+from app.services.runtime_state import get_runtime_state
+
+router = APIRouter(prefix="/api/admin", tags=["Admin"])
+
+
+@router.get("/dashboard")
+def get_dashboard_kpis(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_admin),
+):
+    """Get all 8 dashboard KPIs."""
+    total_workers = db.query(Worker).count()
+    active_policies = db.query(Policy).filter(Policy.status == PolicyStatus.ACTIVE).count()
+    total_policies = db.query(Policy).count()
+
+    total_claims = db.query(Claim).count()
+    claims_paid = db.query(Claim).filter(Claim.status == ClaimStatus.PAID).count()
+    claims_pending = db.query(Claim).filter(Claim.status == ClaimStatus.PENDING_REVIEW).count()
+    claims_rejected = db.query(Claim).filter(Claim.status == ClaimStatus.REJECTED).count()
+    claims_auto_approved = db.query(Claim).filter(Claim.status == ClaimStatus.AUTO_APPROVED).count()
+
+    total_premiums = db.query(func.sum(Policy.total_premiums_paid)).scalar() or 0
+    total_payouts = db.query(func.sum(PayoutHistory.amount)).scalar() or 0
+
+    # Combined Loss Ratio
+    clr = round((total_payouts / total_premiums * 100), 1) if total_premiums > 0 else 0
+
+    # Avg payout latency (mock: ~1.5 hrs for demo)
+    avg_latency = 1.5
+
+    # Fraud detection rate
+    fraud_flagged = db.query(Claim).filter(Claim.fraud_tier.in_([FraudTier.AMBER, FraudTier.RED])).count()
+    fraud_rate = round((fraud_flagged / total_claims * 100), 1) if total_claims > 0 else 0
+
+    # Renewal rate (mock based on active vs total)
+    renewal_rate = round((active_policies / total_policies * 100), 1) if total_policies > 0 else 0
+
+    # Active triggers
+    active_triggers = db.query(Trigger).filter(Trigger.status == TriggerStatus.ACTIVE).count()
+
+    # Zones covered
+    zones = db.query(func.count(func.distinct(Worker.zone))).scalar() or 0
+
+    return {
+        "total_workers": total_workers,
+        "active_policies": active_policies,
+        "total_claims": total_claims,
+        "claims_paid": claims_paid,
+        "claims_pending": claims_pending,
+        "claims_rejected": claims_rejected,
+        "claims_auto_approved": claims_auto_approved,
+        "total_premiums_collected": round(total_premiums, 2),
+        "total_claims_amount": round(total_payouts, 2),
+        "combined_loss_ratio": clr,
+        "avg_payout_latency_hours": avg_latency,
+        "fraud_detection_rate": fraud_rate,
+        "policy_renewal_rate": renewal_rate,
+        "premium_collection_rate": 96.5,  # Mock high collection rate
+        "active_triggers": active_triggers,
+        "zones_covered": zones,
+        "runtime": get_runtime_state(),
+        "integrations": get_integration_status(),
+    }
+
+
+@router.get("/claims/queue")
+def get_claims_queue(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_admin),
+):
+    """Get claims requiring manual review, sorted by fraud tier."""
+    pending = (
+        db.query(Claim, Worker, Trigger)
+        .join(Worker, Claim.worker_id == Worker.id)
+        .join(Trigger, Claim.trigger_id == Trigger.id)
+        .filter(Claim.status == ClaimStatus.PENDING_REVIEW)
+        .order_by(Claim.fraud_score.desc())
+        .all()
+    )
+    return {
+        "total_pending": len(pending),
+        "claims": [
+            {
+                "id": c.id,
+                "worker_name": w.name,
+                "worker_phone": w.phone,
+                "zone": w.zone,
+                "trigger_type": t.type.value,
+                "trigger_severity": t.severity,
+                "amount": c.amount,
+                "fraud_score": c.fraud_score,
+                "fraud_tier": c.fraud_tier.value,
+                "fraud_details": c.fraud_details,
+                "created_at": c.created_at.isoformat() if c.created_at else None,
+            }
+            for c, w, t in pending
+        ],
+    }
+
+
+@router.get("/analytics")
+def get_analytics(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_admin),
+):
+    """Get analytics data for charts."""
+    # Zone distribution
+    zone_data = (
+        db.query(Worker.zone, func.count(Worker.id))
+        .group_by(Worker.zone)
+        .all()
+    )
+
+    # Claims by type
+    trigger_data = (
+        db.query(Trigger.type, func.count(Trigger.id))
+        .group_by(Trigger.type)
+        .all()
+    )
+
+    # Claims by fraud tier
+    fraud_data = (
+        db.query(Claim.fraud_tier, func.count(Claim.id))
+        .group_by(Claim.fraud_tier)
+        .all()
+    )
+
+    # Premium distribution
+    from app.services.premium_engine import get_all_zone_premiums
+    premiums = get_all_zone_premiums()
+
+    today = datetime.utcnow().date()
+    daily_activity = []
+    for offset in range(6, -1, -1):
+        day = today - timedelta(days=offset)
+        start = datetime.combine(day, datetime.min.time())
+        end = start + timedelta(days=1)
+        daily_activity.append({
+            "date": day.isoformat(),
+            "claims": db.query(Claim).filter(Claim.created_at >= start, Claim.created_at < end).count(),
+            "triggers": db.query(Trigger).filter(Trigger.fired_at >= start, Trigger.fired_at < end).count(),
+            "payouts": float(db.query(func.sum(PayoutHistory.amount)).filter(PayoutHistory.initiated_at >= start, PayoutHistory.initiated_at < end).scalar() or 0),
+            "premiums": float(db.query(func.sum(Policy.total_premiums_paid)).filter(Policy.created_at >= start, Policy.created_at < end).scalar() or 0),
+        })
+
+    claim_pipeline = {
+        "paid": db.query(Claim).filter(Claim.status == ClaimStatus.PAID).count(),
+        "auto_approved": db.query(Claim).filter(Claim.status == ClaimStatus.AUTO_APPROVED).count(),
+        "pending_review": db.query(Claim).filter(Claim.status == ClaimStatus.PENDING_REVIEW).count(),
+        "rejected": db.query(Claim).filter(Claim.status == ClaimStatus.REJECTED).count(),
+    }
+
+    zone_heatmap = []
+    for zone_name, workers in zone_data:
+        zone_triggers = db.query(Trigger).filter(Trigger.zone == zone_name).count()
+        zone_claims = (
+            db.query(Claim)
+            .join(Worker, Claim.worker_id == Worker.id)
+            .filter(Worker.zone == zone_name)
+            .count()
+        )
+        zone_heatmap.append({
+            "zone": zone_name,
+            "workers": workers,
+            "triggers": zone_triggers,
+            "claims": zone_claims,
+        })
+
+    return {
+        "zone_distribution": [
+            {"zone": z, "workers": c} for z, c in zone_data
+        ],
+        "trigger_frequency": [
+            {"type": t.value if hasattr(t, 'value') else str(t), "count": c}
+            for t, c in trigger_data
+        ],
+        "fraud_distribution": [
+            {"tier": t.value if hasattr(t, 'value') else str(t), "count": c}
+            for t, c in fraud_data
+        ],
+        "premium_by_zone": [
+            {"zone": p["zone"], "premium": p["final_premium"], "risk_score": p["risk_score"]}
+            for p in premiums
+        ],
+        "daily_activity": daily_activity,
+        "claim_pipeline": claim_pipeline,
+        "zone_heatmap": zone_heatmap,
+        "integrations": get_integration_status(),
+        "runtime": get_runtime_state(),
+    }
+
+
+@router.get("/integrations/status")
+def get_admin_integration_status(_: dict = Depends(get_current_admin)):
+    """Expose integration and background-job readiness for the admin portal."""
+    return {
+        "integrations": get_integration_status(),
+        "runtime": get_runtime_state(),
+    }
+
+
+@router.get("/payouts")
+def get_payout_history(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_admin),
+):
+    """Get all payout transactions."""
+    payouts = (
+        db.query(PayoutHistory, Worker)
+        .join(Worker, PayoutHistory.worker_id == Worker.id)
+        .order_by(PayoutHistory.initiated_at.desc())
+        .all()
+    )
+    return [
+        {
+            "id": p.id,
+            "worker_name": w.name,
+            "worker_zone": w.zone,
+            "amount": p.amount,
+            "upi_id": p.upi_id,
+            "transaction_ref": p.transaction_ref,
+            "status": p.status,
+            "initiated_at": p.initiated_at.isoformat() if p.initiated_at else None,
+            "completed_at": p.completed_at.isoformat() if p.completed_at else None,
+        }
+        for p, w in payouts
+    ]
