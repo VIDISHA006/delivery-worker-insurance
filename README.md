@@ -1,3 +1,12 @@
+---
+title: GigShield
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+app_port: 7860
+---
 # GigShield
 
 Parametric income protection for gig and q-commerce delivery workers.
