@@ -102,7 +102,7 @@ function getApiBase() {
   }
 
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  if (isLocal && window.location.port !== '8000') {
+  if (isLocal && !['8000', '7860', '8080'].includes(window.location.port)) {
     return `http://${window.location.hostname}:8000`;
   }
 
