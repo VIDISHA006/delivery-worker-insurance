@@ -1,44 +1,169 @@
-# GigShield Demo Video Script (2-Minute DevTrails Hackathon Pitch)
+# GigBuddy 2-Minute Spoken Pitch
 
-## Deliverables Covered:
-1. Registration Process
-2. Insurance Policy Management
-3. Dynamic Premium Calculation (AI-driven)
-4. Claims Management (Zero-Touch)
+## Before You Start
 
----
+- Open the app at the worker landing page.
+- Keep these credentials ready:
+  - Worker: `9876543210` / `1234`
+  - Admin: `ops@gigbuddy.local` / `GigBuddyAdmin123!`
+- Speak slowly, like you are explaining something useful to a person, not performing a sales pitch.
+- Keep your tone calm, practical, and confident.
+- Do not rush the first 20 seconds. That is where judges decide whether this is generic or specific.
 
-### [0:00 - 0:15] Introduction & Worker Registration (15s)
-**Visual:** Show the GigShield worker onboarding screen running locally on Vercel deployment.
-**Narration:**
-"Welcome to GigShield, a parametric income protection platform for gig workers. We’ve built a robust, production-ready system where delivery partners can onboard in seconds. Here’s a quick look at the registration: users provide their phone, preferred platform, and zone—like Indiranagar. Behind the scenes, we confirm their consent, complete their eKYC via Aadhar, and set up a UPI mandate for seamless automated premium deductions. It's fast, transparent, and built for the gig economy."
+## Simple Rule For Delivery
 
-### [0:15 - 0:40] Dynamic Premium Calculation & AI (25s)
-**Visual:** Transition to the Premium breakdown dashboard (or Postman endpoint showing ML factors), then show the Policy creation.
-**Narration:**
-"GigShield doesn’t do flat pricing. We use an XGBoost Machine Learning model to calculate hyper-local, dynamic weekly premiums. The API looks at 3 years of IMD weather data, BBMP flood sensors, and CPCB AQI data. For instance, if a worker operates in Whitefield—a low-risk zone—the model dynamically applies a discount, reporting back exact explainable factors. This ML-driven pricing allows workers to get adequate coverage affordably, adjusting weekly as safety conditions evolve."
-
-### [0:40 - 0:55] Insurance Policy Management (15s)
-**Visual:** Show the worker portal policy dashboard—Active, Paid, Paused statuses.
-**Narration:**
-"Once priced, workers activate their standard or premium policies with no lock-ins. They can view coverage amounts, easily pause coverage during a vacation, and reactivate it later with zero friction. Everything syncs natively to an upstream core system like Guidewire."
-
-### [0:55 - 1:30] Seamless Claims Management & Automated Triggers (35s)
-**Visual:** Side-by-side: Worker App on the left, Admin Event Trigger Dashboard on the right.
-**Narration:**
-"Here’s where GigShield shines: Parametric Zero-Touch Claims. Let’s say an extreme weather event hits. Our system continuously polls 5 automated triggers—like heavy rainfall combined with severe traffic congestion. If water levels hit 0.5m during high traffic in Koramangala, our engine fires a trigger automatically!
-We then instantly locate all active workers in that zone and run our Isolation Forest fraud detection. If the ML model classifies the claim as 'Green' (low anomaly risk), the claim is auto-approved, and a payout is instantly initiated to the worker's UPI account with zero paperwork. A true zero-touch experience!"
-
-### [1:30 - 2:00] Admin Operations & Conclusion (30s)
-**Visual:** Admin dashboard showing combined loss ratio, claims queue, and integration statuses.
-**Narration:**
-"For insurers, our Admin portal provides comprehensive intelligence. Complex claims get flagged into an Amber or Red queue for manual review. The dashboard also tracks the combined loss ratio, active triggers, and integration health across weather APIs and payout gateways.
-GigShield delivers continuous support, seamless parametric claims, and dynamic ML pricing—ensuring delivery workers receive the protection they need, precisely when they need it."
+- Speak in short sentences.
+- Pause briefly after every major point.
+- While you speak, move the screen only when your words mention the next thing.
+- Never say "AI-powered insurance app."
+- Say "disruption relief for delivery workers."
 
 ---
 
-## Action Items Before Recording:
-- Ensure `.env` is fully set up.
-- Run `docker compose up --build` and ensure everything is running seamlessly.
-- Open the frontend, the backend docs page (`http://localhost:8080/docs`), and keep the admin dashboard ready.
-- Demonstrate the automated polling sequence during the claims management segment using the `/api/triggers/simulate` endpoint.
+## Full 2-Minute Script
+
+### 0:00 - 0:20
+### Where to be on screen
+
+- Stay on the landing page.
+- Keep the hero text, trust cards, and demo path visible.
+
+### How to speak
+
+- Start slow.
+- Sound grounded, not overexcited.
+- Put stress on "delivery workers," "income," and "disruption."
+
+### What to say
+
+"GigBuddy is a disruption-relief product for delivery workers. When heavy rain, flooding, pollution, or civic disruption makes work collapse, workers lose income immediately. Most products still make them file a claim and prove the obvious. GigBuddy takes a different approach. We watch verified city signals and move toward payout when disruption is real."
+
+---
+
+### 0:20 - 0:40
+### Where to be on screen
+
+- Click into Worker Login.
+- Enter `9876543210` and `1234`.
+- Login.
+- Briefly toggle one language and then switch back if you want.
+
+### How to speak
+
+- Slightly faster here.
+- Keep it practical.
+- Make the UI feel intentional and worker-first.
+
+### What to say
+
+"The worker side is intentionally simple. Login works through phone and OTP. The flow is short, multilingual, and designed for people who are tired, in a hurry, or working on unstable networks. The goal is not to impress with complexity. The goal is to make relief understandable and usable under pressure."
+
+---
+
+### 0:40 - 1:00
+### Where to be on screen
+
+- Open Dashboard.
+- Point to active policy, weekly premium, coverage, total claimed, and renewal credit.
+- Pause briefly on the live zone status cards.
+
+### How to speak
+
+- Sound clear and explanatory.
+- Do not oversell the model.
+- Emphasize transparency.
+
+### What to say
+
+"Pricing is zone-specific, not flat. GigBuddy uses a calibrated risk model built from Bengaluru disruption patterns to price each zone differently. But the more important part is transparency. The worker can clearly see what they pay, what they are covered for, what has already been paid out, and whether any renewal credit has been earned."
+
+---
+
+### 1:00 - 1:20
+### Where to be on screen
+
+- Open Claims.
+- Show a paid claim.
+- Show the post-payout survey.
+- Submit the survey if available and point to the renewal credit.
+
+### How to speak
+
+- Slow down a little here.
+- This is one of the strongest originality points, so make it land.
+
+### What to say
+
+"This is one of the parts that makes GigBuddy different. It does not stop at automatic payout. After a paid event, the worker can confirm whether the disruption really happened, whether the payout amount felt useful, and how badly the shift was affected. That feedback is stored in the backend, and the worker earns a renewal credit. So the system does not pretend the model always knows enough on its own."
+
+---
+
+### 1:20 - 1:45
+### Where to be on screen
+
+- Switch to Admin Portal.
+- Login with `ops@gigbuddy.local` and `GigBuddyAdmin123!`
+- Open Dashboard.
+- Then open Triggers and run a rainfall or flooding simulation.
+
+### How to speak
+
+- Sound operational and concrete.
+- Make it feel like a real control surface, not a dashboard wallpaper.
+
+### What to say
+
+"On the operations side, this is built as a working control surface. Teams can see active policies, claim posture, runtime readiness, and live zone pressure. When I run a disruption scenario, the trigger engine creates claim activity based on verified conditions. Low-risk claims can move faster, while amber and red claims remain visible for review. That balance between automation and review is central to how this product works."
+
+---
+
+### 1:45 - 2:00
+### Where to be on screen
+
+- End on either the worker claims page or the dashboard.
+- Keep the screen still for the last sentence.
+
+### How to speak
+
+- Finish slower than you started.
+- Keep the closing clean and simple.
+
+### What to say
+
+"GigBuddy is our answer to a very specific problem: delivery workers need faster income relief during real city disruption. Our product combines verified city-signal payouts, a multilingual worker experience, and a real feedback-credit loop after payout. That is what makes this project specific, useful, and ours."
+
+---
+
+## If You Get Nervous
+
+Use this shorter emergency version:
+
+"GigBuddy helps delivery workers when city disruption shuts work down. Instead of making them file a claim, we use verified city signals to trigger payout decisions. Workers can see their protection clearly, and after payout they can submit feedback and earn renewal credit. On the admin side, teams can monitor triggers, claims, and review posture in one place."
+
+## Demo Order Cheat Sheet
+
+1. Landing page
+2. Worker login
+3. Dashboard
+4. Claims + feedback credit
+5. Admin login
+6. Trigger simulation
+7. Close on worker value
+
+## Words To Prefer
+
+- "disruption relief"
+- "delivery workers"
+- "verified city signals"
+- "calibrated pricing"
+- "feedback-credit loop"
+- "operations console"
+
+## Words To Avoid
+
+- "AI-generated"
+- "just a dashboard"
+- "insurance marketplace"
+- "revolutionary"
+- "fully production-ready"
+- "carrier-integrated" unless you are actually showing live credentials

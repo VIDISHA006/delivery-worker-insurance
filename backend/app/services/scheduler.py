@@ -17,7 +17,7 @@ from app.services.premium_engine import ZONE_PROFILES
 from app.services.runtime_state import set_job_enabled, update_job_state
 from app.services.trigger_engine import check_all_triggers
 
-logger = logging.getLogger("gigshield.jobs")
+logger = logging.getLogger("gigbuddy.jobs")
 SCHEDULER_IMPORT_ERROR = "APScheduler is not installed" if BackgroundScheduler is None else None
 scheduler = BackgroundScheduler(timezone="Asia/Kolkata") if BackgroundScheduler else None
 

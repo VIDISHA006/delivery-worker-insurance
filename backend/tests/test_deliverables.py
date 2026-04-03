@@ -1,4 +1,4 @@
-"""Comprehensive Deliverables Test Suite for GigShield.
+"""Comprehensive deliverables test suite for GigBuddy.
 
 Tests all key deliverables required for the DEVTrails 2026 hackathon submission:
   D1 — Registration Process
@@ -86,8 +86,8 @@ def _full_onboarding(zone: str = "Koramangala") -> tuple[str, int, dict]:
 def _admin_login() -> dict:
     """Login as admin and return auth headers."""
     resp = client.post("/api/auth/admin/login", json={
-        "username": "admin@gigshield.local",
-        "password": "GigShieldAdmin123!",
+        "username": "ops@gigbuddy.local",
+        "password": "GigBuddyAdmin123!",
     })
     assert resp.status_code == 200
     return _auth_header(resp.json()["access_token"])
@@ -407,7 +407,7 @@ class TestD3DynamicPremium:
 # ═══════════════════════════════════════════════════════════════════════
 
 class TestD4ClaimsManagement:
-    """Deliverable 4: Automated triggers, zero-touch claims, fraud detection."""
+    """Deliverable 4: automated triggers, payout handling, and fraud detection."""
 
     def test_d4_01_five_trigger_types_configured(self):
         """All 5 trigger types are defined with dual-signal thresholds."""
@@ -458,6 +458,57 @@ class TestD4ClaimsManagement:
             assert claim["amount"] > 0
             assert claim["fraud_tier"] in ("green", "amber", "red")
             assert "payout" in claim
+
+    def test_d4_04_feedback_credit_can_be_earned_and_applied(self):
+        """Paid claims can collect feedback once and apply a renewal credit."""
+        token, worker_id, headers = _full_onboarding("Indiranagar")
+        create_resp = client.post("/api/policies/create", json={
+            "worker_id": worker_id, "plan_type": "standard",
+        }, headers=headers)
+        policy_id = create_resp.json()["id"]
+
+        admin_headers = _admin_login()
+        sim_resp = client.post(
+            "/api/triggers/simulate/rainfall?zone=Indiranagar&severity=severe",
+            headers=admin_headers,
+        )
+        assert sim_resp.status_code == 200
+
+        claims_resp = client.get("/api/claims/me", headers=headers)
+        assert claims_resp.status_code == 200
+        claims = claims_resp.json()
+        assert claims, "Expected at least one generated claim"
+
+        latest_claim = claims[0]
+        if latest_claim["status"] == "pending_review":
+            approve_resp = client.put(f"/api/claims/{latest_claim['id']}/approve", headers=admin_headers)
+            assert approve_resp.status_code == 200
+
+        pending_feedback_resp = client.get("/api/claims/feedback/pending", headers=headers)
+        assert pending_feedback_resp.status_code == 200
+        pending_feedback = pending_feedback_resp.json()
+        assert pending_feedback["has_pending_feedback"] is True
+
+        feedback_claim_id = pending_feedback["claim"]["id"]
+        feedback_resp = client.post(
+            f"/api/claims/{feedback_claim_id}/feedback",
+            json={
+                "experienced_disruption": True,
+                "payout_helpfulness": "right",
+                "route_status": "slowed",
+            },
+            headers=headers,
+        )
+        assert feedback_resp.status_code == 200
+        feedback_body = feedback_resp.json()
+        assert feedback_body["credit_awarded"] == 5.0
+        assert feedback_body["renewal_credit_balance"] == 5.0
+
+        renew_resp = client.put(f"/api/policies/{policy_id}/renew", headers=headers)
+        assert renew_resp.status_code == 200
+        renew_body = renew_resp.json()
+        assert renew_body["renewal_credit_applied"] == 5.0
+        assert renew_body["renewal_credit_balance"] == 0.0
 
     def test_d4_04_zero_touch_green_claims_auto_paid(self):
         """GREEN fraud tier claims are auto-approved and paid instantly."""
@@ -648,7 +699,7 @@ class TestD6InfrastructureReadiness:
         resp = client.get("/api/info")
         assert resp.status_code == 200
         body = resp.json()
-        assert body["name"] == "GigShield API"
+        assert body["name"] == "GigBuddy API"
         assert "endpoints" in body
 
     def test_d6_05_support_endpoint_public(self):

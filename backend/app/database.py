@@ -47,6 +47,8 @@ def run_migrations() -> None:
         statements.append(f"ALTER TABLE workers ADD COLUMN ai_notice_accepted_at {timestamp_type}")
     if "last_login_at" not in worker_columns:
         statements.append(f"ALTER TABLE workers ADD COLUMN last_login_at {timestamp_type}")
+    if "renewal_credit_balance" not in worker_columns:
+        statements.append("ALTER TABLE workers ADD COLUMN renewal_credit_balance FLOAT NOT NULL DEFAULT 0")
 
     if not statements:
         return

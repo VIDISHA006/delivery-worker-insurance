@@ -15,6 +15,7 @@ from app.schemas import (
 from app.services.premium_engine import calculate_premium, get_risk_tier
 from app.services.provider_gateway import (
     get_integration_status,
+    normalize_phone,
     send_otp,
     setup_upi_mandate,
     verify_kyc_identity,
@@ -28,7 +29,7 @@ router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 @router.post("/send-otp")
 def dispatch_otp(data: OTPDispatchRequest):
     """Dispatch an OTP with cooldown and expiry handling."""
-    result = send_otp(data.phone, data.purpose)
+    result = send_otp(normalize_phone(data.phone), data.purpose)
     if not result["success"]:
         raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail=result["detail"])
     return result
@@ -37,14 +38,15 @@ def dispatch_otp(data: OTPDispatchRequest):
 @router.post("/login")
 def login_worker(data: OTPVerify, db: Session = Depends(get_db)):
     """Login an existing worker with phone and OTP."""
-    worker = db.query(Worker).filter(Worker.phone == data.phone).first()
+    phone = normalize_phone(data.phone)
+    worker = db.query(Worker).filter(Worker.phone == phone).first()
     if not worker:
         raise HTTPException(404, "Worker not found. Please register.")
 
     if worker.is_deleted:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="This account has already been deleted.")
 
-    otp_valid, otp_message = verify_provider_otp(data.phone, data.otp, data.session_id)
+    otp_valid, otp_message = verify_provider_otp(phone, data.otp, data.session_id)
     if not otp_valid:
         raise HTTPException(400, otp_message)
 
@@ -70,13 +72,14 @@ def login_worker(data: OTPVerify, db: Session = Depends(get_db)):
 @router.post("/register", response_model=WorkerRegisterResponse)
 def register_worker(data: WorkerRegister, db: Session = Depends(get_db)):
     """Register a new delivery worker."""
+    phone = normalize_phone(data.phone)
     if not data.accepted_terms or not data.accepted_privacy or not data.accepted_automated_decisions:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="You must accept the terms, privacy notice, and automated decisioning disclosure to continue.",
         )
 
-    existing = db.query(Worker).filter(Worker.phone == data.phone).first()
+    existing = db.query(Worker).filter(Worker.phone == phone).first()
     if existing:
         raise HTTPException(400, "Phone number already registered")
 
@@ -86,7 +89,7 @@ def register_worker(data: WorkerRegister, db: Session = Depends(get_db)):
 
     worker = Worker(
         name=data.name,
-        phone=data.phone,
+        phone=phone,
         zone=data.zone,
         city=data.city,
         platform=Platform(data.platform),
@@ -117,13 +120,14 @@ def register_worker(data: WorkerRegister, db: Session = Depends(get_db)):
 @router.post("/verify-otp")
 def verify_otp(data: OTPVerify, db: Session = Depends(get_db)):
     """Verify phone OTP. Mock: accepts '1234' for any phone."""
-    worker = db.query(Worker).filter(Worker.phone == data.phone).first()
+    phone = normalize_phone(data.phone)
+    worker = db.query(Worker).filter(Worker.phone == phone).first()
     if not worker:
         raise HTTPException(404, "Worker not found")
     if worker.is_deleted:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="This account has already been deleted.")
 
-    otp_valid, otp_message = verify_provider_otp(data.phone, data.otp, data.session_id)
+    otp_valid, otp_message = verify_provider_otp(phone, data.otp, data.session_id)
     if otp_valid:
         worker.phone_verified = True
         worker.last_login_at = datetime.utcnow()

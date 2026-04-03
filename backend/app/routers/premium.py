@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/premium", tags=["Premium"])
 
 @router.post("/calculate")
 def calculate_zone_premium(data: PremiumCalculateRequest, db: Session = Depends(get_db)):
-    """Calculate dynamic premium for a zone using XGBoost risk model."""
+    """Calculate dynamic premium for a zone using the calibrated risk model."""
     result = calculate_premium(data.zone, data.week_of_year)
 
     # Store calculation in DB
@@ -51,10 +51,10 @@ def get_zone_factors(zone: str):
         "premium": result,
         "profile": profile,
         "explanation": {
-            "model": "XGBoost Gradient Boosted Decision Tree",
-            "training_data": "3 years IMD weather history + CPCB AQI records + BBMP ward-level flood frequency",
+            "model": "Gradient-boosted risk model",
+            "training_data": "Synthetic Bengaluru disruption profiles calibrated from public weather, AQI, flood, and traffic distributions",
             "features_used": len(result["factors"]),
-            "retraining_frequency": "Monthly on updated IMD and CPCB data",
+            "retraining_frequency": "Refresh when updated public-signal assumptions are available",
         },
     }
 

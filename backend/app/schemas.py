@@ -70,6 +70,7 @@ class WorkerResponse(BaseModel):
     upi_id: Optional[str]
     risk_tier: str
     weekly_income: float
+    renewal_credit_balance: float
     aadhaar_verified: bool
     phone_verified: bool
     onboarding_complete: bool
@@ -196,6 +197,13 @@ class ClaimReview(BaseModel):
     claim_id: int
     action: str  # approve or reject
     notes: Optional[str] = None
+
+
+class ClaimFeedbackSubmission(BaseModel):
+    experienced_disruption: bool
+    payout_helpfulness: str = Field(..., pattern=r"^(low|right|high)$")
+    route_status: str = Field(..., pattern=r"^(stopped|slowed|normal)$")
+    notes: Optional[str] = Field(default=None, max_length=240)
 
 
 # ── Admin Dashboard ────────────────────────────────────────────────────

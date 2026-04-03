@@ -1,4 +1,4 @@
-name: GigShield CI
+name: GigBuddy CI
 
 on:
   push:

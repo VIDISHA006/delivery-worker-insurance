@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
-   GigShield — Professional Light Design System
-   DEVTrails 2026 · Phase 2 · Guidewire Integration
+   GigBuddy — Professional Light Design System
+   DEVTrails 2026 · Phase 2
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── Design Tokens (Professional Light Theme) ────────────────── */
@@ -2112,6 +2112,73 @@ h3,
     color: var(--text-muted);
 }
 
+.demo-runbook {
+    margin-top: 18px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(15, 108, 189, 0.10), rgba(15, 118, 110, 0.08));
+    border: 1px solid rgba(15, 108, 189, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.demo-runbook-head strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    color: var(--text-primary);
+}
+
+.demo-runbook-head p {
+    margin-bottom: 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+.demo-runbook-steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.demo-step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.8);
+}
+
+.demo-step-number {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.demo-step strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.demo-step p {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
 .onboarding-form-side {
     max-width: 540px;
 }
@@ -3256,7 +3323,8 @@ body::after {
 
 @media (max-width: 1240px) {
     .trust-features,
-    .hero-evidence-grid {
+    .hero-evidence-grid,
+    .demo-runbook-steps {
         grid-template-columns: 1fr;
     }
 

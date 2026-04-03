@@ -20,7 +20,7 @@ from app.services.provider_gateway import guidewire_sync_record, initiate_payout
 def process_trigger_claims(db: Session, trigger: Trigger) -> list[dict]:
     """Process all eligible claims when a trigger fires.
 
-    This is the zero-touch pipeline:
+    This is the automatic payout pipeline:
     1. Find all workers with active policies in the trigger zone
     2. Run fraud detection on each
     3. Auto-approve GREEN, queue AMBER/RED

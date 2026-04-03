@@ -1,4 +1,4 @@
-"""Provider gateway for OTP, KYC, payout, and Guidewire-adjacent integrations."""
+"""Provider gateway for OTP, KYC, payout, and carrier-system-adjacent integrations."""
 from __future__ import annotations
 
 from base64 import b64encode
@@ -23,12 +23,21 @@ def _digits(length: int = 6) -> str:
     return "".join(secrets.choice("0123456789") for _ in range(length))
 
 
+def normalize_phone(phone: str) -> str:
+    """Normalize Indian phone inputs to a 10-digit local mobile number."""
+    digits = "".join(ch for ch in str(phone or "") if ch.isdigit())
+    if len(digits) == 12 and digits.startswith("91"):
+        digits = digits[2:]
+    return digits
+
+
 def _mask_phone(phone: str) -> str:
     return f"******{phone[-4:]}" if len(phone) >= 4 else phone
 
 
 def send_otp(phone: str, purpose: str = "login") -> dict:
     """Send an OTP through the best configured provider with fallback."""
+    phone = normalize_phone(phone)
     existing = _otp_store.get(phone)
     now = _utc_now()
     if existing and existing["cooldown_until"] > now:
@@ -56,7 +65,7 @@ def send_otp(phone: str, purpose: str = "login") -> dict:
                 data={
                     "To": f"+91{phone}" if len(phone) == 10 else phone,
                     "From": settings.twilio_from_number,
-                    "Body": f"Your GigShield OTP is {otp}. It expires in {settings.otp_expiry_seconds // 60} minutes.",
+                    "Body": f"Your GigBuddy OTP is {otp}. It expires in {settings.otp_expiry_seconds // 60} minutes.",
                 },
                 timeout=10.0,
             )
@@ -91,9 +100,11 @@ def send_otp(phone: str, purpose: str = "login") -> dict:
 
 def verify_otp(phone: str, otp: str, session_id: str | None = None) -> tuple[bool, str]:
     """Verify an OTP against the stored session state."""
+    phone = normalize_phone(phone)
     record = _otp_store.get(phone)
-    if record is None and settings.demo_mode and otp == settings.demo_otp:
-        return True, "OTP verified in demo fallback mode."
+    if settings.demo_mode and otp == settings.demo_otp:
+        if record is None or not session_id or session_id == record["session_id"]:
+            return True, "OTP verified in demo mode."
     if not record:
         return False, "No OTP session found. Request a new code."
     if session_id and record["session_id"] != session_id:

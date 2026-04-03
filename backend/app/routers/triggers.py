@@ -90,7 +90,7 @@ def simulate_trigger(
     db.add(trigger)
     db.flush()
 
-    # Process zero-touch claims
+    # Process automatic payout claims
     claims_processed = process_trigger_claims(db, trigger)
 
     db.commit()

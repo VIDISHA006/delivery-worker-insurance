@@ -1,8 +1,8 @@
-"""XGBoost Dynamic Premium Engine.
+"""Dynamic premium engine for the GigBuddy demo.
 
-Trains an XGBoost-style premium model on synthetic IMD/CPCB-like data
-at module load time. Produces zone-specific weekly premiums with explainable
-factor breakdown for the submission environment.
+Trains an XGBoost-style premium model on synthetic Bengaluru disruption data
+calibrated from public weather, AQI, flood, and traffic patterns. Produces
+zone-specific weekly premiums with explainable factor breakdowns.
 """
 import math
 import random
@@ -154,7 +154,7 @@ def _train_model():
             verbosity=0,
         )
         _xgb_model.fit(X, y)
-        print("✅ XGBoost premium model trained on 2000 synthetic IMD-like samples")
+        print("✅ XGBoost premium model trained on 2000 synthetic Bengaluru-like samples")
     except Exception:
         from sklearn.ensemble import GradientBoostingRegressor
         X, y = _generate_training_data(2000)
@@ -165,7 +165,7 @@ def _train_model():
             random_state=42,
         )
         _xgb_model.fit(X, y)
-        print("✅ GradientBoosting premium model trained on 2000 synthetic IMD-like samples")
+        print("✅ GradientBoosting premium model trained on 2000 synthetic Bengaluru-like samples")
 
 
 # Train at import time
@@ -245,7 +245,7 @@ def calculate_premium(zone: str, week_of_year: int = None) -> dict:
         "risk_score": round(risk_score, 4),
         "factors": factor_details,
         "savings_vs_max": round(MAX_PREMIUM - final_premium, 0),
-        "model": "XGBoost (trained on 2000 synthetic IMD samples)",
+        "model": "Gradient-boosted risk model (trained on 2000 synthetic Bengaluru disruption profiles)",
     }
 
 

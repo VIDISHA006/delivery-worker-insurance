@@ -5,15 +5,18 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import Claim, Worker, Trigger, Policy, ClaimStatus, PayoutHistory
+from app.models import Claim, Worker, Trigger, ClaimStatus, PayoutHistory, PayoutFeedback
+from app.schemas import ClaimFeedbackSubmission
 from app.security import get_current_admin, get_current_worker, require_cron_access
 from app.services.claims_processor import approve_claim, reject_claim
 from app.services.scheduler import review_pending_claims_job
 
 router = APIRouter(prefix="/api/claims", tags=["Claims"])
+SURVEY_CREDIT_INR = 5.0
 
 
-def _serialize_claims(claims):
+def _serialize_claims(claims, feedback_claim_ids=None):
+    feedback_claim_ids = feedback_claim_ids or set()
     return [
         {
             "id": c.id,
@@ -27,6 +30,7 @@ def _serialize_claims(claims):
             "paid_at": c.paid_at.isoformat() if c.paid_at else None,
             "zone": t.zone,
             "trigger_description": t.description,
+            "feedback_submitted": c.id in feedback_claim_ids,
         }
         for c, t in claims
     ]
@@ -53,7 +57,14 @@ def get_my_claims(current_worker: Worker = Depends(get_current_worker), db: Sess
         .order_by(Claim.created_at.desc())
         .all()
     )
-    return _serialize_claims(claims)
+    claim_ids = [claim.id for claim, _ in claims]
+    feedback_claim_ids = {
+        claim_id
+        for (claim_id,) in db.query(PayoutFeedback.claim_id)
+        .filter(PayoutFeedback.claim_id.in_(claim_ids))
+        .all()
+    } if claim_ids else set()
+    return _serialize_claims(claims, feedback_claim_ids)
 
 
 @router.get("/worker/{worker_id}")
@@ -70,7 +81,97 @@ def get_worker_claims(
         .order_by(Claim.created_at.desc())
         .all()
     )
-    return _serialize_claims(claims)
+    claim_ids = [claim.id for claim, _ in claims]
+    feedback_claim_ids = {
+        claim_id
+        for (claim_id,) in db.query(PayoutFeedback.claim_id)
+        .filter(PayoutFeedback.claim_id.in_(claim_ids))
+        .all()
+    } if claim_ids else set()
+    return _serialize_claims(claims, feedback_claim_ids)
+
+
+@router.get("/feedback/pending")
+def get_pending_feedback(
+    current_worker: Worker = Depends(get_current_worker),
+    db: Session = Depends(get_db),
+):
+    """Return the newest paid claim that still needs worker feedback."""
+    pending = (
+        db.query(Claim, Trigger)
+        .join(Trigger, Claim.trigger_id == Trigger.id)
+        .outerjoin(PayoutFeedback, PayoutFeedback.claim_id == Claim.id)
+        .filter(
+            Claim.worker_id == current_worker.id,
+            Claim.status == ClaimStatus.PAID,
+            PayoutFeedback.id.is_(None),
+        )
+        .order_by(Claim.paid_at.desc(), Claim.created_at.desc())
+        .first()
+    )
+
+    if not pending:
+        return {
+            "has_pending_feedback": False,
+            "renewal_credit_balance": round(current_worker.renewal_credit_balance or 0, 2),
+        }
+
+    claim, trigger = pending
+    return {
+        "has_pending_feedback": True,
+        "renewal_credit_balance": round(current_worker.renewal_credit_balance or 0, 2),
+        "claim": {
+            "id": claim.id,
+            "amount": claim.amount,
+            "paid_at": claim.paid_at.isoformat() if claim.paid_at else None,
+            "trigger_type": trigger.type.value,
+            "trigger_description": trigger.description,
+            "zone": trigger.zone,
+        },
+        "credit_offer": SURVEY_CREDIT_INR,
+    }
+
+
+@router.post("/{claim_id}/feedback")
+def submit_claim_feedback(
+    claim_id: int,
+    data: ClaimFeedbackSubmission,
+    current_worker: Worker = Depends(get_current_worker),
+    db: Session = Depends(get_db),
+):
+    """Persist post-payout worker feedback and apply a renewal credit once."""
+    claim = db.query(Claim).filter(Claim.id == claim_id).first()
+    if not claim:
+        raise HTTPException(404, "Claim not found")
+    if claim.worker_id != current_worker.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You can only review your own payout.")
+    if claim.status != ClaimStatus.PAID:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Feedback is only available after payout completion.")
+
+    existing = db.query(PayoutFeedback).filter(PayoutFeedback.claim_id == claim_id).first()
+    if existing:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Feedback already submitted for this payout.")
+
+    feedback = PayoutFeedback(
+        claim_id=claim.id,
+        worker_id=current_worker.id,
+        experienced_disruption=data.experienced_disruption,
+        payout_helpfulness=data.payout_helpfulness,
+        route_status=data.route_status,
+        notes=data.notes,
+        credit_awarded=SURVEY_CREDIT_INR,
+    )
+    db.add(feedback)
+    current_worker.renewal_credit_balance = round((current_worker.renewal_credit_balance or 0) + SURVEY_CREDIT_INR, 2)
+    db.commit()
+
+    return {
+        "success": True,
+        "claim_id": claim.id,
+        "credit_awarded": SURVEY_CREDIT_INR,
+        "renewal_credit_balance": round(current_worker.renewal_credit_balance or 0, 2),
+        "message": "Feedback saved and renewal credit applied.",
+    }
 
 
 @router.get("/{claim_id}")

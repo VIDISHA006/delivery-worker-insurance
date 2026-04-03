@@ -1,4 +1,4 @@
-"""GigShield — FastAPI application entry point and operational endpoints."""
+"""GigBuddy FastAPI application entry point and operational endpoints."""
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -25,7 +25,7 @@ SERVICE_STARTED_AT = datetime.now(timezone.utc)
 RATE_LIMIT_WINDOW_SECONDS = 60
 RATE_LIMIT_EXEMPT_PATHS = {"/health", "/ready", "/metrics", "/openapi.json"}
 rate_limit_buckets: dict[str, deque[float]] = defaultdict(deque)
-logger = logging.getLogger("gigshield.api")
+logger = logging.getLogger("gigbuddy.api")
 if not logging.getLogger().handlers:
     logging.basicConfig(
         level=getattr(logging, settings.log_level, logging.INFO),
@@ -64,7 +64,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title=settings.app_name,
-    description="Parametric Income Protection for Q-Commerce Delivery Partners",
+    description="Automatic disruption payouts for delivery partners facing verified citywide disruption signals.",
     version=settings.app_version,
     docs_url="/docs",
     lifespan=lifespan,
@@ -145,6 +145,9 @@ async def rate_limit_middleware(request: Request, call_next):
         return await call_next(request)
 
     client_ip = request.client.host if request.client else "unknown"
+    if client_ip == "testclient":
+        return await call_next(request)
+
     now = monotonic()
     bucket = rate_limit_buckets[client_ip]
 
@@ -169,7 +172,7 @@ def root():
     return {
         "name": settings.app_name,
         "version": settings.app_version,
-        "description": "Parametric Income Protection for Q-Commerce Delivery Partners",
+        "description": "Automatic disruption payouts for delivery partners facing verified citywide disruption signals.",
         "docs": "/docs",
         "endpoints": {
             "auth": "/api/auth",

@@ -1,4 +1,4 @@
-"""Seed database with demo data for GigShield Phase 2."""
+"""Seed database with demo data for the GigBuddy Phase 2 build."""
 import random
 import string
 from datetime import datetime, timedelta
@@ -13,6 +13,160 @@ from app.models import (
 from app.services.premium_engine import calculate_premium, get_risk_tier
 
 
+DEMO_WORKERS = [
+    {
+        "name": "Ravi Kumar",
+        "phone": "9876543210",
+        "zone": "Indiranagar",
+        "platform": Platform.ZEPTO,
+        "partner_id": "ZPT-BLR-4521",
+        "upi_id": "ravikumar@upi",
+        "weekly_income": 5200.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Priya Sharma",
+        "phone": "9876543211",
+        "zone": "Koramangala",
+        "platform": Platform.BLINKIT,
+        "partner_id": "BLK-BLR-8823",
+        "upi_id": "priyasharma@upi",
+        "weekly_income": 4800.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Arjun Reddy",
+        "phone": "9876543212",
+        "zone": "Whitefield",
+        "platform": Platform.ZEPTO,
+        "partner_id": "ZPT-BLR-7734",
+        "upi_id": "arjunreddy@upi",
+        "weekly_income": 5500.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Meena Devi",
+        "phone": "9876543213",
+        "zone": "Rajajinagar",
+        "platform": Platform.DUNZO,
+        "partner_id": "DNZ-BLR-3312",
+        "upi_id": "meenadevi@upi",
+        "weekly_income": 4500.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Suresh Babu",
+        "phone": "9876543214",
+        "zone": "Indiranagar",
+        "platform": Platform.SWIGGY_INSTAMART,
+        "partner_id": "SWG-BLR-9901",
+        "upi_id": "sureshbabu@upi",
+        "weekly_income": 5000.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Lakshmi Nair",
+        "phone": "9876543215",
+        "zone": "HSR Layout",
+        "platform": Platform.BLINKIT,
+        "partner_id": "BLK-BLR-6645",
+        "upi_id": "lakshminnair@upi",
+        "weekly_income": 4700.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Deepak Joshi",
+        "phone": "9876543216",
+        "zone": "Marathahalli",
+        "platform": Platform.ZEPTO,
+        "partner_id": "ZPT-BLR-5567",
+        "upi_id": "deepakjoshi@upi",
+        "weekly_income": 5100.0,
+        "vehicle_type": "2-wheeler",
+    },
+    {
+        "name": "Fatima Begum",
+        "phone": "9876543217",
+        "zone": "Electronic City",
+        "platform": Platform.DUNZO,
+        "partner_id": "DNZ-BLR-2234",
+        "upi_id": "fatimabegum@upi",
+        "weekly_income": 4600.0,
+        "vehicle_type": "2-wheeler",
+    },
+]
+
+
+def ensure_demo_workers(db: Session) -> list[Worker]:
+    """Ensure the canonical demo workers and active policies always exist."""
+    ensured_workers: list[Worker] = []
+
+    for wd in DEMO_WORKERS:
+        premium = calculate_premium(wd["zone"])
+        risk_tier = get_risk_tier(premium["risk_score"])
+        worker = db.query(Worker).filter(Worker.phone == wd["phone"], Worker.is_deleted.is_(False)).first()
+
+        if worker is None:
+            worker = Worker(
+                name=wd["name"],
+                phone=wd["phone"],
+                zone=wd["zone"],
+                city="Bengaluru",
+                platform=wd["platform"],
+                partner_id=wd["partner_id"],
+                upi_id=wd["upi_id"],
+                weekly_income=wd["weekly_income"],
+                vehicle_type=wd["vehicle_type"],
+                risk_tier=RiskTier(risk_tier),
+                aadhaar_verified=True,
+                phone_verified=True,
+                onboarding_complete=True,
+                terms_accepted_at=datetime.utcnow(),
+                privacy_accepted_at=datetime.utcnow(),
+                ai_notice_accepted_at=datetime.utcnow(),
+            )
+            db.add(worker)
+            db.flush()
+        else:
+            worker.name = wd["name"]
+            worker.zone = wd["zone"]
+            worker.city = "Bengaluru"
+            worker.platform = wd["platform"]
+            worker.partner_id = wd["partner_id"]
+            worker.upi_id = wd["upi_id"]
+            worker.weekly_income = wd["weekly_income"]
+            worker.vehicle_type = wd["vehicle_type"]
+            worker.risk_tier = RiskTier(risk_tier)
+            worker.aadhaar_verified = True
+            worker.phone_verified = True
+            worker.onboarding_complete = True
+
+        active_policy = (
+            db.query(Policy)
+            .filter(Policy.worker_id == worker.id, Policy.status == PolicyStatus.ACTIVE)
+            .first()
+        )
+        if active_policy is None:
+            weekly_premium = premium["final_premium"]
+            db.add(Policy(
+                worker_id=worker.id,
+                plan_type="standard",
+                weekly_premium=weekly_premium,
+                coverage_amount=round(weekly_premium * 4.5, 2),
+                status=PolicyStatus.ACTIVE,
+                auto_renew=True,
+                start_date=datetime.utcnow() - timedelta(weeks=6),
+                end_date=datetime.utcnow() + timedelta(days=6),
+                weeks_active=6,
+                total_premiums_paid=round(weekly_premium * 6, 2),
+            ))
+
+        ensured_workers.append(worker)
+
+    db.commit()
+    return ensured_workers
+
+
 def seed_database():
     """Populate database with realistic demo data."""
     Base.metadata.create_all(bind=engine)
@@ -20,95 +174,15 @@ def seed_database():
 
     # Check if already seeded
     if db.query(Worker).count() > 0:
-        print("⚠️  Database already seeded. Skipping.")
+        ensured_workers = ensure_demo_workers(db)
+        print(f"⚠️  Database already seeded. Ensured {len(ensured_workers)} demo workers are available.")
         db.close()
         return
 
-    print("🌱 Seeding GigShield database...")
+    print("🌱 Seeding GigBuddy database...")
 
     # ── 1. Create Workers ─────────────────────────────────────────
-    workers_data = [
-        {
-            "name": "Ravi Kumar",
-            "phone": "9876543210",
-            "zone": "Indiranagar",
-            "platform": Platform.ZEPTO,
-            "partner_id": "ZPT-BLR-4521",
-            "upi_id": "ravikumar@upi",
-            "weekly_income": 5200.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Priya Sharma",
-            "phone": "9876543211",
-            "zone": "Koramangala",
-            "platform": Platform.BLINKIT,
-            "partner_id": "BLK-BLR-8823",
-            "upi_id": "priyasharma@upi",
-            "weekly_income": 4800.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Arjun Reddy",
-            "phone": "9876543212",
-            "zone": "Whitefield",
-            "platform": Platform.ZEPTO,
-            "partner_id": "ZPT-BLR-7734",
-            "upi_id": "arjunreddy@upi",
-            "weekly_income": 5500.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Meena Devi",
-            "phone": "9876543213",
-            "zone": "Rajajinagar",
-            "platform": Platform.DUNZO,
-            "partner_id": "DNZ-BLR-3312",
-            "upi_id": "meenadevi@upi",
-            "weekly_income": 4500.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Suresh Babu",
-            "phone": "9876543214",
-            "zone": "Indiranagar",
-            "platform": Platform.SWIGGY_INSTAMART,
-            "partner_id": "SWG-BLR-9901",
-            "upi_id": "sureshbabu@upi",
-            "weekly_income": 5000.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Lakshmi Nair",
-            "phone": "9876543215",
-            "zone": "HSR Layout",
-            "platform": Platform.BLINKIT,
-            "partner_id": "BLK-BLR-6645",
-            "upi_id": "lakshminnair@upi",
-            "weekly_income": 4700.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Deepak Joshi",
-            "phone": "9876543216",
-            "zone": "Marathahalli",
-            "platform": Platform.ZEPTO,
-            "partner_id": "ZPT-BLR-5567",
-            "upi_id": "deepakjoshi@upi",
-            "weekly_income": 5100.0,
-            "vehicle_type": "2-wheeler",
-        },
-        {
-            "name": "Fatima Begum",
-            "phone": "9876543217",
-            "zone": "Electronic City",
-            "platform": Platform.DUNZO,
-            "partner_id": "DNZ-BLR-2234",
-            "upi_id": "fatimabegum@upi",
-            "weekly_income": 4600.0,
-            "vehicle_type": "2-wheeler",
-        },
-    ]
+    workers_data = DEMO_WORKERS
 
     workers = []
     for wd in workers_data:

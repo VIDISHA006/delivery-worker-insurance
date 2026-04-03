@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   GigShield — Premium Frontend Application
+   GigBuddy — Frontend Application
    DEVTrails 2026 · Phase 2
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -9,53 +9,53 @@ const TRANSLATIONS = {
     "nav.worker": "Worker App", "nav.admin": "Admin Portal",
     "tab.onboarding": "Onboarding", "tab.dashboard": "Dashboard", "tab.claims": "Claims", "tab.premium": "Premium", "tab.settings": "Settings",
     "hero.title": "When it rains, your income doesn't have to stop.",
-    "hero.subtitle": "GigShield automatically detects weather disruptions and sends income-replacement payouts to your UPI — no claims, no paperwork, no waiting.",
+    "hero.subtitle": "GigBuddy watches verified city signals and moves disruption payouts to your UPI when delivery work is materially disrupted.",
     "hero.stat1": "Max weekly premium", "hero.stat2": "Payout SLA", "hero.stat3": "Claims to file",
-    "trust.1.title": "Zero-Touch Claims", "trust.1.desc": "Payouts triggered automatically by weather APIs — no forms ever",
-    "trust.2.title": "AI-Powered Pricing", "trust.2.desc": "XGBoost ML model calculates fair premiums based on real risk data",
+    "trust.1.title": "Automatic Payouts", "trust.1.desc": "Dual-signal disruption checks decide when a payout should move, without claim forms",
+    "trust.2.title": "Calibrated Pricing", "trust.2.desc": "Premiums come from a risk model calibrated to Bengaluru disruption patterns",
     "trust.3.title": "Dual-Trigger Verified", "trust.3.desc": "Two independent data sources must confirm before any payout fires",
     "reg.title": "Worker Registration", "reg.desc": "Enter your details to get started",
     "reg.name": "Full Name", "reg.phone": "Phone Number", "reg.platform": "Platform", "reg.zone": "Zone",
     "reg.income": "Weekly Income (₹)", "reg.vehicle": "Vehicle", "reg.submit": "Register & Get OTP",
     "reg.login_link": "Already have an account? Login",
-    "login.title": "Worker Login", "login.desc": "Welcome back to GigShield",
-    "login.phone": "Phone Number", "login.otp": "OTP", "login.hint": "Request a one-time password to sign in.",
+    "login.title": "Worker Login", "login.desc": "Welcome back to GigBuddy",
+    "login.phone": "Phone Number", "login.otp": "OTP", "login.hint": "Demo worker: Ravi Kumar, 9876543210, OTP 1234. You can also request a one-time password.",
     "login.send_otp": "Send OTP", "login.submit": "Login", "login.register_link": "New worker? Register here",
     "consent.terms": "I agree to the Terms of Service.",
     "consent.privacy": "I have reviewed the Privacy Notice and support contact details.",
     "consent.ai": "I understand pricing and fraud checks may use automated models, with human review available on appeal.",
     "otp.title": "Verify Phone", "otp.desc": "Enter the OTP sent to your phone", "otp.hint": "A 4-digit code has been sent via SMS.", "otp.resend": "Resend OTP", "otp.verify": "Verify OTP",
-    "kyc.title": "Aadhaar e-KYC", "kyc.desc": "Instant paperless verification via DigiLocker", "kyc.aadhaar": "Aadhaar Number", "kyc.verify": "Verify Aadhaar",
-    "quote.title": "Your Risk Profile & Premium", "quote.desc": "AI-powered pricing based on zone risk factors", "quote.accept": "Accept & Setup UPI",
+    "kyc.title": "Identity Check", "kyc.desc": "Paperless verification flow with sandbox fallback", "kyc.aadhaar": "Aadhaar Number", "kyc.verify": "Verify Aadhaar",
+    "quote.title": "Your Risk Profile & Premium", "quote.desc": "Calibrated pricing based on local disruption signals", "quote.accept": "Accept & Setup UPI",
     "upi.title": "UPI AutoPay Setup", "upi.desc": "Set up weekly automatic payment", "upi.id": "UPI ID",
     "upi.deduction": "Weekly Deduction", "upi.day": "Deduction Day", "upi.lockin": "Lock-in", "upi.none": "None — pause anytime", "upi.complete": "Complete Onboarding & Buy Policy",
-    "success.title": "Welcome to GigShield!", "success.desc": "Your policy is now ACTIVE. You're covered.", "success.go": "Go to Dashboard",
+    "success.title": "Welcome to GigBuddy!", "success.desc": "Your policy is now ACTIVE. You're covered.", "success.go": "Go to Dashboard",
     "dash.greeting": "Welcome", "dash.active": "Policy Active", "dash.logout": "Logout",
     "dash.policy": "Active Policy", "dash.weekly": "Weekly Premium", "dash.coverage": "Coverage",
-    "dash.weeks": "Weeks Active", "dash.paid": "Total Paid", "dash.claimed": "Total Claimed",
+    "dash.weeks": "Weeks Active", "dash.paid": "Total Paid", "dash.claimed": "Total Claimed", "dash.credit": "Renewal Credit",
     "dash.renew": "Renew", "dash.pause": "Pause", "dash.zone_status": "Zone Live Status",
     "dash.recent": "Recent Claims",
-    "claims.title": "Claims History", "claims.desc": "Zero-touch claims — automatically processed when triggers fire",
-    "prem.title": "Dynamic Premium Pricing", "prem.desc": "XGBoost ML model calculates zone-specific premiums from real environmental data",
-    "prem.how": "How the ML Model Works",
+    "claims.title": "Claims History", "claims.desc": "Automatic payouts with worker feedback after each paid event",
+    "prem.title": "Dynamic Premium Pricing", "prem.desc": "A calibrated risk model turns signal intensity into zone-specific weekly pricing",
+    "prem.how": "How Pricing Works",
     "settings.title": "Settings & Privacy", "settings.desc": "Account control, support, and data management",
-    "settings.account": "Account", "settings.support": "Support & Human Review",
+    "settings.account": "Account", "settings.support": "Support & Human Review", "settings.credit": "Renewal Credit",
     "settings.delete": "Delete Account", "settings.delete_btn": "Delete My Account",
-    "push.alert": "Weather alert detected in your area!", "push.payout": "Your GigShield payout is being processed.",
+    "push.alert": "Disruption alert detected in your area!", "push.payout": "Your GigBuddy payout is being processed.",
     "push.confirmed": "has been sent to your UPI.",
   },
   hi: {
     "nav.worker": "कर्मचारी ऐप", "nav.admin": "एडमिन पोर्टल",
     "tab.onboarding": "ऑनबोर्डिंग", "tab.dashboard": "डैशबोर्ड", "tab.claims": "दावे", "tab.premium": "प्रीमियम", "tab.settings": "सेटिंग्स",
     "hero.title": "जब बारिश होती है, तो आपकी आय को रुकना नहीं चाहिए।",
-    "hero.subtitle": "GigShield स्वचालित रूप से मौसम व्यवधानों का पता लगाता है और आपके UPI पर आय-प्रतिस्थापन भुगतान भेजता है।",
+    "hero.subtitle": "GigBuddy सत्यापित शहर संकेतों को देखकर व्यवधान होने पर आपके UPI पर भुगतान भेजता है।",
     "hero.stat1": "अधिकतम साप्ताहिक प्रीमियम", "hero.stat2": "भुगतान SLA", "hero.stat3": "दावे दाखिल करने",
     "reg.title": "कर्मचारी पंजीकरण", "reg.desc": "शुरू करने के लिए अपना विवरण दर्ज करें",
     "reg.name": "पूरा नाम", "reg.phone": "फ़ोन नंबर", "reg.submit": "पंजीकरण करें और OTP प्राप्त करें",
-    "login.title": "कर्मचारी लॉगिन", "login.desc": "GigShield में वापस स्वागत है",
+    "login.title": "कर्मचारी लॉगिन", "login.desc": "GigBuddy में वापस स्वागत है",
     "otp.title": "फ़ोन सत्यापित करें", "otp.verify": "OTP सत्यापित करें",
-    "kyc.title": "आधार e-KYC", "kyc.verify": "आधार सत्यापित करें",
-    "success.title": "GigShield में आपका स्वागत है!", "success.go": "डैशबोर्ड पर जाएं",
+    "kyc.title": "पहचान जांच", "kyc.verify": "आधार सत्यापित करें",
+    "success.title": "GigBuddy में आपका स्वागत है!", "success.go": "डैशबोर्ड पर जाएं",
     "dash.greeting": "स्वागत है", "dash.active": "पॉलिसी सक्रिय",
     "claims.title": "दावे इतिहास", "prem.title": "गतिशील प्रीमियम मूल्य निर्धारण",
     "settings.title": "सेटिंग्स और गोपनीयता",
@@ -64,10 +64,10 @@ const TRANSLATIONS = {
     "nav.worker": "ಕಾರ್ಮಿಕ ಅಪ್ಲಿಕೇಶನ್", "nav.admin": "ನಿರ್ವಾಹಕ ಪೋರ್ಟಲ್",
     "tab.onboarding": "ಆನ್‌ಬೋರ್ಡಿಂಗ್", "tab.dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", "tab.claims": "ಕ್ಲೈಮ್‌ಗಳು", "tab.premium": "ಪ್ರೀಮಿಯಂ", "tab.settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
     "hero.title": "ಮಳೆ ಬಂದಾಗ, ನಿಮ್ಮ ಆದಾಯ ನಿಲ್ಲಬೇಕಾಗಿಲ್ಲ.",
-    "hero.subtitle": "GigShield ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹವಾಮಾನ ಅಡೆತಡೆಗಳನ್ನು ಪತ್ತೆ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ UPI ಗೆ ಆದಾಯ-ಬದಲಿ ಪಾವತಿಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ.",
+    "hero.subtitle": "GigBuddy ಪರಿಶೀಲಿತ ನಗರ ಸೂಚನೆಗಳನ್ನು ನೋಡಿ ಕೆಲಸಕ್ಕೆ ವ್ಯತ್ಯಯವಾದಾಗ ನಿಮ್ಮ UPI ಗೆ ಪಾವತಿಯನ್ನು ಕಳುಹಿಸುತ್ತದೆ.",
     "hero.stat1": "ಗರಿಷ್ಠ ಸಾಪ್ತಾಹಿಕ ಪ್ರೀಮಿಯಂ", "hero.stat2": "ಪಾವತಿ SLA", "hero.stat3": "ಕ್ಲೈಮ್ ಸಲ್ಲಿಸಲು",
     "reg.title": "ಕಾರ್ಮಿಕ ನೋಂದಣಿ", "reg.desc": "ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ",
-    "success.title": "GigShield ಗೆ ಸ್ವಾಗತ!", "success.go": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ",
+    "success.title": "GigBuddy ಗೆ ಸ್ವಾಗತ!", "success.go": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ",
     "dash.greeting": "ಸ್ವಾಗತ", "dash.active": "ಪಾಲಿಸಿ ಸಕ್ರಿಯ",
     "claims.title": "ಕ್ಲೈಮ್ ಇತಿಹಾಸ", "prem.title": "ಡೈನಾಮಿಕ್ ಪ್ರೀಮಿಯಂ ಬೆಲೆ",
     "settings.title": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ",
@@ -79,18 +79,35 @@ let currentLang = 'en';
 Object.assign(TRANSLATIONS.en, {
   "hero.evidence.1.kicker": "Real-Time Detection",
   "hero.evidence.1.title": "Weather, AQI, flood and traffic signals are checked continuously.",
-  "hero.evidence.1.desc": "Claims are triggered only when environmental and behavioral signals agree, reducing basis risk for workers and insurers.",
-  "hero.evidence.2.kicker": "Zero-Touch Payouts",
-  "hero.evidence.2.title": "Auto-approval logic is designed to move from trigger to UPI in minutes.",
-  "hero.evidence.2.desc": "Fraud scoring, approval routing, and payout rails are orchestrated as a clean operational flow instead of a claims form.",
+  "hero.evidence.1.desc": "Payouts move only when multiple signals agree, reducing basis risk for workers and operators.",
+  "hero.evidence.2.kicker": "Fast Relief",
+  "hero.evidence.2.title": "Trigger, review, and payout logic are wired as an operational flow rather than a claims form.",
+  "hero.evidence.2.desc": "Low-risk payouts move quickly, while held claims stay visible for manual review.",
   "hero.evidence.3.kicker": "Worker-First Design",
   "hero.evidence.3.title": "Short steps, large targets, and multilingual copy keep the flow calm under pressure.",
   "hero.evidence.3.desc": "The experience is optimized for quick comprehension, unstable networks, and low-friction weekly protection.",
+  "demo.kicker": "2-Minute Demo Path",
+  "demo.title": "The fastest way to understand why GigBuddy is different",
+  "demo.desc": "Start with a worker flow, then close the loop with a disruption trigger and a feedback credit.",
+  "demo.step1.title": "Login as Ravi",
+  "demo.step1.desc": "Use 9876543210 and 1234 to open an active policy, claims history, and live zone status.",
+  "demo.step2.title": "Show the feedback-credit loop",
+  "demo.step2.desc": "Open Claims and submit the post-payout survey to add a visible renewal credit.",
+  "demo.step3.title": "Run a disruption scenario",
+  "demo.step3.desc": "Switch to Admin, simulate heavy rainfall or flooding, and watch trigger logic produce claims.",
+  "demo.step4.title": "Explain the ops posture",
+  "demo.step4.desc": "Point out that green claims move faster while amber and red claims remain reviewable.",
   "section.driver_cockpit": "Driver cockpit",
   "section.claims_timeline": "Claims timeline",
   "section.pricing_intelligence": "Pricing intelligence",
   "section.privacy_support": "Privacy & support",
   "survey.badge": "Post-Payout Survey",
+  "survey.claim_summary": "Last payout: {amount} for {trigger} in {zone}.",
+  "survey.pending": "Answer these questions once and we will add a renewal credit.",
+  "survey.q3": "How did the disruption affect your shift?",
+  "survey.stopped": "Stopped",
+  "survey.slowed": "Slowed",
+  "survey.normal": "Normal",
   "prem.model": "Model",
   "prem.training": "Training Data",
   "prem.features": "Features",
@@ -98,7 +115,7 @@ Object.assign(TRANSLATIONS.en, {
   "prem.retrain": "Retraining",
   "settings.legal": "Terms & Privacy",
   "settings.legal_open": "Open the legal summary",
-  "settings.legal_text": "Workers can review pricing, policy status, claim history, and payout handling inside the app. If a claim is flagged or denied, support can review the case manually. Deleting your account removes personal profile data and payout identifiers while retaining anonymised financial records required for audit.",
+  "settings.legal_text": "Workers can review pricing, policy status, claim history, payout handling, and renewal credit inside the app. If a claim is flagged or denied, support can review the case manually. Deleting your account removes personal profile data and payout identifiers while retaining anonymised financial records required for audit.",
   "settings.delete_desc": "This removes your personal profile data. This cannot be undone.",
   "settings.otp": "OTP Confirmation",
   "settings.confirm": "Type DELETE to confirm",
@@ -120,7 +137,9 @@ Object.assign(TRANSLATIONS.en, {
   "success.weekly": "Weekly Premium",
   "success.coverage": "Coverage",
   "success.status": "Status",
-  "toast.thank_you_discount": "Thank you! ₹5 discount applied to next renewal.",
+  "toast.thank_you_discount": "Thank you! ₹5 renewal credit is ready for your next renewal.",
+  "toast.complete_survey": "Answer all 3 survey questions",
+  "toast.survey_saved": "Feedback saved. ₹5 renewal credit added.",
   "toast.fill_fields": "Please fill in all fields",
   "toast.accept_consents": "Please accept all consent items",
   "toast.sign_in_to": "Please sign in to {label}.",
@@ -182,10 +201,10 @@ Object.assign(TRANSLATIONS.en, {
 });
 
 Object.assign(TRANSLATIONS.hi, {
-  "trust.1.title": "बिना दावा किए भुगतान",
-  "trust.1.desc": "मौसम एपीआई से भुगतान अपने आप ट्रिगर होता है",
-  "trust.2.title": "एआई आधारित प्रीमियम",
-  "trust.2.desc": "XGBoost मॉडल वास्तविक जोखिम के आधार पर उचित प्रीमियम तय करता है",
+  "trust.1.title": "स्वचालित भुगतान",
+  "trust.1.desc": "ड्यूल-सिग्नल जांच तय करती है कि भुगतान कब जारी होना चाहिए",
+  "trust.2.title": "कैलिब्रेटेड प्राइसिंग",
+  "trust.2.desc": "जोखिम मॉडल बेंगलुरु के व्यवधान पैटर्न के आधार पर प्रीमियम तय करता है",
   "trust.3.title": "ड्यूल-ट्रिगर सत्यापन",
   "trust.3.desc": "भुगतान से पहले दो स्वतंत्र संकेतों का मिलान आवश्यक है",
   "step.register": "पंजीकरण",
@@ -195,14 +214,14 @@ Object.assign(TRANSLATIONS.hi, {
   "step.upi": "UPI सेटअप",
   "reg.platform": "प्लेटफ़ॉर्म", "reg.zone": "ज़ोन", "reg.income": "साप्ताहिक आय (₹)", "reg.vehicle": "वाहन",
   "reg.login_link": "पहले से खाता है? लॉगिन करें",
-  "login.phone": "फ़ोन नंबर", "login.otp": "OTP", "login.hint": "साइन इन करने के लिए एक बार उपयोग वाला पासकोड माँगें।",
+  "login.phone": "फ़ोन नंबर", "login.otp": "OTP", "login.hint": "डेमो वर्कर: Ravi Kumar, 9876543210, OTP 1234. चाहें तो OTP भी मंगा सकते हैं।",
   "login.send_otp": "OTP भेजें", "login.submit": "लॉगिन", "login.register_link": "नए कर्मचारी हैं? यहाँ पंजीकरण करें",
   "consent.terms": "मैं सेवा की शर्तों से सहमत हूँ।",
   "consent.privacy": "मैंने गोपनीयता सूचना और सहायता विवरण पढ़ लिया है।",
   "consent.ai": "मैं समझता हूँ कि प्राइसिंग और फ्रॉड जाँच में स्वचालित मॉडल उपयोग हो सकते हैं।",
   "otp.desc": "अपने फ़ोन पर भेजा गया OTP दर्ज करें", "otp.hint": "4 अंकों का कोड SMS से भेजा गया है।", "otp.resend": "OTP दोबारा भेजें",
-  "kyc.desc": "DigiLocker के माध्यम से तुरंत पेपरलेस सत्यापन", "kyc.aadhaar": "आधार नंबर",
-  "quote.title": "आपकी जोखिम प्रोफ़ाइल और प्रीमियम", "quote.desc": "ज़ोन जोखिम के आधार पर एआई प्राइसिंग", "quote.accept": "स्वीकार करें और UPI सेट करें",
+  "kyc.desc": "सैंडबॉक्स बैकअप के साथ पेपरलेस सत्यापन प्रवाह", "kyc.aadhaar": "आधार नंबर",
+  "quote.title": "आपकी जोखिम प्रोफ़ाइल और प्रीमियम", "quote.desc": "स्थानीय व्यवधान संकेतों पर आधारित कैलिब्रेटेड प्राइसिंग", "quote.accept": "स्वीकार करें और UPI सेट करें",
   "upi.title": "UPI ऑटोपे सेटअप", "upi.desc": "साप्ताहिक स्वचालित भुगतान सेट करें", "upi.id": "UPI आईडी",
   "upi.deduction": "साप्ताहिक कटौती", "upi.day": "कटौती का दिन", "upi.lockin": "लॉक-इन", "upi.none": "कोई नहीं — कभी भी रोकें", "upi.complete": "ऑनबोर्डिंग पूरी करें और पॉलिसी खरीदें",
   "success.desc": "आपकी पॉलिसी अब सक्रिय है। आप सुरक्षित हैं।",
@@ -213,9 +232,9 @@ Object.assign(TRANSLATIONS.hi, {
   "claims.desc": "ट्रिगर होने पर दावे अपने आप प्रोसेस होते हैं",
   "survey.intro": "बेहतर बनाने में मदद करें — अपने पिछले भुगतान पर 3 छोटे प्रश्नों के उत्तर दें:",
   "survey.q1": "क्या आपने अपने कार्य क्षेत्र में यह व्यवधान अनुभव किया?", "survey.yes": "हाँ", "survey.no": "नहीं",
-  "survey.q2": "क्या भुगतान राशि उपयोगी थी?", "survey.low": "बहुत कम", "survey.right": "ठीक थी", "survey.high": "उम्मीद से अधिक", "survey.submit": "जमा करें और ₹5 छूट पाएं",
-  "prem.desc": "XGBoost मॉडल वास्तविक पर्यावरणीय डेटा से ज़ोन-विशिष्ट प्रीमियम निकालता है",
-  "prem.how": "एमएल मॉडल कैसे काम करता है",
+  "survey.q2": "क्या भुगतान राशि उपयोगी थी?", "survey.low": "बहुत कम", "survey.right": "ठीक थी", "survey.high": "उम्मीद से अधिक", "survey.submit": "जमा करें और ₹5 क्रेडिट पाएं",
+  "prem.desc": "कैलिब्रेटेड जोखिम मॉडल सिग्नल तीव्रता को साप्ताहिक प्रीमियम में बदलता है",
+  "prem.how": "प्राइसिंग कैसे काम करती है",
   "prem.landscape": "प्राइसिंग परिदृश्य", "prem.zone_chart": "ज़ोन प्रीमियम तुलना", "prem.model": "मॉडल", "prem.training": "प्रशिक्षण डेटा", "prem.features": "फ़ीचर्स", "prem.output": "आउटपुट", "prem.retrain": "री-ट्रेनिंग",
   "settings.desc": "खाता नियंत्रण, सहायता और डेटा प्रबंधन", "settings.account": "खाता", "settings.support": "सहायता और मानव समीक्षा",
   "settings.legal": "शर्तें और गोपनीयता", "settings.legal_open": "कानूनी सारांश खोलें", "settings.legal_text": "कर्मचारी ऐप के भीतर प्राइसिंग, पॉलिसी स्थिति, दावा इतिहास और भुगतान प्रबंधन देख सकते हैं। यदि दावा फ़्लैग या अस्वीकार होता है, तो सहायता टीम मैन्युअल समीक्षा कर सकती है।",
@@ -223,13 +242,24 @@ Object.assign(TRANSLATIONS.hi, {
   "hero.evidence.1.kicker": "रियल-टाइम पहचान", "hero.evidence.1.title": "मौसम, AQI, बाढ़ और ट्रैफिक संकेत लगातार जांचे जाते हैं।", "hero.evidence.1.desc": "भुगतान तभी ट्रिगर होते हैं जब पर्यावरणीय और व्यवहारिक संकेत मेल खाते हैं।",
   "hero.evidence.2.kicker": "स्वचालित भुगतान", "hero.evidence.2.title": "ट्रिगर से UPI तक तेज़ ऑटो-अप्रूवल प्रवाह।", "hero.evidence.2.desc": "फ्रॉड स्कोरिंग, अनुमोदन और भुगतान एक साफ़ परिचालन प्रवाह में होते हैं।",
   "hero.evidence.3.kicker": "वर्कर-फर्स्ट डिज़ाइन", "hero.evidence.3.title": "छोटे स्टेप, बड़े टच टारगेट और बहुभाषी कॉपी।", "hero.evidence.3.desc": "अनुभव तेज़ समझ, अस्थिर नेटवर्क और कम-फ्रिक्शन सुरक्षा के लिए अनुकूलित है।",
+  "demo.kicker": "2 मिनट डेमो पथ",
+  "demo.title": "GigBuddy को अलग क्या बनाता है, इसे समझने का सबसे तेज़ तरीका",
+  "demo.desc": "वर्कर फ्लो से शुरू करें, फिर व्यवधान ट्रिगर और फीडबैक क्रेडिट के साथ लूप पूरा करें।",
+  "demo.step1.title": "Ravi के रूप में लॉगिन करें",
+  "demo.step1.desc": "9876543210 और 1234 का उपयोग करके सक्रिय पॉलिसी, क्लेम इतिहास और लाइव ज़ोन स्थिति खोलें।",
+  "demo.step2.title": "फीडबैक-क्रेडिट लूप दिखाएँ",
+  "demo.step2.desc": "Claims खोलें और पोस्ट-पेआउट सर्वे जमा करके दिखाई देने वाला renewal credit जोड़ें।",
+  "demo.step3.title": "व्यवधान परिदृश्य चलाएँ",
+  "demo.step3.desc": "Admin में जाएँ, भारी बारिश या बाढ़ सिम्युलेट करें और देखें कि ट्रिगर लॉजिक कैसे क्लेम बनाता है।",
+  "demo.step4.title": "ऑप्स posture समझाएँ",
+  "demo.step4.desc": "दिखाएँ कि green claims तेज़ी से बढ़ते हैं, जबकि amber और red claims समीक्षा के लिए दिखते रहते हैं।",
   "section.driver_cockpit": "ड्राइवर कॉकपिट", "section.claims_timeline": "दावा टाइमलाइन", "section.pricing_intelligence": "प्राइसिंग इंटेलिजेंस", "section.privacy_support": "गोपनीयता और सहायता",
   "survey.badge": "भुगतान के बाद सर्वेक्षण",
   "common.bengaluru": "बेंगलुरु", "common.standard_plan": "स्टैंडर्ड प्लान", "common.standard": "स्टैंडर्ड", "common.active": "सक्रिय", "common.verified": "सत्यापित", "common.pending": "लंबित",
   "quote.detected_zone": "पता चला ज़ोन", "quote.period": "प्रति सप्ताह · सोमवार 06:00 पर ऑटो-डेबिट", "quote.model": "मॉडल", "quote.risk_score": "जोखिम स्कोर", "quote.tier.high": "उच्च जोखिम", "quote.tier.medium": "मध्यम", "quote.tier.low": "कम जोखिम",
   "quote.period_day": "सोमवार 06:00",
   "success.plan": "प्लान", "success.weekly": "साप्ताहिक प्रीमियम", "success.coverage": "कवरेज", "success.status": "स्थिति",
-  "toast.thank_you_discount": "धन्यवाद! अगले नवीनीकरण पर ₹5 छूट लागू हुई।", "toast.fill_fields": "कृपया सभी फ़ील्ड भरें", "toast.accept_consents": "कृपया सभी सहमति स्वीकार करें", "toast.sign_in_to": "{label} के लिए साइन इन करें।", "toast.enter_phone": "अपना फ़ोन नंबर दर्ज करें", "toast.otp_sent": "OTP भेज दिया गया", "toast.failed": "असफल", "toast.register_first": "पहले पंजीकरण करें", "toast.otp_resent": "OTP फिर भेजा गया", "toast.enter_phone_otp": "फ़ोन और OTP दर्ज करें", "toast.welcome_back": "वापसी पर स्वागत है!", "toast.enter_4digit_otp": "4 अंकों का OTP दर्ज करें", "toast.enter_12digit_aadhaar": "12 अंकों का आधार दर्ज करें", "toast.kyc_verified": "KYC सफलतापूर्वक सत्यापित हुआ।", "toast.enter_upi": "UPI आईडी दर्ज करें", "toast.policy_activated": "पॉलिसी सक्रिय हुई", "toast.session_ended": "सत्र समाप्त", "toast.account_deleted": "खाता हटाया गया।", "toast.enter_delete": "OTP दर्ज करें और DELETE लिखें", "toast.policy_renewed": "पॉलिसी एक और सप्ताह के लिए नवीनीकृत हुई!", "toast.policy_paused": "पॉलिसी रोकी गई। आप कभी भी फिर शुरू कर सकते हैं।", "toast.enter_credentials": "क्रेडेंशियल दर्ज करें", "toast.admin_session_started": "एडमिन सत्र शुरू हुआ", "toast.claim_approved": "दावा स्वीकृत", "toast.claim_rejected": "दावा अस्वीकृत",
+  "toast.thank_you_discount": "धन्यवाद! अगले नवीनीकरण के लिए ₹5 क्रेडिट तैयार है।", "toast.fill_fields": "कृपया सभी फ़ील्ड भरें", "toast.accept_consents": "कृपया सभी सहमति स्वीकार करें", "toast.sign_in_to": "{label} के लिए साइन इन करें।", "toast.enter_phone": "अपना फ़ोन नंबर दर्ज करें", "toast.otp_sent": "OTP भेज दिया गया", "toast.failed": "असफल", "toast.register_first": "पहले पंजीकरण करें", "toast.otp_resent": "OTP फिर भेजा गया", "toast.enter_phone_otp": "फ़ोन और OTP दर्ज करें", "toast.welcome_back": "वापसी पर स्वागत है!", "toast.enter_4digit_otp": "4 अंकों का OTP दर्ज करें", "toast.enter_12digit_aadhaar": "12 अंकों का आधार दर्ज करें", "toast.kyc_verified": "KYC सफलतापूर्वक सत्यापित हुआ।", "toast.enter_upi": "UPI आईडी दर्ज करें", "toast.policy_activated": "पॉलिसी सक्रिय हुई", "toast.session_ended": "सत्र समाप्त", "toast.account_deleted": "खाता हटाया गया।", "toast.enter_delete": "OTP दर्ज करें और DELETE लिखें", "toast.policy_renewed": "पॉलिसी एक और सप्ताह के लिए नवीनीकृत हुई!", "toast.policy_paused": "पॉलिसी रोकी गई। आप कभी भी फिर शुरू कर सकते हैं।", "toast.enter_credentials": "क्रेडेंशियल दर्ज करें", "toast.admin_session_started": "एडमिन सत्र शुरू हुआ", "toast.claim_approved": "दावा स्वीकृत", "toast.claim_rejected": "दावा अस्वीकृत",
   "otp.status.provider": "प्रदाता", "otp.status.expires": "समाप्ति", "otp.status.demo": "डेमो OTP", "ui.now": "अभी", "ui.not_yet": "अभी नहीं",
   "zone.rainfall": "वर्षा", "zone.aqi": "AQI", "zone.temperature": "तापमान", "zone.traffic": "ट्रैफिक", "zone.flood_level": "जल स्तर", "zone.level.normal": "सामान्य", "zone.level.elevated": "उच्च", "zone.level.critical": "गंभीर", "zone.live_telemetry": "लाइव ज़ोन टेलीमेट्री",
   "claims.none": "अभी कोई दावा नहीं — आप सुरक्षित हैं!", "claims.fraud": "धोखाधड़ी", "support.review_note": "मानव समीक्षा चाहिए? सहायता के लिए {phone} या {email} पर संपर्क करें।",
@@ -239,32 +269,43 @@ Object.assign(TRANSLATIONS.hi, {
 });
 
 Object.assign(TRANSLATIONS.kn, {
-  "trust.1.title": "ದಾವೆ ಇಲ್ಲದ ಪಾವತಿ", "trust.1.desc": "ಹವಾಮಾನ APIಗಳಿಂದ ಪಾವತಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆರಂಭವಾಗುತ್ತದೆ",
-  "trust.2.title": "AI ಆಧಾರಿತ ಪ್ರೈಸಿಂಗ್", "trust.2.desc": "XGBoost ಮಾದರಿ ನೈಜ ಅಪಾಯದ ಆಧಾರದ ಮೇಲೆ ಪ್ರೀಮಿಯಂ ನಿಗದಿಪಡಿಸುತ್ತದೆ",
+  "trust.1.title": "ಸ್ವಯಂಚಾಲಿತ ಪಾವತಿ", "trust.1.desc": "ಡ್ಯುಯಲ್-ಸಿಗ್ನಲ್ ಪರಿಶೀಲನೆ ಪಾವತಿ ಯಾವಾಗ ಸಾಗಬೇಕು ಎಂದು ನಿರ್ಧರಿಸುತ್ತದೆ",
+  "trust.2.title": "ಕ್ಯಾಲಿಬ್ರೇಟ್ ಮಾಡಿದ ಪ್ರೈಸಿಂಗ್", "trust.2.desc": "ಅಪಾಯ ಮಾದರಿ ಬೆಂಗಳೂರಿನ ವ್ಯತ್ಯಯ ಮಾದರಿಗಳ ಆಧಾರದ ಮೇಲೆ ಪ್ರೀಮಿಯಂ ನಿಗದಿಪಡಿಸುತ್ತದೆ",
   "trust.3.title": "ಡ್ಯುಯಲ್-ಟ್ರಿಗರ್ ದೃಢೀಕರಣ", "trust.3.desc": "ಪಾವತಿಗೆ ಮೊದಲು ಎರಡು ಸ್ವತಂತ್ರ ಸೂಚನೆಗಳು ಹೊಂದಬೇಕು",
   "step.register": "ನೋಂದಣಿ", "step.otp": "OTP ಪರಿಶೀಲನೆ", "step.kyc": "KYC", "step.quote": "ದರ", "step.upi": "UPI ಸೆಟಪ್",
   "reg.name": "ಪೂರ್ಣ ಹೆಸರು", "reg.phone": "ಫೋನ್ ಸಂಖ್ಯೆ", "reg.platform": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್", "reg.zone": "ಝೋನ್", "reg.income": "ವಾರದ ಆದಾಯ (₹)", "reg.vehicle": "ವಾಹನ", "reg.submit": "ನೋಂದಣಿ ಮಾಡಿ OTP ಪಡೆಯಿರಿ", "reg.login_link": "ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೆ? ಲಾಗಿನ್ ಮಾಡಿ",
-  "login.title": "ಕಾರ್ಮಿಕ ಲಾಗಿನ್", "login.desc": "GigShield ಗೆ ಮತ್ತೆ ಸ್ವಾಗತ", "login.phone": "ಫೋನ್ ಸಂಖ್ಯೆ", "login.otp": "OTP", "login.hint": "ಲಾಗಿನ್ ಮಾಡಲು ಒಮ್ಮೆ ಬಳಕೆಯ ಪಾಸ್‌ಕೋಡ್ ಕೇಳಿ.", "login.send_otp": "OTP ಕಳುಹಿಸಿ", "login.submit": "ಲಾಗಿನ್", "login.register_link": "ಹೊಸ ಕಾರ್ಮಿಕರಾ? ಇಲ್ಲಿ ನೋಂದಣಿ ಮಾಡಿ",
+  "login.title": "ಕಾರ್ಮಿಕ ಲಾಗಿನ್", "login.desc": "GigBuddy ಗೆ ಮತ್ತೆ ಸ್ವಾಗತ", "login.phone": "ಫೋನ್ ಸಂಖ್ಯೆ", "login.otp": "OTP", "login.hint": "ಡೆಮೊ ವರ್ಕರ್: Ravi Kumar, 9876543210, OTP 1234. ಇಲ್ಲವಾದರೆ OTP ಕೋರಬಹುದು.", "login.send_otp": "OTP ಕಳುಹಿಸಿ", "login.submit": "ಲಾಗಿನ್", "login.register_link": "ಹೊಸ ಕಾರ್ಮಿಕರಾ? ಇಲ್ಲಿ ನೋಂದಣಿ ಮಾಡಿ",
   "consent.terms": "ನಾನು ಸೇವಾ ನಿಯಮಗಳಿಗೆ ಒಪ್ಪುತ್ತೇನೆ.", "consent.privacy": "ನಾನು ಗೌಪ್ಯತಾ ಸೂಚನೆ ಮತ್ತು ಸಹಾಯ ವಿವರಗಳನ್ನು ಓದಿದ್ದೇನೆ.", "consent.ai": "ಪ್ರೈಸಿಂಗ್ ಮತ್ತು ವಂಚನೆ ಪರಿಶೀಲನೆಗೆ ಸ್ವಯಂಚಾಲಿತ ಮಾದರಿಗಳನ್ನು ಬಳಸಬಹುದು ಎಂಬುದು ನನಗೆ ಅರ್ಥವಾಗಿದೆ.",
   "otp.desc": "ನಿಮ್ಮ ಫೋನ್‌ಗೆ ಕಳುಹಿಸಿದ OTP ನಮೂದಿಸಿ", "otp.hint": "4 ಅಂಕೆಯ ಕೋಡ್ SMS ಮೂಲಕ ಕಳುಹಿಸಲಾಗಿದೆ.", "otp.resend": "OTP ಮರುಕಳುಹಿಸಿ",
-  "kyc.desc": "DigiLocker ಮೂಲಕ ತಕ್ಷಣದ ಪೇಪರ್‌ಲೆಸ್ ಪರಿಶೀಲನೆ", "kyc.aadhaar": "ಆಧಾರ್ ಸಂಖ್ಯೆ",
-  "quote.title": "ನಿಮ್ಮ ಅಪಾಯ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಪ್ರೀಮಿಯಂ", "quote.desc": "ಝೋನ್ ಅಪಾಯದ ಆಧಾರದ ಮೇಲೆ AI ಪ್ರೈಸಿಂಗ್", "quote.accept": "ಸ್ವೀಕರಿಸಿ ಮತ್ತು UPI ಸೆಟಪ್ ಮಾಡಿ",
+  "kyc.title": "ಗುರುತು ಪರಿಶೀಲನೆ", "kyc.desc": "ಸ್ಯಾಂಡ್‌ಬಾಕ್ಸ್ ಬ್ಯಾಕಪ್ ಜೊತೆಗೆ ಪೇಪರ್‌ಲೆಸ್ ಪರಿಶೀಲನೆ ಹರಿವು", "kyc.aadhaar": "ಆಧಾರ್ ಸಂಖ್ಯೆ",
+  "quote.title": "ನಿಮ್ಮ ಅಪಾಯ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಪ್ರೀಮಿಯಂ", "quote.desc": "ಸ್ಥಳೀಯ ವ್ಯತ್ಯಯ ಸೂಚನೆಗಳ ಆಧಾರದ ಮೇಲೆ ಕ್ಯಾಲಿಬ್ರೇಟ್ ಮಾಡಿದ ಪ್ರೈಸಿಂಗ್", "quote.accept": "ಸ್ವೀಕರಿಸಿ ಮತ್ತು UPI ಸೆಟಪ್ ಮಾಡಿ",
   "upi.title": "UPI ಆಟೋಪೇ ಸೆಟಪ್", "upi.desc": "ವಾರದ ಸ್ವಯಂ ಪಾವತಿಯನ್ನು ಸೆಟಪ್ ಮಾಡಿ", "upi.id": "UPI ಐಡಿ", "upi.deduction": "ವಾರದ ಕಡಿತ", "upi.day": "ಕಡಿತ ದಿನ", "upi.lockin": "ಲಾಕ್-ಇನ್", "upi.none": "ಯಾವುದೂ ಇಲ್ಲ — ಯಾವಾಗ ಬೇಕಾದರೂ ನಿಲ್ಲಿಸಬಹುದು", "upi.complete": "ಆನ್‌ಬೋರ್ಡಿಂಗ್ ಮುಗಿಸಿ ಪಾಲಿಸಿ ಖರೀದಿಸಿ",
   "success.desc": "ನಿಮ್ಮ ಪಾಲಿಸಿ ಈಗ ಸಕ್ರಿಯವಾಗಿದೆ. ನೀವು ರಕ್ಷಿತರಾಗಿದ್ದೀರಿ.", "dash.logout": "ಲಾಗ್ ಔಟ್", "dash.policy": "ಸಕ್ರಿಯ ಪಾಲಿಸಿ", "dash.weekly": "ವಾರದ ಪ್ರೀಮಿಯಂ", "dash.coverage": "ಕವರೆಜ್", "dash.weeks": "ಸಕ್ರಿಯ ವಾರಗಳು", "dash.paid": "ಒಟ್ಟು ಪಾವತಿ", "dash.claimed": "ಒಟ್ಟು ದಾವೆ ಪಾವತಿ", "dash.renew": "ಪುನರ್ನವೀಕರಣ", "dash.pause": "ವಿರಾಮ", "dash.zone_status": "ಲೈವ್ ಝೋನ್ ಸ್ಥಿತಿ", "dash.recent": "ಇತ್ತೀಚಿನ ದಾವೆಗಳು",
   "dash.chart_fin": "ಆರ್ಥಿಕ ಅವಲೋಕನ", "dash.chart_prot": "ರಕ್ಷಣಾ ಸಮತೋಲನ", "dash.chart_risk": "ಲೈವ್ ಅಪಾಯ", "dash.chart_radar": "ಝೋನ್ ಸಿಗ್ನಲ್ ರಡಾರ್", "dash.chart_perf": "ದಾವೆ ಕಾರ್ಯಕ್ಷಮತೆ", "dash.chart_trend": "ಪಾವತಿ ಧೋರಣೆ",
   "claims.desc": "ಟ್ರಿಗರ್ ಆಗುತ್ತಿದ್ದಂತೆ ದಾವೆಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರೊಸೆಸ್ ಆಗುತ್ತವೆ",
-  "survey.intro": "ಸುಧಾರಣೆಗೆ ಸಹಾಯ ಮಾಡಿ — ನಿಮ್ಮ ಕೊನೆಯ ಪಾವತಿಯ ಬಗ್ಗೆ 3 ಚಿಕ್ಕ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ:", "survey.q1": "ನೀವು ನಿಮ್ಮ ಕೆಲಸದ ಪ್ರದೇಶದಲ್ಲಿ ಈ ವ್ಯತ್ಯಯ ಅನುಭವಿಸಿದ್ದೀರಾ?", "survey.yes": "ಹೌದು", "survey.no": "ಇಲ್ಲ", "survey.q2": "ಪಾವತಿ ಮೊತ್ತ ಉಪಯುಕ್ತವಾಗಿತ್ತೇ?", "survey.low": "ತುಂಬಾ ಕಡಿಮೆ", "survey.right": "ಸರಿಯಿತ್ತು", "survey.high": "ನಿರೀಕ್ಷೆಗಿಂತ ಹೆಚ್ಚು", "survey.submit": "ಸಲ್ಲಿಸಿ ಮತ್ತು ₹5 ರಿಯಾಯಿತಿ ಪಡೆಯಿರಿ",
-  "prem.desc": "XGBoost ಮಾದರಿ ನೈಜ ಪರಿಸರ ಡೇಟಾದಿಂದ ಝೋನ್-ನಿರ್ದಿಷ್ಟ ಪ್ರೀಮಿಯಂ ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ", "prem.how": "ML ಮಾದರಿ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ", "prem.landscape": "ಪ್ರೈಸಿಂಗ್ ಲ್ಯಾಂಡ್‌ಸ್ಕೇಪ್", "prem.zone_chart": "ಝೋನ್ ಪ್ರೀಮಿಯಂ ಹೋಲಿಕೆ", "prem.model": "ಮಾದರಿ", "prem.training": "ಪ್ರಶಿಕ್ಷಣ ಡೇಟಾ", "prem.features": "ಲಕ್ಷಣಗಳು", "prem.output": "ಔಟ್‌ಪುಟ್", "prem.retrain": "ಮರುಪ್ರಶಿಕ್ಷಣ",
+  "survey.intro": "ಸುಧಾರಣೆಗೆ ಸಹಾಯ ಮಾಡಿ — ನಿಮ್ಮ ಕೊನೆಯ ಪಾವತಿಯ ಬಗ್ಗೆ 3 ಚಿಕ್ಕ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ:", "survey.q1": "ನೀವು ನಿಮ್ಮ ಕೆಲಸದ ಪ್ರದೇಶದಲ್ಲಿ ಈ ವ್ಯತ್ಯಯ ಅನುಭವಿಸಿದ್ದೀರಾ?", "survey.yes": "ಹೌದು", "survey.no": "ಇಲ್ಲ", "survey.q2": "ಪಾವತಿ ಮೊತ್ತ ಉಪಯುಕ್ತವಾಗಿತ್ತೇ?", "survey.low": "ತುಂಬಾ ಕಡಿಮೆ", "survey.right": "ಸರಿಯಿತ್ತು", "survey.high": "ನಿರೀಕ್ಷೆಗಿಂತ ಹೆಚ್ಚು", "survey.submit": "ಸಲ್ಲಿಸಿ ಮತ್ತು ₹5 ಕ್ರೆಡಿಟ್ ಪಡೆಯಿರಿ",
+  "prem.desc": "ಕ್ಯಾಲಿಬ್ರೇಟ್ ಮಾಡಿದ ಅಪಾಯ ಮಾದರಿ ಸಿಗ್ನಲ್ ತೀವ್ರತೆಯನ್ನು ವಾರದ ಪ್ರೀಮಿಯಂ ಆಗಿ ಪರಿವರ್ತಿಸುತ್ತದೆ", "prem.how": "ಪ್ರೈಸಿಂಗ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ", "prem.landscape": "ಪ್ರೈಸಿಂಗ್ ಲ್ಯಾಂಡ್‌ಸ್ಕೇಪ್", "prem.zone_chart": "ಝೋನ್ ಪ್ರೀಮಿಯಂ ಹೋಲಿಕೆ", "prem.model": "ಮಾದರಿ", "prem.training": "ಪ್ರಶಿಕ್ಷಣ ಡೇಟಾ", "prem.features": "ಲಕ್ಷಣಗಳು", "prem.output": "ಔಟ್‌ಪುಟ್", "prem.retrain": "ಮರುಪ್ರಶಿಕ್ಷಣ",
   "settings.desc": "ಖಾತೆ ನಿಯಂತ್ರಣ, ಸಹಾಯ ಮತ್ತು ಡೇಟಾ ನಿರ್ವಹಣೆ", "settings.account": "ಖಾತೆ", "settings.support": "ಸಹಾಯ ಮತ್ತು ಮಾನವ ವಿಮರ್ಶೆ", "settings.legal": "ನಿಯಮಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ", "settings.legal_open": "ಕಾನೂನು ಸಾರಾಂಶ ತೆರೆಯಿರಿ", "settings.legal_text": "ಕಾರ್ಮಿಕರು ಆಪ್‌ನೊಳಗೆ ಪ್ರೈಸಿಂಗ್, ಪಾಲಿಸಿ ಸ್ಥಿತಿ, ದಾವೆ ಇತಿಹಾಸ ಮತ್ತು ಪಾವತಿ ನಿರ್ವಹಣೆಯನ್ನು ನೋಡಬಹುದು. ದಾವೆ ಗುರುತಿಸಲ್ಪಟ್ಟರೆ ಅಥವಾ ತಿರಸ್ಕರಿಸಿದರೆ, ಸಹಾಯ ತಂಡವು ಕೈಯಾರೆ ವಿಮರ್ಶೆ ಮಾಡಬಹುದು.", "settings.delete": "ಖಾತೆ ಅಳಿಸಿ", "settings.delete_desc": "ಇದು ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸುತ್ತದೆ. ಇದನ್ನು ಹಿಂತಿರುಗಿಸಲಾಗುವುದಿಲ್ಲ.", "settings.otp": "OTP ದೃಢೀಕರಣ", "settings.confirm": "ದೃಢೀಕರಿಸಲು DELETE ಟೈಪ್ ಮಾಡಿ", "settings.delete_btn": "ನನ್ನ ಖಾತೆ ಅಳಿಸಿ",
   "hero.evidence.1.kicker": "ರಿಯಲ್-ಟೈಮ್ ಪತ್ತೆ", "hero.evidence.1.title": "ಹವಾಮಾನ, AQI, ನೆರೆ ಮತ್ತು ಟ್ರಾಫಿಕ್ ಸೂಚನೆಗಳನ್ನು ನಿರಂತರವಾಗಿ ಪರಿಶೀಲಿಸಲಾಗುತ್ತದೆ.", "hero.evidence.1.desc": "ಪರಿಸರ ಮತ್ತು ವರ್ತನಾ ಸೂಚನೆಗಳು ಹೊಂದಿದಾಗ ಮಾತ್ರ ಪಾವತಿಗಳು ಟ್ರಿಗರ್ ಆಗುತ್ತವೆ.",
   "hero.evidence.2.kicker": "ಸ್ವಯಂ ಪಾವತಿಗಳು", "hero.evidence.2.title": "ಟ್ರಿಗರ್‌ನಿಂದ UPI ವರೆಗೆ ವೇಗವಾದ ಸ್ವಯಂ-ಅನುಮೋದಿತ ಹರಿವು.", "hero.evidence.2.desc": "ವಂಚನೆ ಅಂಕೆ, ಅನುಮೋದನೆ ಮತ್ತು ಪಾವತಿಗಳು ಸ್ವಚ್ಛ ಕಾರ್ಯಾಚರಣಾ ಹರಿವಿನಲ್ಲಿ ನಡೆಯುತ್ತವೆ.",
   "hero.evidence.3.kicker": "ಕಾರ್ಮಿಕ-ಮುಖ್ಯ ವಿನ್ಯಾಸ", "hero.evidence.3.title": "ಸಣ್ಣ ಹಂತಗಳು, ದೊಡ್ಡ ಟಚ್ ಟಾರ್ಗೆಟ್‌ಗಳು ಮತ್ತು ಬಹುಭಾಷಾ ಪ್ರತಿಗಳು.", "hero.evidence.3.desc": "ವೇಗವಾದ ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವಿಕೆ, ದುರ್ಬಲ ನೆಟ್‌ವರ್ಕ್ ಮತ್ತು ಕಡಿಮೆ ಘರ್ಷಣೆಯ ರಕ್ಷಣೆಗೆ ಅನುಗುಣವಾಗಿದೆ.",
+  "demo.kicker": "2 ನಿಮಿಷದ ಡೆಮೋ ಪಥ",
+  "demo.title": "GigBuddy ಏಕೆ ವಿಭಿನ್ನವಾಗಿದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವ ಅತ್ಯಂತ ವೇಗವಾದ ಮಾರ್ಗ",
+  "demo.desc": "ಕಾರ್ಮಿಕ ಹರಿವಿನಿಂದ ಪ್ರಾರಂಭಿಸಿ, ನಂತರ ವ್ಯತ್ಯಯ ಟ್ರಿಗರ್ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯಾ ಕ್ರೆಡಿಟ್‌ನೊಂದಿಗೆ ಲೂಪ್ ಮುಗಿಸಿ.",
+  "demo.step1.title": "Ravi ಆಗಿ ಲಾಗಿನ್ ಮಾಡಿ",
+  "demo.step1.desc": "9876543210 ಮತ್ತು 1234 ಬಳಸಿ ಸಕ್ರಿಯ ಪಾಲಿಸಿ, ದಾವೆ ಇತಿಹಾಸ ಮತ್ತು ಲೈವ್ ಝೋನ್ ಸ್ಥಿತಿ ತೆರೆಯಿರಿ.",
+  "demo.step2.title": "ಪ್ರತಿಕ್ರಿಯೆ-ಕ್ರೆಡಿಟ್ ಲೂಪ್ ತೋರಿಸಿ",
+  "demo.step2.desc": "Claims ತೆರೆದು, ಪಾವತಿಯ ನಂತರದ ಸಮೀಕ್ಷೆಯನ್ನು ಸಲ್ಲಿಸಿ ಗೋಚರಿಸುವ renewal credit ಅನ್ನು ಸೇರಿಸಿ.",
+  "demo.step3.title": "ವ್ಯತ್ಯಯ ದೃಶ್ಯವನ್ನು ಚಾಲನೆ ಮಾಡಿ",
+  "demo.step3.desc": "Admin ಗೆ ಬದಲಿಸಿ, ಭಾರೀ ಮಳೆ ಅಥವಾ ನೆರೆ ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ ಮತ್ತು ಟ್ರಿಗರ್ ಲಾಜಿಕ್ ದಾವೆಗಳನ್ನು ಹೇಗೆ ರಚಿಸುತ್ತದೆ ನೋಡಿ.",
+  "demo.step4.title": "ಆಪ್ಸ್ ಸ್ಥಿತಿಯನ್ನು ವಿವರಿಸಿ",
+  "demo.step4.desc": "green claims ವೇಗವಾಗಿ ಸಾಗುತ್ತವೆ, amber ಮತ್ತು red claims ಪರಿಶೀಲನೆಗೆ ಗೋಚರಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ತೋರಿಸಿ.",
   "section.driver_cockpit": "ಡ್ರೈವರ್ ಕಾಕ್ಪಿಟ್", "section.claims_timeline": "ದಾವೆ ಟೈಮ್‌ಲೈನ್", "section.pricing_intelligence": "ಪ್ರೈಸಿಂಗ್ ಇಂಟೆಲಿಜೆನ್ಸ್", "section.privacy_support": "ಗೌಪ್ಯತೆ ಮತ್ತು ಸಹಾಯ", "survey.badge": "ಪಾವತಿಯ ನಂತರದ ಸಮೀಕ್ಷೆ",
   "common.bengaluru": "ಬೆಂಗಳೂರು", "common.standard_plan": "ಸ್ಟಾಂಡರ್ಡ್ ಪ್ಲಾನ್", "common.standard": "ಸ್ಟಾಂಡರ್ಡ್", "common.active": "ಸಕ್ರಿಯ", "common.verified": "ಪರಿಶೀಲಿತ", "common.pending": "ಬಾಕಿ",
   "quote.detected_zone": "ಪತ್ತೆಯಾದ ಝೋನ್", "quote.period": "ವಾರಕ್ಕೊಮ್ಮೆ · ಸೋಮವಾರ 06:00ಕ್ಕೆ ಆಟೋ-ಡೆಬಿಟ್", "quote.model": "ಮಾದರಿ", "quote.risk_score": "ಅಪಾಯ ಅಂಕೆ", "quote.tier.high": "ಹೆಚ್ಚಿನ ಅಪಾಯ", "quote.tier.medium": "ಮಧ್ಯಮ", "quote.tier.low": "ಕಡಿಮೆ ಅಪಾಯ",
   "quote.period_day": "ಸೋಮವಾರ 06:00",
   "success.plan": "ಪ್ಲಾನ್", "success.weekly": "ವಾರದ ಪ್ರೀಮಿಯಂ", "success.coverage": "ಕವರೆಜ್", "success.status": "ಸ್ಥಿತಿ",
-  "toast.thank_you_discount": "ಧನ್ಯವಾದಗಳು! ಮುಂದಿನ ನವೀಕರಣಕ್ಕೆ ₹5 ರಿಯಾಯಿತಿ ಅನ್ವಯಿಸಲಾಗಿದೆ.", "toast.fill_fields": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿ", "toast.accept_consents": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಒಪ್ಪಿಗೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ", "toast.sign_in_to": "{label} ಮಾಡಲು ದಯವಿಟ್ಟು ಸೈನ್ ಇನ್ ಮಾಡಿ.", "toast.enter_phone": "ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "toast.otp_sent": "OTP ಕಳುಹಿಸಲಾಗಿದೆ", "toast.failed": "ವಿಫಲವಾಗಿದೆ", "toast.register_first": "ಮೊದಲು ನೋಂದಣಿ ಮಾಡಿ", "toast.otp_resent": "OTP ಮರುಕಳುಹಿಸಲಾಗಿದೆ", "toast.enter_phone_otp": "ಫೋನ್ ಮತ್ತು OTP ನಮೂದಿಸಿ", "toast.welcome_back": "ಮತ್ತೆ ಸ್ವಾಗತ!", "toast.enter_4digit_otp": "4 ಅಂಕೆಯ OTP ನಮೂದಿಸಿ", "toast.enter_12digit_aadhaar": "12 ಅಂಕೆಯ ಆಧಾರ್ ನಮೂದಿಸಿ", "toast.kyc_verified": "KYC ಯಶಸ್ವಿಯಾಗಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.", "toast.enter_upi": "UPI ಐಡಿ ನಮೂದಿಸಿ", "toast.policy_activated": "ಪಾಲಿಸಿ ಸಕ್ರಿಯಗೊಂಡಿದೆ", "toast.session_ended": "ಸೆಷನ್ ಮುಕ್ತಾಯವಾಗಿದೆ", "toast.account_deleted": "ಖಾತೆ ಅಳಿಸಲಾಗಿದೆ.", "toast.enter_delete": "OTP ನಮೂದಿಸಿ ಮತ್ತು DELETE ಟೈಪ್ ಮಾಡಿ", "toast.policy_renewed": "ಪಾಲಿಸಿ ಇನ್ನೊಂದು ವಾರಕ್ಕೆ ನವೀಕರಿಸಲಾಗಿದೆ!", "toast.policy_paused": "ಪಾಲಿಸಿಯನ್ನು ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ. ನೀವು ಯಾವಾಗ ಬೇಕಾದರೂ ಮತ್ತೆ ಆರಂಭಿಸಬಹುದು.", "toast.enter_credentials": "ಕ್ರೆಡೆನ್ಶಿಯಲ್‌ಗಳನ್ನು ನಮೂದಿಸಿ", "toast.admin_session_started": "ಆಡ್ಮಿನ್ ಸೆಷನ್ ಆರಂಭವಾಗಿದೆ", "toast.claim_approved": "ದಾವೆ ಅಂಗೀಕರಿಸಲಾಗಿದೆ", "toast.claim_rejected": "ದಾವೆ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ",
+  "toast.thank_you_discount": "ಧನ್ಯವಾದಗಳು! ಮುಂದಿನ ನವೀಕರಣಕ್ಕೆ ₹5 ಕ್ರೆಡಿಟ್ ಸಿದ್ಧವಾಗಿದೆ.", "toast.fill_fields": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿ", "toast.accept_consents": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಒಪ್ಪಿಗೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ", "toast.sign_in_to": "{label} ಮಾಡಲು ದಯವಿಟ್ಟು ಸೈನ್ ಇನ್ ಮಾಡಿ.", "toast.enter_phone": "ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "toast.otp_sent": "OTP ಕಳುಹಿಸಲಾಗಿದೆ", "toast.failed": "ವಿಫಲವಾಗಿದೆ", "toast.register_first": "ಮೊದಲು ನೋಂದಣಿ ಮಾಡಿ", "toast.otp_resent": "OTP ಮರುಕಳುಹಿಸಲಾಗಿದೆ", "toast.enter_phone_otp": "ಫೋನ್ ಮತ್ತು OTP ನಮೂದಿಸಿ", "toast.welcome_back": "ಮತ್ತೆ ಸ್ವಾಗತ!", "toast.enter_4digit_otp": "4 ಅಂಕೆಯ OTP ನಮೂದಿಸಿ", "toast.enter_12digit_aadhaar": "12 ಅಂಕೆಯ ಆಧಾರ್ ನಮೂದಿಸಿ", "toast.kyc_verified": "KYC ಯಶಸ್ವಿಯಾಗಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.", "toast.enter_upi": "UPI ಐಡಿ ನಮೂದಿಸಿ", "toast.policy_activated": "ಪಾಲಿಸಿ ಸಕ್ರಿಯಗೊಂಡಿದೆ", "toast.session_ended": "ಸೆಷನ್ ಮುಕ್ತಾಯವಾಗಿದೆ", "toast.account_deleted": "ಖಾತೆ ಅಳಿಸಲಾಗಿದೆ.", "toast.enter_delete": "OTP ನಮೂದಿಸಿ ಮತ್ತು DELETE ಟೈಪ್ ಮಾಡಿ", "toast.policy_renewed": "ಪಾಲಿಸಿ ಇನ್ನೊಂದು ವಾರಕ್ಕೆ ನವೀಕರಿಸಲಾಗಿದೆ!", "toast.policy_paused": "ಪಾಲಿಸಿಯನ್ನು ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ. ನೀವು ಯಾವಾಗ ಬೇಕಾದರೂ ಮತ್ತೆ ಆರಂಭಿಸಬಹುದು.", "toast.enter_credentials": "ಕ್ರೆಡೆನ್ಶಿಯಲ್‌ಗಳನ್ನು ನಮೂದಿಸಿ", "toast.admin_session_started": "ಆಡ್ಮಿನ್ ಸೆಷನ್ ಆರಂಭವಾಗಿದೆ", "toast.claim_approved": "ದಾವೆ ಅಂಗೀಕರಿಸಲಾಗಿದೆ", "toast.claim_rejected": "ದಾವೆ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ",
   "otp.status.provider": "ಪ್ರೊವೈಡರ್", "otp.status.expires": "ಅವಧಿ", "otp.status.demo": "ಡೆಮೋ OTP", "ui.now": "ಈಗ", "ui.not_yet": "ಇನ್ನೂ ಇಲ್ಲ",
   "zone.rainfall": "ಮಳೆ", "zone.aqi": "AQI", "zone.temperature": "ತಾಪಮಾನ", "zone.traffic": "ಟ್ರಾಫಿಕ್", "zone.flood_level": "ನೀರಿನ ಮಟ್ಟ", "zone.level.normal": "ಸಾಮಾನ್ಯ", "zone.level.elevated": "ಏರಿಕೆ", "zone.level.critical": "ಗಂಭೀರ", "zone.live_telemetry": "ಲೈವ್ ಝೋನ್ ಟೆಲಿಮೆಟ್ರಿ",
   "claims.none": "ಇನ್ನೂ ಯಾವುದೇ ದಾವೆ ಇಲ್ಲ — ನೀವು ರಕ್ಷಿತರಾಗಿದ್ದೀರಿ!", "claims.fraud": "ವಂಚನೆ", "support.review_note": "ಮಾನವ ವಿಮರ್ಶೆ ಬೇಕೇ? {phone} ಅಥವಾ {email} ನಲ್ಲಿ ಸಹಾಯವನ್ನು ಸಂಪರ್ಕಿಸಿ.",
@@ -290,7 +331,7 @@ Object.assign(TRANSLATIONS.en, {
   "zone.heat": "Heat",
   "zone.flood": "Flood",
   "admin.sign_in_title": "Admin Sign In",
-  "admin.sign_in_desc": "Insurer operations portal — protected access",
+  "admin.sign_in_desc": "Protected operations access",
   "admin.username": "Admin Username",
   "admin.password": "Password",
   "admin.sign_in_action": "Sign In to Admin Portal",
@@ -301,15 +342,15 @@ Object.assign(TRANSLATIONS.en, {
   "admin.tab.triggers": "Triggers",
   "admin.tab.analytics": "Analytics",
   "admin.mode": "Operational Mode",
-  "admin.mode_value": "Precision Underwriting",
+  "admin.mode_value": "Operations Review",
   "admin.logout": "Logout",
-  "admin.header.kicker": "Insurer operations",
-  "admin.header.title": "Precision Underwriting Command Center",
-  "admin.header.desc": "Live pricing, fraud posture, claim orchestration, and zone disruption monitoring across Bengaluru.",
+  "admin.header.kicker": "Operations",
+  "admin.header.title": "Operations & Disruption Command Center",
+  "admin.header.desc": "Live pricing, fraud posture, feedback credits, and zone disruption monitoring across Bengaluru.",
   "admin.meta.environment": "Environment",
-  "admin.meta.environment_value": "Guidewire Cloud (AWS)",
+  "admin.meta.environment_value": "Demo runtime + public feeds",
   "admin.meta.session": "Session",
-  "admin.meta.session_value": "Active Underwriter",
+  "admin.meta.session_value": "Ops reviewer",
   "admin.dashboard.claim_pipeline": "Claim Pipeline",
   "admin.dashboard.pipeline_mix": "Pipeline Mix",
   "admin.dashboard.zone_pricing": "Zone Pricing",
@@ -324,7 +365,7 @@ Object.assign(TRANSLATIONS.en, {
   "admin.decision.1": "Coverage is validated against an active weekly policy before release.",
   "admin.decision.2": "Dual-trigger confirmation is required before claim creation proceeds.",
   "admin.decision.3": "AMBER claims are held for review, while GREEN claims move to payout immediately.",
-  "admin.decision.4": "Guidewire-ready records, payout references, and runtime signals stay visible to operations.",
+  "admin.decision.4": "Payout references, survey credits, and runtime signals stay visible to operations.",
   "admin.policies.kicker": "Policy inventory",
   "admin.policies.title": "All Policies",
   "admin.claims.kicker": "Fraud workflow",
@@ -333,7 +374,7 @@ Object.assign(TRANSLATIONS.en, {
   "admin.claims.all": "All Claims",
   "admin.triggers.kicker": "Parametric controls",
   "admin.triggers.title": "Trigger Control Center",
-  "admin.triggers.desc": "Simulate triggers to demonstrate the zero-touch claims pipeline",
+  "admin.triggers.desc": "Run a visible disruption scenario to demonstrate the payout pipeline",
   "admin.triggers.simulate_title": "Simulate a Trigger Event",
   "admin.triggers.config_title": "Trigger Configuration — Dual-Signal Thresholds",
   "admin.triggers.history_title": "Trigger History",
@@ -424,7 +465,7 @@ Object.assign(TRANSLATIONS.hi, {
   "zone.heat": "गर्मी",
   "zone.flood": "बाढ़",
   "admin.sign_in_title": "एडमिन साइन इन",
-  "admin.sign_in_desc": "बीमाकर्ता संचालन पोर्टल — सुरक्षित प्रवेश",
+  "admin.sign_in_desc": "सुरक्षित संचालन प्रवेश",
   "admin.username": "एडमिन यूज़रनेम",
   "admin.password": "पासवर्ड",
   "admin.sign_in_action": "एडमिन पोर्टल में साइन इन करें",
@@ -435,15 +476,15 @@ Object.assign(TRANSLATIONS.hi, {
   "admin.tab.triggers": "ट्रिगर्स",
   "admin.tab.analytics": "एनालिटिक्स",
   "admin.mode": "ऑपरेशनल मोड",
-  "admin.mode_value": "प्रिसीजन अंडरराइटिंग",
+  "admin.mode_value": "ऑपरेशंस रिव्यू",
   "admin.logout": "लॉगआउट",
-  "admin.header.kicker": "बीमाकर्ता संचालन",
-  "admin.header.title": "प्रिसीजन अंडरराइटिंग कमांड सेंटर",
-  "admin.header.desc": "बेंगलुरु में लाइव प्राइसिंग, फ्रॉड स्थिति, दावा ऑर्केस्ट्रेशन और ज़ोन व्यवधान निगरानी।",
+  "admin.header.kicker": "संचालन",
+  "admin.header.title": "ऑपरेशंस और डिसरप्शन कमांड सेंटर",
+  "admin.header.desc": "बेंगलुरु में लाइव प्राइसिंग, फ्रॉड स्थिति, फीडबैक क्रेडिट और ज़ोन व्यवधान निगरानी।",
   "admin.meta.environment": "पर्यावरण",
-  "admin.meta.environment_value": "Guidewire Cloud (AWS)",
+  "admin.meta.environment_value": "डेमो रनटाइम + पब्लिक फीड्स",
   "admin.meta.session": "सेशन",
-  "admin.meta.session_value": "सक्रिय अंडरराइटर",
+  "admin.meta.session_value": "ऑप्स रिव्यूअर",
   "admin.dashboard.claim_pipeline": "दावा पाइपलाइन",
   "admin.dashboard.pipeline_mix": "पाइपलाइन मिश्रण",
   "admin.dashboard.zone_pricing": "ज़ोन प्राइसिंग",
@@ -458,7 +499,7 @@ Object.assign(TRANSLATIONS.hi, {
   "admin.decision.1": "रिलीज़ से पहले कवरेज सक्रिय साप्ताहिक पॉलिसी से सत्यापित होती है।",
   "admin.decision.2": "दावा बनने से पहले ड्यूल-ट्रिगर पुष्टि आवश्यक है।",
   "admin.decision.3": "AMBER दावे समीक्षा के लिए रोके जाते हैं, जबकि GREEN दावे तुरंत भुगतान की ओर बढ़ते हैं।",
-  "admin.decision.4": "Guidewire-तैयार रिकॉर्ड, भुगतान संदर्भ और रनटाइम संकेत संचालन टीम को दिखाई देते हैं।",
+  "admin.decision.4": "भुगतान संदर्भ, सर्वे क्रेडिट और रनटाइम संकेत संचालन टीम को दिखाई देते हैं।",
   "admin.policies.kicker": "पॉलिसी सूची",
   "admin.policies.title": "सभी पॉलिसियाँ",
   "admin.claims.kicker": "फ्रॉड वर्कफ़्लो",
@@ -467,7 +508,7 @@ Object.assign(TRANSLATIONS.hi, {
   "admin.claims.all": "सभी दावे",
   "admin.triggers.kicker": "पैरामेट्रिक कंट्रोल",
   "admin.triggers.title": "ट्रिगर कंट्रोल सेंटर",
-  "admin.triggers.desc": "ज़ीरो-टच दावा पाइपलाइन दिखाने के लिए ट्रिगर सिमुलेट करें",
+  "admin.triggers.desc": "दिखने वाला व्यवधान परिदृश्य चलाकर भुगतान पाइपलाइन दिखाएँ",
   "admin.triggers.simulate_title": "ट्रिगर इवेंट सिमुलेट करें",
   "admin.triggers.config_title": "ट्रिगर कॉन्फ़िगरेशन — ड्यूल-सिग्नल थ्रेशोल्ड",
   "admin.triggers.history_title": "ट्रिगर इतिहास",
@@ -558,7 +599,7 @@ Object.assign(TRANSLATIONS.kn, {
   "zone.heat": "ಬಿಸಿ",
   "zone.flood": "ನೆರೆ",
   "admin.sign_in_title": "ಆಡ್ಮಿನ್ ಸೈನ್ ಇನ್",
-  "admin.sign_in_desc": "ವಿಮೆ ಕಾರ್ಯಾಚರಣೆ ಪೋರ್ಟಲ್ — ರಕ್ಷಿತ ಪ್ರವೇಶ",
+  "admin.sign_in_desc": "ರಕ್ಷಿತ ಕಾರ್ಯಾಚರಣೆ ಪ್ರವೇಶ",
   "admin.username": "ಆಡ್ಮಿನ್ ಬಳಕೆದಾರ ಹೆಸರು",
   "admin.password": "ಪಾಸ್ವರ್ಡ್",
   "admin.sign_in_action": "ಆಡ್ಮಿನ್ ಪೋರ್ಟಲ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ",
@@ -569,15 +610,15 @@ Object.assign(TRANSLATIONS.kn, {
   "admin.tab.triggers": "ಟ್ರಿಗರ್‌ಗಳು",
   "admin.tab.analytics": "ವಿಶ್ಲೇಷಣೆ",
   "admin.mode": "ಆಪರೇಷನಲ್ ಮೋಡ್",
-  "admin.mode_value": "ಪ್ರಿಸಿಷನ್ ಅಂಡರ್‌ರೈಟಿಂಗ್",
+  "admin.mode_value": "ಆಪರೇಷನ್ಸ್ ರಿವ್ಯೂ",
   "admin.logout": "ಲಾಗ್ ಔಟ್",
-  "admin.header.kicker": "ವಿಮಾ ಕಾರ್ಯಾಚರಣೆಗಳು",
-  "admin.header.title": "ಪ್ರಿಸಿಷನ್ ಅಂಡರ್‌ರೈಟಿಂಗ್ ಕಮಾಂಡ್ ಸೆಂಟರ್",
-  "admin.header.desc": "ಬೆಂಗಳೂರುದಾದ್ಯಂತ ಲೈವ್ ಪ್ರೈಸಿಂಗ್, ವಂಚನೆ ಸ್ಥಿತಿ, ದಾವೆ ಸಂಯೋಜನೆ ಮತ್ತು ಝೋನ್ ವ್ಯತ್ಯಯ ಮೇಲ್ವಿಚಾರಣೆ.",
+  "admin.header.kicker": "ಕಾರ್ಯಾಚರಣೆಗಳು",
+  "admin.header.title": "ಆಪರೇಷನ್ಸ್ ಮತ್ತು ವ್ಯತ್ಯಯ ಕಮಾಂಡ್ ಸೆಂಟರ್",
+  "admin.header.desc": "ಬೆಂಗಳೂರುದಾದ್ಯಂತ ಲೈವ್ ಪ್ರೈಸಿಂಗ್, ವಂಚನೆ ಸ್ಥಿತಿ, ಸಮೀಕ್ಷಾ ಕ್ರೆಡಿಟ್ ಮತ್ತು ಝೋನ್ ವ್ಯತ್ಯಯ ಮೇಲ್ವಿಚಾರಣೆ.",
   "admin.meta.environment": "ಪರಿಸರ",
-  "admin.meta.environment_value": "Guidewire Cloud (AWS)",
+  "admin.meta.environment_value": "ಡೆಮೊ ರನ್‌ಟೈಮ್ + ಪಬ್ಲಿಕ್ ಫೀಡ್ಸ್",
   "admin.meta.session": "ಸೆಷನ್",
-  "admin.meta.session_value": "ಸಕ್ರಿಯ ಅಂಡರ್‌ರೈಟರ್",
+  "admin.meta.session_value": "ಆಪ್ಸ್ ವಿಮರ್ಶಕ",
   "admin.dashboard.claim_pipeline": "ದಾವೆ ಪೈಪ್‌ಲೈನ್",
   "admin.dashboard.pipeline_mix": "ಪೈಪ್‌ಲೈನ್ ಮಿಶ್ರಣ",
   "admin.dashboard.zone_pricing": "ಝೋನ್ ಪ್ರೈಸಿಂಗ್",
@@ -592,7 +633,7 @@ Object.assign(TRANSLATIONS.kn, {
   "admin.decision.1": "ಪಾವತಿಯ ಮೊದಲು ಕವರೆಜ್ ಸಕ್ರಿಯ ವಾರದ ಪಾಲಿಸಿಗೆ ವಿರುದ್ಧ ಪರಿಶೀಲಿಸಲಾಗುತ್ತದೆ.",
   "admin.decision.2": "ದಾವೆ ಸೃಷ್ಟಿಗೆ ಮುನ್ನ ಡ್ಯುಯಲ್-ಟ್ರಿಗರ್ ದೃಢೀಕರಣ ಅಗತ್ಯ.",
   "admin.decision.3": "AMBER ದಾವೆಗಳನ್ನು ವಿಮರ್ಶೆಗೆ ಹಿಡಿಯಲಾಗುತ್ತದೆ, GREEN ದಾವೆಗಳು ತಕ್ಷಣ ಪಾವತಿಗೆ ಸಾಗುತ್ತವೆ.",
-  "admin.decision.4": "Guidewire-ಸಿದ್ಧ ದಾಖಲೆಗಳು, ಪಾವತಿ ಉಲ್ಲೇಖಗಳು ಮತ್ತು ರನ್‌ಟೈಮ್ ಸಿಗ್ನಲ್‌ಗಳು ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ ಗೋಚರಿಸುತ್ತವೆ.",
+  "admin.decision.4": "ಪಾವತಿ ಉಲ್ಲೇಖಗಳು, ಸಮೀಕ್ಷಾ ಕ್ರೆಡಿಟ್ ಮತ್ತು ರನ್‌ಟೈಮ್ ಸಿಗ್ನಲ್‌ಗಳು ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ ಗೋಚರಿಸುತ್ತವೆ.",
   "admin.policies.kicker": "ಪಾಲಿಸಿ ಪಟ್ಟೆ",
   "admin.policies.title": "ಎಲ್ಲಾ ಪಾಲಿಸಿಗಳು",
   "admin.claims.kicker": "ವಂಚನೆ ವರ್ಕ್‌ಫ್ಲೋ",
@@ -601,7 +642,7 @@ Object.assign(TRANSLATIONS.kn, {
   "admin.claims.all": "ಎಲ್ಲಾ ದಾವೆಗಳು",
   "admin.triggers.kicker": "ಪ್ಯಾರಮೆಟ್ರಿಕ್ ನಿಯಂತ್ರಣಗಳು",
   "admin.triggers.title": "ಟ್ರಿಗರ್ ಕಂಟ್ರೋಲ್ ಸೆಂಟರ್",
-  "admin.triggers.desc": "ಜೀರೋ-ಟಚ್ ದಾವೆ ಪೈಪ್‌ಲೈನ್ ತೋರಿಸಲು ಟ್ರಿಗರ್‌ಗಳನ್ನು ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ",
+  "admin.triggers.desc": "ಗೋಚರಿಸುವ ವ್ಯತ್ಯಯ ದೃಶ್ಯವನ್ನು ಚಾಲನೆ ಮಾಡಿ ಪಾವತಿ ಪೈಪ್‌ಲೈನ್ ತೋರಿಸಿ",
   "admin.triggers.simulate_title": "ಟ್ರಿಗರ್ ಘಟನೆ ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ",
   "admin.triggers.config_title": "ಟ್ರಿಗರ್ ಸಂರಚನೆ — ಡ್ಯುಯಲ್-ಸಿಗ್ನಲ್ ಥ್ರೆಶ್‌ಹೋಲ್ಡ್‌ಗಳು",
   "admin.triggers.history_title": "ಟ್ರಿಗರ್ ಇತಿಹಾಸ",
@@ -743,7 +784,7 @@ Object.assign(TRANSLATIONS.kn, {
 
 Object.assign(TRANSLATIONS.en, {
   "dash.zone_status_desc": "Each signal shows how close your zone is to a payout trigger right now.",
-  "dash.chart_prot_desc": "Compare what you have paid, what you are covered for, and what GigShield has already returned.",
+  "dash.chart_prot_desc": "Compare what you have paid, what you are covered for, and what GigBuddy has already returned.",
   "dash.chart_signal_pressure": "Zone Signal Pressure",
   "dash.chart_signal_desc": "A clear view of which live signals are building toward a disruption payout.",
   "dash.chart_trend_desc": "Recent payouts show how disruptions have affected earnings over time.",
@@ -793,7 +834,7 @@ Object.assign(TRANSLATIONS.en, {
 
 Object.assign(TRANSLATIONS.hi, {
   "dash.zone_status_desc": "हर सिग्नल दिखाता है कि आपका ज़ोन अभी भुगतान ट्रिगर के कितना करीब है।",
-  "dash.chart_prot_desc": "आपने कितना भुगतान किया, आपको कितनी सुरक्षा मिली, और GigShield ने कितना लौटाया।",
+  "dash.chart_prot_desc": "आपने कितना भुगतान किया, आपको कितनी सुरक्षा मिली, और GigBuddy ने कितना लौटाया।",
   "dash.chart_signal_pressure": "ज़ोन सिग्नल प्रेशर",
   "dash.chart_signal_desc": "कौन से लाइव सिग्नल व्यवधान भुगतान की ओर बढ़ रहे हैं, इसे साफ़ देखें।",
   "dash.chart_trend_desc": "हाल के भुगतान दिखाते हैं कि व्यवधानों ने आय को कैसे प्रभावित किया।",
@@ -843,7 +884,7 @@ Object.assign(TRANSLATIONS.hi, {
 
 Object.assign(TRANSLATIONS.kn, {
   "dash.zone_status_desc": "ಪ್ರತಿ ಸೂಚನೆ ನಿಮ್ಮ ಝೋನ್ ಪಾವತಿ ಟ್ರಿಗರ್‌ಗೆ ಎಷ್ಟು ಹತ್ತಿರವಿದೆ ಎಂಬುದನ್ನು ತೋರಿಸುತ್ತದೆ.",
-  "dash.chart_prot_desc": "ನೀವು ಎಷ್ಟು ಪಾವತಿಸಿದ್ದೀರಿ, ಎಷ್ಟು ರಕ್ಷಣೆ ಇದೆ, ಮತ್ತು GigShield ಎಷ್ಟು ಮರಳಿ ನೀಡಿದೆ ಎಂಬುದನ್ನು ನೋಡಿ.",
+  "dash.chart_prot_desc": "ನೀವು ಎಷ್ಟು ಪಾವತಿಸಿದ್ದೀರಿ, ಎಷ್ಟು ರಕ್ಷಣೆ ಇದೆ, ಮತ್ತು GigBuddy ಎಷ್ಟು ಮರಳಿ ನೀಡಿದೆ ಎಂಬುದನ್ನು ನೋಡಿ.",
   "dash.chart_signal_pressure": "ಝೋನ್ ಸಿಗ್ನಲ್ ಒತ್ತಡ",
   "dash.chart_signal_desc": "ಯಾವ ಲೈವ್ ಸೂಚನೆಗಳು ವ್ಯತ್ಯಯ ಪಾವತಿಗೆ ಹತ್ತಿರವಾಗುತ್ತಿವೆ ಎಂಬುದನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ನೋಡಿ.",
   "dash.chart_trend_desc": "ಇತ್ತೀಚಿನ ಪಾವತಿಗಳು ವ್ಯತ್ಯಯಗಳು ಆದಾಯದ ಮೇಲೆ ಹೇಗೆ ಪರಿಣಾಮ ಬೀರಿದವು ಎಂಬುದನ್ನು ತೋರಿಸುತ್ತವೆ.",
@@ -908,17 +949,20 @@ function setLanguage(lang) {
   });
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    const text = t(key);
+    if (!el.dataset.i18nDefault) el.dataset.i18nDefault = el.textContent;
+    const text = t(key, el.dataset.i18nDefault || '');
     if (text) el.textContent = text;
   });
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
     const key = el.getAttribute('data-i18n-html');
-    const text = t(key);
+    if (!el.dataset.i18nDefaultHtml) el.dataset.i18nDefaultHtml = el.innerHTML;
+    const text = t(key, el.dataset.i18nDefaultHtml || '');
     if (text) el.innerHTML = text;
   });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
-    const text = t(key);
+    if (!el.dataset.i18nDefaultPlaceholder) el.dataset.i18nDefaultPlaceholder = el.getAttribute('placeholder') || '';
+    const text = t(key, el.dataset.i18nDefaultPlaceholder || '');
     if (text) el.setAttribute('placeholder', text);
   });
   refreshLocalizedUI();
@@ -962,7 +1006,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 // ── API Layer ────────────────────────────────────────────────────
 function getApiBase() {
-  if (window.GIGSHIELD_API_BASE) return window.GIGSHIELD_API_BASE.replace(/\/$/, '');
+  if (window.GIGBUDDY_API_BASE) return window.GIGBUDDY_API_BASE.replace(/\/$/, '');
 
   if (window.location.protocol === 'file:') {
     return 'http://127.0.0.1:8000';
@@ -977,13 +1021,17 @@ function getApiBase() {
 }
 
 const API = getApiBase();
+const STORAGE_KEYS = {
+  worker: 'gigbuddy.workerToken',
+  admin: 'gigbuddy.adminToken',
+};
 
 // ── State ────────────────────────────────────────────────────────
 let state = {
   currentStep: 1, worker: null, workerId: null, policy: null, premiumData: null,
-  authToken: localStorage.getItem('gigshield.workerToken'),
-  adminToken: localStorage.getItem('gigshield.adminToken'),
-  supportInfo: null, registrationOtpSession: null, loginOtpSession: null, charts: {},
+  authToken: localStorage.getItem(STORAGE_KEYS.worker),
+  adminToken: localStorage.getItem(STORAGE_KEYS.admin),
+  supportInfo: null, registrationOtpSession: null, loginOtpSession: null, pendingFeedback: null, surveyDraft: {}, charts: {},
 };
 
 if (window.Chart) {
@@ -995,7 +1043,7 @@ if (window.Chart) {
   Chart.defaults.plugins.legend.labels.boxHeight = 8;
   Chart.defaults.plugins.legend.labels.padding = 16;
   Chart.register({
-    id: 'gigshieldCenterLabel',
+    id: 'gigBuddyCenterLabel',
     afterDraw(chart, _args, pluginOptions) {
       if (!pluginOptions || chart.config.type !== 'doughnut') return;
       const { ctx, chartArea } = chart;
@@ -1025,7 +1073,7 @@ if (window.Chart) {
     }
   });
   Chart.register({
-    id: 'gigshieldEmptyState',
+    id: 'gigBuddyEmptyState',
     afterDraw(chart) {
       const datasets = chart.data?.datasets || [];
       const hasData = datasets.some(ds => Array.isArray(ds.data) && ds.data.some(value => Number(value || 0) > 0));
@@ -1058,6 +1106,12 @@ function statusName(status) {
 
 function yesNo(value) {
   return value ? t('common.yes', 'Yes') : t('common.no', 'No');
+}
+
+function normalizePhone(value) {
+  let digits = String(value || '').replace(/\D/g, '');
+  if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+  return digits;
 }
 
 // ── Navigation ───────────────────────────────────────────────────
@@ -1101,17 +1155,28 @@ function authHeaders(role = 'public') {
 
 function setWorkerSession(token, worker) {
   state.authToken = token; state.worker = worker; state.workerId = worker?.id ?? null;
-  if (token) localStorage.setItem('gigshield.workerToken', token);
+  if (token) {
+    localStorage.setItem(STORAGE_KEYS.worker, token);
+  }
 }
 
 function clearWorkerSession(msg) {
-  state.authToken = null; state.worker = null; state.workerId = null; state.policy = null;
-  localStorage.removeItem('gigshield.workerToken');
+  state.authToken = null; state.worker = null; state.workerId = null; state.policy = null; state.pendingFeedback = null; state.surveyDraft = {};
+  localStorage.removeItem(STORAGE_KEYS.worker);
   if (msg) showToast(msg);
 }
 
-function setAdminSession(token) { state.adminToken = token; localStorage.setItem('gigshield.adminToken', token); syncAdminUI(); }
-function clearAdminSession(msg) { state.adminToken = null; localStorage.removeItem('gigshield.adminToken'); syncAdminUI(); if (msg) showToast(msg); }
+function setAdminSession(token) {
+  state.adminToken = token;
+  localStorage.setItem(STORAGE_KEYS.admin, token);
+  syncAdminUI();
+}
+function clearAdminSession(msg) {
+  state.adminToken = null;
+  localStorage.removeItem(STORAGE_KEYS.admin);
+  syncAdminUI();
+  if (msg) showToast(msg);
+}
 
 function requireWorkerSession(label = 'continue') {
   if (state.authToken) return true;
@@ -1339,9 +1404,76 @@ function showPush(icon, title, body) {
 function dismissPush() { document.getElementById('push-notification').classList.add('hidden'); }
 
 // ── Survey ───────────────────────────────────────────────────────
-function answerSurvey(q, val) { /* track survey answers */ }
-function dismissSurvey() { document.getElementById('micro-survey-banner').classList.add('hidden'); }
-function submitSurvey() { showToast(t('toast.thank_you_discount', 'Thank you! ₹5 discount applied to next renewal.')); dismissSurvey(); }
+function answerSurvey(q, val) {
+  state.surveyDraft[q] = val;
+  document.querySelectorAll(`[data-survey-q="${q}"]`).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.surveyValue === val);
+  });
+}
+
+function dismissSurvey() {
+  document.getElementById('micro-survey-banner')?.classList.add('hidden');
+}
+
+async function submitSurvey() {
+  const claimId = state.pendingFeedback?.claim?.id;
+  if (!claimId) return;
+  if (!state.surveyDraft[1] || !state.surveyDraft[2] || !state.surveyDraft[3]) {
+    return showToast(t('toast.complete_survey', 'Answer all 3 survey questions'));
+  }
+
+  const res = await api(`/api/claims/${claimId}/feedback`, {
+    method: 'POST',
+    body: JSON.stringify({
+      experienced_disruption: state.surveyDraft[1] === 'yes',
+      payout_helpfulness: state.surveyDraft[2],
+      route_status: state.surveyDraft[3],
+    }),
+  }, 'worker');
+  if (res?.detail) return showToast(res.detail);
+
+  state.pendingFeedback = null;
+  state.surveyDraft = {};
+  if (state.worker) state.worker.renewal_credit_balance = res.renewal_credit_balance || 0;
+  showToast(t('toast.survey_saved', 'Feedback saved. ₹5 renewal credit added.'));
+  dismissSurvey();
+
+  const activeWorkerPage = document.querySelector('#worker-view .page.active')?.id;
+  if (activeWorkerPage === 'page-claims') await loadClaimsPage();
+  if (activeWorkerPage === 'page-dashboard') await loadDashboard();
+  if (activeWorkerPage === 'page-settings') await loadSettingsPage();
+}
+
+function renderPendingFeedbackBanner(payload) {
+  const banner = document.getElementById('micro-survey-banner');
+  if (!banner) return;
+
+  state.pendingFeedback = payload?.has_pending_feedback ? payload : null;
+  state.surveyDraft = {};
+  document.querySelectorAll('[data-survey-q]').forEach(btn => btn.classList.remove('active'));
+
+  if (!payload?.has_pending_feedback || !payload.claim) {
+    banner.classList.add('hidden');
+    return;
+  }
+
+  const summary = document.getElementById('survey-claim-summary');
+  if (summary) {
+    summary.textContent = t('survey.claim_summary', 'Last payout: {amount} for {trigger} in {zone}.', {
+      amount: f$(payload.claim.amount || 0),
+      trigger: triggerName(payload.claim.trigger_type),
+      zone: payload.claim.zone || state.worker?.zone || 'your zone',
+    });
+  }
+
+  const note = document.getElementById('survey-credit-note');
+  if (note) {
+    note.textContent = t('survey.pending', 'Answer these questions once and we will add a renewal credit.');
+  }
+
+  answerSurvey(2, 'right');
+  banner.classList.remove('hidden');
+}
 
 // ── OTP auto-advance ─────────────────────────────────────────────
 document.querySelectorAll('.otp-input').forEach((inp, i, arr) => {
@@ -1352,7 +1484,8 @@ document.querySelectorAll('.otp-input').forEach((inp, i, arr) => {
 // ── Auth Flows ───────────────────────────────────────────────────
 async function registerWorker() {
   const name = document.getElementById('reg-name').value;
-  const phone = document.getElementById('reg-phone').value;
+  const phoneInput = document.getElementById('reg-phone');
+  const phone = normalizePhone(phoneInput?.value);
   const platform = document.getElementById('reg-platform').value;
   const zone = document.getElementById('reg-zone').value;
   const income = document.getElementById('reg-income').value;
@@ -1360,9 +1493,10 @@ async function registerWorker() {
   const acceptedTerms = document.getElementById('reg-consent-terms').checked;
   const acceptedPrivacy = document.getElementById('reg-consent-privacy').checked;
   const acceptedAutomation = document.getElementById('reg-consent-automation').checked;
+  if (phoneInput) phoneInput.value = phone;
   if (!name || !phone) return showToast(t('toast.fill_fields', 'Please fill in all fields'));
   if (!acceptedTerms || !acceptedPrivacy || !acceptedAutomation) return showToast(t('toast.accept_consents', 'Please accept all consent items'));
-  const res = await api('/api/auth/register', { method: 'POST', body: JSON.stringify({ name, phone, zone, city: 'Bengaluru', platform, partner_id: `GS-${Date.now()}`, vehicle_type: vehicle, weekly_income: Number(income) || 5200, accepted_terms: acceptedTerms, accepted_privacy: acceptedPrivacy, accepted_automated_decisions: acceptedAutomation }) });
+  const res = await api('/api/auth/register', { method: 'POST', body: JSON.stringify({ name, phone, zone, city: 'Bengaluru', platform, partner_id: `GB-${Date.now()}`, vehicle_type: vehicle, weekly_income: Number(income) || 5200, accepted_terms: acceptedTerms, accepted_privacy: acceptedPrivacy, accepted_automated_decisions: acceptedAutomation }) });
   if (res.detail) return showToast(res.detail);
   state.worker = res; state.workerId = res.id;
   if (res.otp_session) { state.registrationOtpSession = res.otp_session; updateOtpStatus('register-otp-status', res.otp_session); }
@@ -1381,7 +1515,9 @@ function updateOtpStatus(id, meta) {
 }
 
 async function requestLoginOtp() {
-  const phone = document.getElementById('login-phone').value;
+  const phoneInput = document.getElementById('login-phone');
+  const phone = normalizePhone(phoneInput?.value);
+  if (phoneInput) phoneInput.value = phone;
   if (!phone) return showToast(t('toast.enter_phone', 'Enter your phone number'));
   const res = await api('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ phone, purpose: 'login' }) });
   if (res?.success) { state.loginOtpSession = res; updateOtpStatus('login-otp-status', res); showToast(t('toast.otp_sent', 'OTP sent')); }
@@ -1397,8 +1533,10 @@ async function resendRegistrationOtp() {
 }
 
 async function loginWorker() {
-  const phone = document.getElementById('login-phone').value;
+  const phoneInput = document.getElementById('login-phone');
+  const phone = normalizePhone(phoneInput?.value);
   const otp = document.getElementById('login-otp').value;
+  if (phoneInput) phoneInput.value = phone;
   if (!phone || !otp) return showToast(t('toast.enter_phone_otp', 'Enter phone and OTP'));
   const res = await api('/api/auth/login', { method: 'POST', body: JSON.stringify({ phone, otp, session_id: state.loginOtpSession?.session_id || '' }) });
   if (res.detail) return showToast(res.detail);
@@ -1488,11 +1626,17 @@ function logout() { clearWorkerSession(t('toast.session_ended', 'Session ended')
 // ── Dashboard ────────────────────────────────────────────────────
 async function loadDashboard() {
   if (!requireWorkerSession(t('tab.dashboard', 'Dashboard'))) return;
-  const [policyRes, claimsRes, zoneRes] = await Promise.all([
+  const [profileRes, policyRes, claimsRes, zoneRes, pendingFeedbackRes] = await Promise.all([
+    api('/api/auth/me', {}, 'worker'),
     api('/api/policies/me', {}, 'worker'),
     api('/api/claims/me', {}, 'worker'),
     api(`/api/triggers/zone-status/${encodeURIComponent(state.worker?.zone || 'Koramangala')}`),
+    api('/api/claims/feedback/pending', {}, 'worker'),
   ]);
+  if (profileRes && !profileRes.detail) {
+    state.worker = profileRes;
+    state.workerId = profileRes.id;
+  }
   if (policyRes && !policyRes.detail) {
     const policies = Array.isArray(policyRes) ? policyRes : [policyRes];
     state.policy = policies.find(p => p.status === 'active') || policies[0] || null;
@@ -1507,11 +1651,14 @@ async function loadDashboard() {
   document.getElementById('dash-weeks').textContent = p.weeks_active || '—';
   document.getElementById('dash-total-paid').textContent = f$(p.total_premiums_paid);
   document.getElementById('dash-total-claimed').textContent = f$(p.total_claims_paid);
+  const creditEl = document.getElementById('dash-credit');
+  if (creditEl) creditEl.textContent = f$(state.worker?.renewal_credit_balance || 0);
 
   const zone = zoneRes && !zoneRes.detail ? zoneRes : {};
   renderZoneStatus(zone);
   renderWorkerCharts(p, zone, Array.isArray(claimsRes) ? claimsRes : []);
   renderClaimsList('dash-claims-list', Array.isArray(claimsRes) ? claimsRes.slice(0, 5) : []);
+  renderPendingFeedbackBanner(pendingFeedbackRes && !pendingFeedbackRes.detail ? pendingFeedbackRes : null);
 }
 
 function renderZoneStatus(zone) {
@@ -1538,7 +1685,7 @@ function renderClaimsList(containerId, claims) {
   if (!claims.length) { el.innerHTML = `<p class="muted-note">${t('claims.none', "No claims yet — you're protected!")}</p>`; return; }
   el.innerHTML = claims.map(c => {
     const statusClass = c.status === 'paid' ? 'status-paid' : c.status === 'auto_approved' ? 'status-auto' : c.status === 'pending_review' ? 'status-pending' : 'status-rejected';
-    const triggerCode = TRIGGER_CODES[c.trigger_type] || 'GS';
+    const triggerCode = TRIGGER_CODES[c.trigger_type] || 'GB';
     return `<div class="claim-card">
       <div class="claim-icon"><span>${triggerCode}</span></div>
       <div class="claim-info">
@@ -1646,7 +1793,10 @@ function renderWorkerCharts(policy, zone, claims) {
 // ── Claims Page ──────────────────────────────────────────────────
 async function loadClaimsPage() {
   if (!requireWorkerSession(t('tab.claims', 'Claims'))) return;
-  const res = await api('/api/claims/me', {}, 'worker');
+  const [res, pendingFeedbackRes] = await Promise.all([
+    api('/api/claims/me', {}, 'worker'),
+    api('/api/claims/feedback/pending', {}, 'worker'),
+  ]);
   renderClaimsList('claims-list-full', Array.isArray(res) ? res : []);
   const supportNote = document.getElementById('claims-support-note');
   if (supportNote && state.supportInfo) {
@@ -1655,9 +1805,7 @@ async function loadClaimsPage() {
       email: state.supportInfo.support_email
     });
   }
-  if (Array.isArray(res) && res.some(c => c.status === 'paid')) {
-    document.getElementById('micro-survey-banner')?.classList.remove('hidden');
-  }
+  renderPendingFeedbackBanner(pendingFeedbackRes && !pendingFeedbackRes.detail ? pendingFeedbackRes : null);
 }
 
 // ── Premium Page ─────────────────────────────────────────────────
@@ -1716,6 +1864,7 @@ async function loadSettingsPage() {
     <div class="detail-row"><span>${t('settings.zone', 'Zone')}</span><strong>${state.worker.zone}</strong></div>
     <div class="detail-row"><span>${t('settings.platform', 'Platform')}</span><strong>${state.worker.platform}</strong></div>
     <div class="detail-row"><span>${t('settings.risk_tier', 'Risk Tier')}</span><strong>${state.worker.risk_tier}</strong></div>
+    <div class="detail-row"><span>${t('settings.credit', 'Renewal Credit')}</span><strong>${f$(state.worker.renewal_credit_balance || 0)}</strong></div>
     <div class="detail-row"><span>${t('settings.kyc', 'KYC')}</span><strong>${state.worker.aadhaar_verified ? t('common.verified', 'Verified') : t('common.pending', 'Pending')}</strong></div>`;
   const s = document.getElementById('settings-support-details');
   if (s && state.supportInfo) s.innerHTML = `
@@ -1740,7 +1889,10 @@ async function renewPolicy() {
   if (!requireWorkerSession(t('dash.renew', 'Renew')) || !state.policy?.id) return;
   const res = await api(`/api/policies/${state.policy.id}/renew`, { method: 'PUT' }, 'worker');
   if (res.detail) return showToast(res.detail);
-  showToast(t('toast.policy_renewed', 'Policy renewed for another week!'));
+  if (state.worker) state.worker.renewal_credit_balance = res.renewal_credit_balance || 0;
+  showToast(res.renewal_credit_applied > 0
+    ? `${t('toast.policy_renewed', 'Policy renewed for another week!')} ${f$(res.renewal_credit_applied)} ${t('settings.credit', 'Renewal Credit').toLowerCase()} used.`
+    : t('toast.policy_renewed', 'Policy renewed for another week!'));
   await loadDashboard();
 }
 
@@ -1808,7 +1960,7 @@ function renderAdminCharts(a) {
       cutout: '70%',
       plugins: {
         legend: { display: false },
-        gigshieldCenterLabel: {
+        gigBuddyCenterLabel: {
           lines: [
             { text: String(totalClaims), font: "800 28px Inter", color: '#0f172a' },
             { text: t('fact.total_claims', 'Total claims'), font: "700 11px Inter", color: '#64748b' }
@@ -2053,7 +2205,7 @@ async function loadAdminClaims() {
       </div>
     </div>`).join('') : `<p class="muted-note">${t('admin.claims_queue.empty', 'No claims pending review.')}</p>`;
   const all = document.getElementById('admin-all-claims');
-  if (all) all.innerHTML = `<table class="data-table"><thead><tr><th>${t('admin.table.id', 'ID')}</th><th>${t('admin.table.worker', 'Worker')}</th><th>${t('admin.table.trigger', 'Trigger')}</th><th>${t('admin.table.amount', 'Amount')}</th><th>${t('admin.table.fraud', 'Fraud')}</th><th>${t('admin.table.status', 'Status')}</th><th>${t('admin.table.date', 'Date')}</th></tr></thead><tbody>${res.map(c => { const sc = c.status==='paid'?'status-paid':c.status==='pending_review'?'status-pending':'status-rejected'; return `<tr><td>${c.id}</td><td>${c.worker_name}</td><td><span class="table-token">${TRIGGER_BADGES[c.trigger_type]||'GS'}</span>${triggerName(c.trigger_type)}</td><td>${f$(c.amount)}</td><td><span class="quote-tier ${c.fraud_tier==='green'?'tier-low':c.fraud_tier==='amber'?'tier-medium':'tier-high'}">${c.fraud_tier.toUpperCase()} ${(c.fraud_score*100).toFixed(0)}%</span></td><td><span class="claim-status ${sc}">${statusName(c.status)}</span></td><td>${fDate(c.created_at)}</td></tr>`; }).join('')}</tbody></table>`;
+  if (all) all.innerHTML = `<table class="data-table"><thead><tr><th>${t('admin.table.id', 'ID')}</th><th>${t('admin.table.worker', 'Worker')}</th><th>${t('admin.table.trigger', 'Trigger')}</th><th>${t('admin.table.amount', 'Amount')}</th><th>${t('admin.table.fraud', 'Fraud')}</th><th>${t('admin.table.status', 'Status')}</th><th>${t('admin.table.date', 'Date')}</th></tr></thead><tbody>${res.map(c => { const sc = c.status==='paid'?'status-paid':c.status==='pending_review'?'status-pending':'status-rejected'; return `<tr><td>${c.id}</td><td>${c.worker_name}</td><td><span class="table-token">${TRIGGER_BADGES[c.trigger_type]||'GB'}</span>${triggerName(c.trigger_type)}</td><td>${f$(c.amount)}</td><td><span class="quote-tier ${c.fraud_tier==='green'?'tier-low':c.fraud_tier==='amber'?'tier-medium':'tier-high'}">${c.fraud_tier.toUpperCase()} ${(c.fraud_score*100).toFixed(0)}%</span></td><td><span class="claim-status ${sc}">${statusName(c.status)}</span></td><td>${fDate(c.created_at)}</td></tr>`; }).join('')}</tbody></table>`;
 }
 
 async function approveClaim(id) {
@@ -2073,11 +2225,11 @@ async function loadAdminTriggers() {
   ]);
   const cfg = document.getElementById('trigger-config-table');
   if (cfg && configRes && !configRes.detail) {
-    cfg.innerHTML = `<div class="trigger-config-grid">${Object.entries(configRes).map(([k,v]) => `<div class="trigger-config-item"><div class="tc-code">${TRIGGER_BADGES[k] || 'GS'}</div><div class="tc-name">${v.name}</div><div class="tc-desc">${v.description}</div><div class="tc-payout">${Math.round(v.payout_pct*100)}% payout</div></div>`).join('')}</div>`;
+    cfg.innerHTML = `<div class="trigger-config-grid">${Object.entries(configRes).map(([k,v]) => `<div class="trigger-config-item"><div class="tc-code">${TRIGGER_BADGES[k] || 'GB'}</div><div class="tc-name">${v.name}</div><div class="tc-desc">${v.description}</div><div class="tc-payout">${Math.round(v.payout_pct*100)}% payout</div></div>`).join('')}</div>`;
   }
   const hist = document.getElementById('trigger-history');
   if (hist && Array.isArray(historyRes)) {
-    hist.innerHTML = historyRes.length ? `<table class="data-table"><thead><tr><th>${t('admin.table.type', 'Type')}</th><th>${t('admin.table.zone', 'Zone')}</th><th>${t('admin.table.severity', 'Severity')}</th><th>${t('admin.table.status', 'Status')}</th><th>${t('admin.table.description', 'Description')}</th><th>${t('admin.table.fired_at', 'Fired At')}</th></tr></thead><tbody>${historyRes.map(item => `<tr><td><span class="table-token">${TRIGGER_BADGES[item.type]||'GS'}</span>${triggerName(item.type)}</td><td>${item.zone}</td><td>${item.severity}</td><td>${item.status}</td><td>${item.description || t('trigger.description.default', 'Signal threshold met')}</td><td>${fDate(item.fired_at)}</td></tr>`).join('')}</tbody></table>` : `<p class="muted-note">${t('admin.trigger.history.empty', 'No triggers fired yet.')}</p>`;
+    hist.innerHTML = historyRes.length ? `<table class="data-table"><thead><tr><th>${t('admin.table.type', 'Type')}</th><th>${t('admin.table.zone', 'Zone')}</th><th>${t('admin.table.severity', 'Severity')}</th><th>${t('admin.table.status', 'Status')}</th><th>${t('admin.table.description', 'Description')}</th><th>${t('admin.table.fired_at', 'Fired At')}</th></tr></thead><tbody>${historyRes.map(item => `<tr><td><span class="table-token">${TRIGGER_BADGES[item.type]||'GB'}</span>${triggerName(item.type)}</td><td>${item.zone}</td><td>${item.severity}</td><td>${item.status}</td><td>${item.description || t('trigger.description.default', 'Signal threshold met')}</td><td>${fDate(item.fired_at)}</td></tr>`).join('')}</tbody></table>` : `<p class="muted-note">${t('admin.trigger.history.empty', 'No triggers fired yet.')}</p>`;
   }
 }
 
@@ -2092,7 +2244,7 @@ async function simulateTrigger() {
   if (!el) return;
   el.classList.remove('hidden');
   if (res.detail) { el.innerHTML = `<p>${res.detail}</p>`; return; }
-  const badge = TRIGGER_BADGES[type] || 'GS';
+  const badge = TRIGGER_BADGES[type] || 'GB';
   const trigger = res.trigger || {};
   el.innerHTML = `<h4><span class="table-token">${badge}</span>${trigger.id ? t('trigger.result.fired', 'Trigger Fired') : t('trigger.result.not_met', 'Trigger Not Met')}</h4>
     <div class="trigger-detail-grid">
@@ -2181,7 +2333,7 @@ async function loadAdminAnalytics() {
       cutout: '70%',
       plugins: {
         legend: { display: false },
-        gigshieldCenterLabel: {
+        gigBuddyCenterLabel: {
           lines: [
             { text: String(totalReviewed), font: "800 28px Inter", color: '#0f172a' },
             { text: t('fact.reviewed_claims', 'Reviewed claims'), font: "700 11px Inter", color: '#64748b' }
@@ -2237,6 +2389,7 @@ async function loadSupportInfo() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  setLanguage(currentLang);
   syncAdminUI();
   await loadSupportInfo();
   if (state.authToken) {

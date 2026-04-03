@@ -1,73 +1,77 @@
-# GigShield Architecture
+# GigBuddy Architecture
 
-This document describes the architecture that exists in the repo today, plus the clear extension points for the DEVTrails Guidewire story.
+This document describes the architecture that exists in the repo today and the extension points for future carrier or fintech integrations.
 
 ## Current System
 
 ```mermaid
 flowchart LR
-    User["Worker Browser UI"] --> Nginx["Frontend nginx"]
-    Admin["Admin Browser UI"] --> Nginx
-    Nginx -->|"/api/*"| API["FastAPI Backend"]
-    Nginx -->|"/health /ready /metrics /docs"| API
+    User["Worker Browser UI"] --> Frontend["Static frontend"]
+    Admin["Ops Browser UI"] --> Frontend
+    Frontend -->|"/api/*"| API["FastAPI Backend"]
+    Frontend -->|"/health /ready /metrics /docs"| API
 
     API --> Auth["Auth + Session Layer"]
     API --> Policy["Policy Service"]
-    API --> Claims["Claims Service"]
-    API --> Trigger["Trigger Engine"]
-    API --> Premium["Premium Engine"]
+    API --> Claims["Claims + Feedback Service"]
+    API --> Trigger["Dual-Signal Trigger Engine"]
+    API --> Premium["Risk Pricing Engine"]
 
-    Premium --> ML["XGBoost-style Risk Model"]
-    Claims --> Fraud["Fraud Engine"]
-    Trigger --> External["Sandbox External API Adapters"]
-
+    Trigger --> Signals["Weather / AQI / Traffic / Flood / Civic Feeds"]
+    Claims --> Fraud["Fraud Routing"]
+    Claims --> Feedback["Post-Payout Feedback Credit"]
     API --> DB[("PostgreSQL or SQLite")]
 ```
 
-## Current Deployment Shape
+## Reviewer Highlights
 
-- `frontend/` is served by nginx and reverse-proxies API traffic to the backend.
-- `backend/` runs as a FastAPI service and can use PostgreSQL via `docker-compose.yml`.
-- `/health`, `/ready`, and `/metrics` expose operational state for reviewers and deployment checks.
-- Request logs include an `X-Request-ID` correlation header for traceability.
+### Worker side
 
-## Judge-Facing Technical Highlights
+- OTP, KYC, and UPI-backed onboarding flow
+- policy purchase, renewal, pause, and reactivation
+- multilingual worker UI
+- claims history plus post-payout feedback
 
-### Pricing
+### Trigger side
 
-- Zone-based premium scoring
-- Explainable factor breakdowns
-- Synthetic-data model training for the submission environment
+- five disruption modes
+- dual-signal validation before payout events are created
+- live public feed support with calibrated fallback simulation
 
-### Claims
+### Ops side
 
-- Trigger-driven claim creation
-- Fraud-tiered processing
-- Admin review queue and payout history
+- review queue for held claims
+- live zone intelligence
+- runtime readiness and integration visibility
 
-### Operations
+## Why The Feedback Loop Matters
 
-- Environment-driven configuration
-- Containerized local stack
-- Rate limiting, readiness checks, and metrics snapshot
+Many demos stop at "automatic payout." GigBuddy also collects a worker-side signal after payout:
 
-## Guidewire Extension Points
+- the worker confirms whether disruption really happened
+- the worker reports whether the payout was helpful
+- the worker reports whether the shift stopped, slowed, or stayed normal
+- the worker earns a renewal credit for participating
 
-The repository does not contain a live Guidewire integration today, but the architecture is organized so those integrations can slot in cleanly:
+That gives the product a mechanism for improving trust and reducing basis-risk blind spots over time.
+
+## Future Extension Points
+
+The repo does not claim live carrier integrations by default, but it is organized so they can be added cleanly:
 
 ```mermaid
 flowchart TD
-    Premium["Premium Engine Output"] --> Rating["Guidewire Rating Engine"]
-    Policy["Policy Lifecycle Events"] --> PolicyCenter["PolicyCenter"]
-    Claims["Claim Decisions"] --> ClaimCenter["ClaimCenter"]
-    Fraud["Fraud / Trigger ML"] --> Functions["Guidewire Functions"]
-    Claims --> Autopilot["Autopilot Workflow"]
+    Premium["Risk Pricing Output"] --> Rating["Carrier Rating Service"]
+    Policy["Policy Lifecycle Events"] --> PolicySystem["Policy Admin System"]
+    Claims["Claim + Feedback Events"] --> ClaimsSystem["Claims System"]
+    Payouts["Payout Requests"] --> Payments["Payout Rail / PSP"]
+    Auth["OTP / KYC Flows"] --> Identity["Identity Providers"]
 ```
 
-Recommended next integration order:
+Recommended order:
 
-1. Rating Engine mapping for premium output
-2. PolicyCenter sync for issuance and renewal
-3. ClaimCenter FNOL creation
-4. Autopilot orchestration for AMBER/RED claims
-5. Functions for model inference offload
+1. real payout provider
+2. real OTP and KYC providers
+3. carrier policy sync
+4. carrier claim event sync
+5. analytics loop using accumulated payout feedback

@@ -1,4 +1,4 @@
-"""SQLAlchemy ORM Models for GigShield."""
+"""SQLAlchemy ORM models for the GigBuddy demo backend."""
 import enum
 from datetime import datetime
 from sqlalchemy import (
@@ -78,6 +78,7 @@ class Worker(Base):
     phone_verified = Column(Boolean, default=False)
     risk_tier = Column(SAEnum(RiskTier), default=RiskTier.MEDIUM)
     weekly_income = Column(Float, default=5200.0)
+    renewal_credit_balance = Column(Float, default=0.0)
     onboarding_complete = Column(Boolean, default=False)
     is_deleted = Column(Boolean, default=False, nullable=False)
     deleted_at = Column(DateTime, nullable=True)
@@ -90,6 +91,7 @@ class Worker(Base):
 
     policies = relationship("Policy", back_populates="worker")
     premium_calculations = relationship("PremiumCalculation", back_populates="worker")
+    feedback_entries = relationship("PayoutFeedback", back_populates="worker")
 
 
 class Policy(Base):
@@ -155,6 +157,7 @@ class Claim(Base):
     policy = relationship("Policy", back_populates="claims")
     trigger = relationship("Trigger", back_populates="claims")
     payout = relationship("PayoutHistory", back_populates="claim", uselist=False)
+    feedback = relationship("PayoutFeedback", back_populates="claim", uselist=False)
 
 
 class PremiumCalculation(Base):
@@ -188,3 +191,20 @@ class PayoutHistory(Base):
     completed_at = Column(DateTime, nullable=True)
 
     claim = relationship("Claim", back_populates="payout")
+
+
+class PayoutFeedback(Base):
+    __tablename__ = "payout_feedback"
+
+    id = Column(Integer, primary_key=True, index=True)
+    claim_id = Column(Integer, ForeignKey("claims.id"), nullable=False, unique=True)
+    worker_id = Column(Integer, ForeignKey("workers.id"), nullable=False)
+    experienced_disruption = Column(Boolean, nullable=False)
+    payout_helpfulness = Column(String(20), nullable=False)
+    route_status = Column(String(20), nullable=False)
+    notes = Column(Text, nullable=True)
+    credit_awarded = Column(Float, default=5.0)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    claim = relationship("Claim", back_populates="feedback")
+    worker = relationship("Worker", back_populates="feedback_entries")

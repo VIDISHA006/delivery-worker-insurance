@@ -135,11 +135,14 @@ def renew_policy(
     plan_mult = PLAN_MULTIPLIERS.get(policy.plan_type, 1.0)
 
     policy.weekly_premium = round(premium_data["final_premium"] * plan_mult, 2)
+    credit_applied = round(min(worker.renewal_credit_balance or 0, policy.weekly_premium), 2)
+    charged_premium = round(max(policy.weekly_premium - credit_applied, 0), 2)
     policy.coverage_amount = round(policy.weekly_premium * 4.5, 2)
     policy.end_date = policy.end_date + timedelta(days=7)
     policy.weeks_active += 1
-    policy.total_premiums_paid += policy.weekly_premium
+    policy.total_premiums_paid += charged_premium
     policy.status = PolicyStatus.ACTIVE
+    worker.renewal_credit_balance = round(max((worker.renewal_credit_balance or 0) - credit_applied, 0), 2)
     db.commit()
     sync_meta = guidewire_sync_record(
         "policy",
@@ -149,6 +152,8 @@ def renew_policy(
             "zone": worker.zone,
             "renewal": True,
             "weekly_premium": policy.weekly_premium,
+            "charged_premium": charged_premium,
+            "credit_applied": credit_applied,
             "guidewire_quote": guidewire_quote,
         },
     )
@@ -157,6 +162,9 @@ def renew_policy(
         "policy_id": policy.id,
         "status": "renewed",
         "new_premium": policy.weekly_premium,
+        "charged_premium": charged_premium,
+        "renewal_credit_applied": credit_applied,
+        "renewal_credit_balance": worker.renewal_credit_balance,
         "coverage_until": policy.end_date.isoformat(),
         "weeks_active": policy.weeks_active,
         "total_paid": policy.total_premiums_paid,
