@@ -2,14 +2,16 @@
 <html lang="en" data-lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GigShield — Parametric Income Protection for Gig Workers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GigShield — Parametric Income Protection</title>
     <meta name="description" content="GigShield: Zero-touch parametric income protection for India's Q-Commerce delivery partners. AI-powered pricing, instant UPI payouts, zero claims to file.">
     <meta name="theme-color" content="#0a0e1a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="styles.css?v=20260403-9">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -119,6 +121,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="hero-evidence-grid">
+                            <div class="hero-evidence-card">
+                                <span class="hero-evidence-kicker" data-i18n="hero.evidence.1.kicker">Real-Time Detection</span>
+                                <strong data-i18n="hero.evidence.1.title">Weather, AQI, flood and traffic signals are checked continuously.</strong>
+                                <p data-i18n="hero.evidence.1.desc">Claims are triggered only when environmental and behavioral signals agree, reducing basis risk for workers and insurers.</p>
+                            </div>
+                            <div class="hero-evidence-card">
+                                <span class="hero-evidence-kicker" data-i18n="hero.evidence.2.kicker">Zero-Touch Payouts</span>
+                                <strong data-i18n="hero.evidence.2.title">Auto-approval logic is designed to move from trigger to UPI in minutes.</strong>
+                                <p data-i18n="hero.evidence.2.desc">Fraud scoring, approval routing, and payout rails are orchestrated as a clean operational flow instead of a claims form.</p>
+                            </div>
+                            <div class="hero-evidence-card">
+                                <span class="hero-evidence-kicker" data-i18n="hero.evidence.3.kicker">Worker-First Design</span>
+                                <strong data-i18n="hero.evidence.3.title">Short steps, large targets, and multilingual copy keep the flow calm under pressure.</strong>
+                                <p data-i18n="hero.evidence.3.desc">The experience is optimized for quick comprehension, unstable networks, and low-friction weekly protection.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="onboarding-form-side">
@@ -140,7 +160,7 @@
                             <div id="step-1" class="form-step active">
                                 <div class="card" id="register-card">
                                     <div class="card-header">
-                                        <div class="card-icon">👤</div>
+                                        <div class="card-icon">01</div>
                                         <div>
                                             <h2 data-i18n="reg.title">Worker Registration</h2>
                                             <p class="card-desc" data-i18n="reg.desc">Enter your details to get started</p>
@@ -202,14 +222,14 @@
 
                                 <div class="glass-card" id="login-card" style="display:none;">
                                     <div class="card-header">
-                                        <div class="card-icon">👤</div>
+                                        <div class="card-icon">01</div>
                                         <div>
                                             <h2 data-i18n="login.title">Worker Login</h2>
                                             <p class="card-desc" data-i18n="login.desc">Welcome back to GigShield</p>
                                         </div>
                                     </div>
                                     <div class="form-group"><label data-i18n="login.phone">Phone Number</label><input type="tel" id="login-phone" placeholder="10-digit mobile" value="9876543210"></div>
-                                    <div class="form-group" style="margin-top:12px"><label data-i18n="login.otp">OTP</label><input type="text" id="login-otp" placeholder="1234" value="1234"></div>
+                                    <div class="form-group mt-12"><label data-i18n="login.otp">OTP</label><input type="text" id="login-otp" placeholder="1234" value="1234"></div>
                                     <p class="hint" id="login-otp-status" data-i18n="login.hint">Request a one-time password to sign in.</p>
                                     <div class="btn-stack">
                                         <button class="btn-secondary btn-full" onclick="requestLoginOtp()" data-i18n="login.send_otp">Send OTP</button>
@@ -222,7 +242,7 @@
                             <!-- Step 2: OTP -->
                             <div id="step-2" class="form-step">
                                 <div class="glass-card">
-                                    <div class="card-header"><div class="card-icon">📲</div><div><h2 data-i18n="otp.title">Verify Phone</h2><p class="card-desc" data-i18n="otp.desc">Enter the OTP sent to your phone</p></div></div>
+                                    <div class="card-header"><div class="card-icon">02</div><div><h2 data-i18n="otp.title">Verify Phone</h2><p class="card-desc" data-i18n="otp.desc">Enter the OTP sent to your phone</p></div></div>
                                     <div class="otp-container">
                                         <input type="text" class="otp-input" id="otp-1" maxlength="1" value="1">
                                         <input type="text" class="otp-input" id="otp-2" maxlength="1" value="2">
@@ -240,15 +260,15 @@
                             <!-- Step 3: KYC -->
                             <div id="step-3" class="form-step">
                                 <div class="glass-card">
-                                    <div class="card-header"><div class="card-icon">🆔</div><div><h2 data-i18n="kyc.title">Aadhaar e-KYC</h2><p class="card-desc" data-i18n="kyc.desc">Instant paperless verification via DigiLocker</p></div></div>
+                                    <div class="card-header"><div class="card-icon">03</div><div><h2 data-i18n="kyc.title">Aadhaar e-KYC</h2><p class="card-desc" data-i18n="kyc.desc">Instant paperless verification via DigiLocker</p></div></div>
                                     <div class="form-group">
                                         <label data-i18n="kyc.aadhaar">Aadhaar Number</label>
                                         <input type="text" id="kyc-aadhaar" placeholder="12-digit Aadhaar" value="234567890123">
                                     </div>
                                     <div class="kyc-chips">
-                                        <span class="chip chip-green">🔒 Encrypted</span>
-                                        <span class="chip chip-blue">⚡ Instant</span>
-                                        <span class="chip chip-purple">📄 Paperless</span>
+                                        <span class="chip chip-green">Encrypted</span>
+                                        <span class="chip chip-blue">Instant</span>
+                                        <span class="chip chip-purple">Paperless</span>
                                     </div>
                                     <button class="btn-primary btn-full" onclick="verifyKYC()"><span data-i18n="kyc.verify">Verify Aadhaar</span> →</button>
                                 </div>
@@ -257,7 +277,7 @@
                             <!-- Step 4: Premium Quote -->
                             <div id="step-4" class="form-step">
                                 <div class="glass-card">
-                                    <div class="card-header"><div class="card-icon">📍</div><div><h2 data-i18n="quote.title">Your Risk Profile & Premium</h2><p class="card-desc" data-i18n="quote.desc">AI-powered pricing based on zone risk factors</p></div></div>
+                                    <div class="card-header"><div class="card-icon">04</div><div><h2 data-i18n="quote.title">Your Risk Profile & Premium</h2><p class="card-desc" data-i18n="quote.desc">AI-powered pricing based on zone risk factors</p></div></div>
                                     <div id="premium-quote-card" class="premium-quote"></div>
                                     <button class="btn-primary btn-full" onclick="goToStep(5)"><span data-i18n="quote.accept">Accept & Setup UPI</span> →</button>
                                 </div>
@@ -266,24 +286,30 @@
                             <!-- Step 5: UPI -->
                             <div id="step-5" class="form-step">
                                 <div class="glass-card">
-                                    <div class="card-header"><div class="card-icon">💳</div><div><h2 data-i18n="upi.title">UPI AutoPay Setup</h2><p class="card-desc" data-i18n="upi.desc">Set up weekly automatic payment</p></div></div>
+                                    <div class="card-header"><div class="card-icon">05</div><div><h2 data-i18n="upi.title">UPI AutoPay Setup</h2><p class="card-desc" data-i18n="upi.desc">Set up weekly automatic payment</p></div></div>
                                     <div class="form-group">
                                         <label data-i18n="upi.id">UPI ID</label>
                                         <input type="text" id="upi-id" placeholder="yourname@upi" value="ravikumar@upi">
                                     </div>
                                     <div class="autopay-info">
-                                        <div class="autopay-row"><span>💰 <span data-i18n="upi.deduction">Weekly Deduction</span></span><span id="autopay-amount" class="amount">₹ —</span></div>
-                                        <div class="autopay-row"><span>📅 <span data-i18n="upi.day">Deduction Day</span></span><span>Monday 06:00</span></div>
-                                        <div class="autopay-row"><span>🔓 <span data-i18n="upi.lockin">Lock-in</span></span><span class="green-text" data-i18n="upi.none">None — pause anytime</span></div>
+                                        <div class="autopay-row"><span class="autopay-label" data-i18n="upi.deduction">Weekly Deduction</span><span id="autopay-amount" class="amount">₹ —</span></div>
+                                        <div class="autopay-row"><span class="autopay-label" data-i18n="upi.day">Deduction Day</span><span data-i18n="quote.period_day">Monday 06:00</span></div>
+                                        <div class="autopay-row"><span class="autopay-label" data-i18n="upi.lockin">Lock-in</span><span class="green-text" data-i18n="upi.none">None — pause anytime</span></div>
                                     </div>
-                                    <button class="btn-primary btn-full" onclick="setupUPI()">✅ <span data-i18n="upi.complete">Complete Onboarding & Buy Policy</span></button>
+                                    <button class="btn-primary btn-full" onclick="setupUPI()"><span data-i18n="upi.complete">Complete Onboarding & Buy Policy</span></button>
                                 </div>
                             </div>
 
                             <!-- Success Step -->
                             <div id="step-success" class="form-step">
                                 <div class="glass-card success-card">
-                                    <div class="success-icon-wrapper"><div class="success-icon">🎉</div></div>
+                                    <div class="success-icon-wrapper">
+                                        <div class="success-icon" aria-hidden="true">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                                <path d="M7 14.5L11.75 19L21 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
                                     <h2 data-i18n="success.title">Welcome to GigShield!</h2>
                                     <p data-i18n="success.desc">Your policy is now <strong>ACTIVE</strong>. You're covered.</p>
                                     <div id="success-details" class="success-details"></div>
@@ -299,7 +325,8 @@
             <div id="page-dashboard" class="page">
                 <div class="container">
                     <div class="dashboard-header">
-                        <div>
+                        <div class="dashboard-title-block">
+                            <span class="section-kicker" data-i18n="section.driver_cockpit">Driver cockpit</span>
                             <h1 id="dash-greeting" data-i18n="dash.greeting">Welcome, Ravi</h1>
                             <p class="dash-sub" id="dash-zone">Indiranagar, Bengaluru</p>
                         </div>
@@ -312,7 +339,7 @@
                     <!-- Policy Card -->
                     <div class="glass-card policy-card">
                         <div class="policy-header">
-                            <div><h3>🛡️ <span data-i18n="dash.policy">Active Policy</span></h3><span class="policy-plan" id="dash-plan">Standard Plan</span></div>
+                            <div><h3><span data-i18n="dash.policy">Active Policy</span></h3><span class="policy-plan" id="dash-plan">Standard Plan</span></div>
                             <div class="policy-premium"><span class="premium-label" data-i18n="dash.weekly">Weekly Premium</span><span class="premium-amount" id="dash-premium">₹ —</span></div>
                         </div>
                         <div class="policy-grid">
@@ -322,40 +349,75 @@
                             <div class="policy-stat"><span class="stat-label" data-i18n="dash.claimed">Total Claimed</span><span class="stat-value" id="dash-total-claimed">₹ —</span></div>
                         </div>
                         <div class="policy-actions">
-                            <button class="btn-secondary" onclick="renewPolicy()">🔄 <span data-i18n="dash.renew">Renew</span></button>
-                            <button class="btn-ghost" onclick="pausePolicy()">⏸️ <span data-i18n="dash.pause">Pause</span></button>
+                            <button class="btn-secondary" onclick="renewPolicy()"><span data-i18n="dash.renew">Renew</span></button>
+                            <button class="btn-ghost" onclick="pausePolicy()"><span data-i18n="dash.pause">Pause</span></button>
                         </div>
                     </div>
 
                     <!-- Zone Live Status -->
                     <div class="glass-card">
-                        <h3>🌦️ <span data-i18n="dash.zone_status">Zone Live Status</span></h3>
+                        <div class="panel-head">
+                            <div>
+                                <div class="section-kicker" data-i18n="dash.chart_risk">Live Risk</div>
+                                <h3><span data-i18n="dash.zone_status">Zone Live Status</span></h3>
+                                <p class="chart-brief" data-i18n="dash.zone_status_desc">Each signal shows how close your zone is to a payout trigger right now.</p>
+                            </div>
+                        </div>
                         <div id="zone-status-grid" class="zone-status-grid"></div>
                     </div>
 
                     <!-- Charts Grid -->
                     <div class="charts-grid">
                         <div class="glass-card chart-card">
-                            <div class="section-kicker" data-i18n="dash.chart_fin">Financial Overview</div>
-                            <h3 data-i18n="dash.chart_prot">Protection Balance</h3>
-                            <canvas id="worker-protection-chart" class="chart-canvas"></canvas>
+                            <div class="panel-head">
+                                <div>
+                                    <div class="section-kicker" data-i18n="dash.chart_fin">Financial Overview</div>
+                                    <h3 data-i18n="dash.chart_prot">Protection Balance</h3>
+                                    <p class="chart-brief" data-i18n="dash.chart_prot_desc">Compare what you have paid, what you are covered for, and what GigShield has already returned.</p>
+                                </div>
+                            </div>
+                            <div class="chart-stage">
+                                <canvas id="worker-protection-chart" class="chart-canvas"></canvas>
+                            </div>
+                            <div id="worker-protection-facts" class="chart-facts"></div>
                         </div>
                         <div class="glass-card chart-card">
-                            <div class="section-kicker" data-i18n="dash.chart_risk">Live Risk</div>
-                            <h3 data-i18n="dash.chart_radar">Zone Signal Radar</h3>
-                            <canvas id="worker-signal-chart" class="chart-canvas"></canvas>
+                            <div class="panel-head">
+                                <div>
+                                    <div class="section-kicker" data-i18n="dash.chart_risk">Live Risk</div>
+                                    <h3 data-i18n="dash.chart_signal_pressure">Zone Signal Pressure</h3>
+                                    <p class="chart-brief" data-i18n="dash.chart_signal_desc">A clear view of which live signals are building toward a disruption payout.</p>
+                                </div>
+                            </div>
+                            <div class="chart-stage">
+                                <canvas id="worker-signal-chart" class="chart-canvas"></canvas>
+                            </div>
+                            <div id="worker-signal-facts" class="chart-facts"></div>
                         </div>
                     </div>
 
                     <div class="glass-card chart-card">
-                        <div class="section-kicker" data-i18n="dash.chart_perf">Claims Performance</div>
-                        <h3 data-i18n="dash.chart_trend">Payout Trend</h3>
-                        <canvas id="worker-claims-chart" class="chart-canvas"></canvas>
+                        <div class="panel-head">
+                            <div>
+                                <div class="section-kicker" data-i18n="dash.chart_perf">Claims Performance</div>
+                                <h3 data-i18n="dash.chart_trend">Payout Trend</h3>
+                                <p class="chart-brief" data-i18n="dash.chart_trend_desc">Recent payouts show how disruptions have affected earnings over time.</p>
+                            </div>
+                        </div>
+                        <div class="chart-stage">
+                            <canvas id="worker-claims-chart" class="chart-canvas"></canvas>
+                        </div>
+                        <div id="worker-claims-facts" class="chart-facts"></div>
                     </div>
 
                     <!-- Recent Claims -->
                     <div class="glass-card">
-                        <h3>📋 <span data-i18n="dash.recent">Recent Claims</span></h3>
+                        <div class="panel-head">
+                            <div>
+                                <h3><span data-i18n="dash.recent">Recent Claims</span></h3>
+                                <p class="chart-brief" data-i18n="dash.recent_desc">A fast read on payout amount, trigger reason, and fraud posture for each event.</p>
+                            </div>
+                        </div>
                         <div id="dash-claims-list" class="claims-list"></div>
                     </div>
                 </div>
@@ -364,14 +426,15 @@
             <!-- ── CLAIMS PAGE ───────────────────────────────────── -->
             <div id="page-claims" class="page">
                 <div class="container">
-                    <h1>📋 <span data-i18n="claims.title">Claims History</span></h1>
+                    <span class="section-kicker" data-i18n="section.claims_timeline">Claims timeline</span>
+                    <h1><span data-i18n="claims.title">Claims History</span></h1>
                     <p class="page-sub" data-i18n="claims.desc">Zero-touch claims — automatically processed when triggers fire</p>
                     <p class="page-sub muted" id="claims-support-note"></p>
 
                     <!-- Micro-survey Banner -->
                     <div id="micro-survey-banner" class="glass-card survey-card hidden">
                         <div class="survey-header">
-                            <span class="survey-badge">📊 Post-Payout Survey</span>
+                            <span class="survey-badge" data-i18n="survey.badge">Post-Payout Survey</span>
                             <button class="btn-ghost" onclick="dismissSurvey()">✕</button>
                         </div>
                         <p data-i18n="survey.intro">Help us improve — answer 3 quick questions about your last payout:</p>
@@ -395,21 +458,30 @@
             <!-- ── PREMIUM PAGE ──────────────────────────────────── -->
             <div id="page-premium" class="page">
                 <div class="container">
-                    <h1>💰 <span data-i18n="prem.title">Dynamic Premium Pricing</span></h1>
+                    <span class="section-kicker" data-i18n="section.pricing_intelligence">Pricing intelligence</span>
+                    <h1><span data-i18n="prem.title">Dynamic Premium Pricing</span></h1>
                     <p class="page-sub" data-i18n="prem.desc">XGBoost ML model calculates zone-specific premiums from real environmental data</p>
 
                     <div class="glass-card chart-card">
-                        <div class="section-kicker" data-i18n="prem.landscape">Pricing Landscape</div>
-                        <h3 data-i18n="prem.zone_chart">Zone Premium Comparison</h3>
-                        <canvas id="premium-landscape-chart" class="chart-canvas"></canvas>
+                        <div class="panel-head">
+                            <div>
+                                <div class="section-kicker" data-i18n="prem.landscape">Pricing Landscape</div>
+                                <h3 data-i18n="prem.zone_chart">Zone Premium Comparison</h3>
+                                <p class="chart-brief" data-i18n="prem.zone_chart_desc">Compare weekly premium and risk intensity across Bengaluru zones in one view.</p>
+                            </div>
+                        </div>
+                        <div class="chart-stage">
+                            <canvas id="premium-landscape-chart" class="chart-canvas"></canvas>
+                        </div>
+                        <div id="premium-landscape-facts" class="chart-facts"></div>
                     </div>
 
                     <div id="premium-zones-grid" class="premium-zones-grid"></div>
 
                     <div class="glass-card ml-card">
-                        <h3>🧠 <span data-i18n="prem.how">How the ML Model Works</span></h3>
+                        <h3><span data-i18n="prem.how">How the ML Model Works</span></h3>
                         <div class="ml-grid">
-                            <div class="ml-row"><span class="ml-label">Model</span><span>XGBoost Gradient Boosted Decision Tree</span></div>
+                            <div class="ml-row"><span class="ml-label" data-i18n="prem.model">Model</span><span>XGBoost Gradient Boosted Decision Tree</span></div>
                             <div class="ml-row"><span class="ml-label" data-i18n="prem.training">Training Data</span><span>3 years IMD + CPCB + BBMP data</span></div>
                             <div class="ml-row"><span class="ml-label" data-i18n="prem.features">Features</span><span>7 risk factors per zone</span></div>
                             <div class="ml-row"><span class="ml-label" data-i18n="prem.output">Output</span><span>Risk multiplier (0.37–0.63) × ₹142 base</span></div>
@@ -422,16 +494,17 @@
             <!-- ── SETTINGS PAGE ─────────────────────────────────── -->
             <div id="page-settings" class="page">
                 <div class="container">
-                    <h1>⚙️ <span data-i18n="settings.title">Settings & Privacy</span></h1>
+                    <span class="section-kicker" data-i18n="section.privacy_support">Privacy & support</span>
+                    <h1><span data-i18n="settings.title">Settings & Privacy</span></h1>
                     <p class="page-sub" data-i18n="settings.desc">Account control, support, and data management</p>
-                    <div class="glass-card"><h3>👤 <span data-i18n="settings.account">Account</span></h3><div id="settings-account-summary" class="detail-rows"></div></div>
-                    <div class="glass-card"><h3>📞 <span data-i18n="settings.support">Support & Human Review</span></h3><div id="settings-support-details" class="detail-rows"></div></div>
-                    <div class="glass-card"><h3>📄 <span data-i18n="settings.legal">Terms & Privacy</span></h3><details class="legal-details" open><summary data-i18n="settings.legal_open">Open the legal summary</summary><p data-i18n="settings.legal_text">Workers can review pricing, policy status, claim history, and payout handling inside the app. If a claim is flagged or denied, support can review the case manually. Deleting your account removes personal profile data and payout identifiers while retaining anonymised financial records required for audit.</p></details></div>
+                    <div class="glass-card"><h3><span data-i18n="settings.account">Account</span></h3><div id="settings-account-summary" class="detail-rows"></div></div>
+                    <div class="glass-card"><h3><span data-i18n="settings.support">Support & Human Review</span></h3><div id="settings-support-details" class="detail-rows"></div></div>
+                    <div class="glass-card"><h3><span data-i18n="settings.legal">Terms & Privacy</span></h3><details class="legal-details" open><summary data-i18n="settings.legal_open">Open the legal summary</summary><p data-i18n="settings.legal_text">Workers can review pricing, policy status, claim history, and payout handling inside the app. If a claim is flagged or denied, support can review the case manually. Deleting your account removes personal profile data and payout identifiers while retaining anonymised financial records required for audit.</p></details></div>
                     <div class="glass-card danger-card">
-                        <h3>🗑️ <span data-i18n="settings.delete">Delete Account</span></h3>
+                        <h3><span data-i18n="settings.delete">Delete Account</span></h3>
                         <p class="card-desc" data-i18n="settings.delete_desc">This removes your personal profile data. This cannot be undone.</p>
                         <div class="form-group"><label data-i18n="settings.otp">OTP Confirmation</label><input type="text" id="delete-account-otp" placeholder="Enter OTP"></div>
-                        <div class="form-group" style="margin-top:12px"><label data-i18n="settings.confirm">Type DELETE to confirm</label><input type="text" id="delete-account-confirm" placeholder="DELETE"></div>
+                        <div class="form-group mt-12"><label data-i18n="settings.confirm">Type DELETE to confirm</label><input type="text" id="delete-account-confirm" placeholder="DELETE"></div>
                         <button class="btn-danger btn-full" onclick="deleteAccount()" data-i18n="settings.delete_btn">Delete My Account</button>
                     </div>
                 </div>
@@ -444,49 +517,135 @@
         <div id="admin-view" class="view">
             <div id="admin-auth-locked" class="admin-lock">
                 <div class="glass-card admin-login-card">
-                    <div class="card-header"><div class="card-icon">🔐</div><div><h2>Admin Sign In</h2><p class="card-desc">Insurer operations portal — protected access</p></div></div>
-                    <div class="form-group"><label>Admin Username</label><input type="text" id="admin-username" placeholder="admin@gigshield.local"></div>
-                    <div class="form-group" style="margin-top:12px"><label>Password</label><input type="password" id="admin-password" placeholder="Password"></div>
-                    <button class="btn-primary btn-full" onclick="adminLogin()" style="margin-top:20px">Sign In to Admin Portal</button>
+                    <div class="card-header"><div class="card-icon">AD</div><div><h2 data-i18n="admin.sign_in_title">Admin Sign In</h2><p class="card-desc" data-i18n="admin.sign_in_desc">Insurer operations portal — protected access</p></div></div>
+                    <div class="form-group"><label data-i18n="admin.username">Admin Username</label><input type="text" id="admin-username" placeholder="admin@gigshield.local"></div>
+                    <div class="form-group mt-12"><label data-i18n="admin.password">Password</label><input type="password" id="admin-password" placeholder="Password"></div>
+                    <button class="btn-primary btn-full mt-20" onclick="adminLogin()" data-i18n="admin.sign_in_action">Sign In to Admin Portal</button>
                 </div>
             </div>
 
             <div id="admin-auth-content" class="hidden">
                 <div class="sub-nav admin-sub-nav">
-                    <button class="sub-tab active" data-page="admin-dashboard" id="sub-admin-dashboard">Dashboard</button>
-                    <button class="sub-tab" data-page="admin-policies" id="sub-admin-policies">Policies</button>
-                    <button class="sub-tab" data-page="admin-claims" id="sub-admin-claims">Claims Queue</button>
-                    <button class="sub-tab" data-page="admin-triggers" id="sub-admin-triggers">Triggers</button>
-                    <button class="sub-tab" data-page="admin-analytics" id="sub-admin-analytics">Analytics</button>
-                    <button class="sub-tab hidden" id="admin-logout-btn" onclick="logoutAdmin()">Logout</button>
+                    <div class="admin-rail-brand">
+                        <div class="admin-rail-logo">GS</div>
+                        <div class="admin-rail-copy">
+                            <strong>GigShield Ops</strong>
+                            <span>Guidewire-aligned command center</span>
+                        </div>
+                    </div>
+                    <div class="admin-rail-section" data-i18n="admin.section.operations">Operations</div>
+                    <button class="sub-tab active" data-page="admin-dashboard" id="sub-admin-dashboard" data-i18n="admin.tab.dashboard">Dashboard</button>
+                    <button class="sub-tab" data-page="admin-policies" id="sub-admin-policies" data-i18n="admin.tab.policies">Policies</button>
+                    <button class="sub-tab" data-page="admin-claims" id="sub-admin-claims" data-i18n="admin.tab.claims">Claims Queue</button>
+                    <button class="sub-tab" data-page="admin-triggers" id="sub-admin-triggers" data-i18n="admin.tab.triggers">Triggers</button>
+                    <button class="sub-tab" data-page="admin-analytics" id="sub-admin-analytics" data-i18n="admin.tab.analytics">Analytics</button>
+                    <div class="admin-rail-footer">
+                        <div class="admin-rail-support">
+                            <span class="admin-rail-support-title" data-i18n="admin.mode">Operational Mode</span>
+                            <strong data-i18n="admin.mode_value">Precision Underwriting</strong>
+                        </div>
+                        <button class="sub-tab hidden" id="admin-logout-btn" onclick="logoutAdmin()" data-i18n="admin.logout">Logout</button>
+                    </div>
                 </div>
 
                 <!-- Admin Dashboard -->
                 <div id="page-admin-dashboard" class="page active">
                     <div class="container">
-                        <div class="admin-header"><h1>📊 GigShield Admin Dashboard</h1><p>Insurer Portal — Real-time KPIs & Operations</p></div>
+                        <div class="admin-header">
+                            <div>
+                                <span class="section-kicker" data-i18n="admin.header.kicker">Insurer operations</span>
+                                <h1 data-i18n="admin.header.title">Precision Underwriting Command Center</h1>
+                                <p data-i18n="admin.header.desc">Live pricing, fraud posture, claim orchestration, and zone disruption monitoring across Bengaluru.</p>
+                            </div>
+                            <div class="admin-header-meta">
+                                <div class="admin-meta-pill">
+                                    <span class="admin-meta-label" data-i18n="admin.meta.environment">Environment</span>
+                                    <strong data-i18n="admin.meta.environment_value">Guidewire Cloud (AWS)</strong>
+                                </div>
+                                <div class="admin-meta-pill">
+                                    <span class="admin-meta-label" data-i18n="admin.meta.session">Session</span>
+                                    <strong data-i18n="admin.meta.session_value">Active Underwriter</strong>
+                                </div>
+                            </div>
+                        </div>
                         <div id="kpi-grid" class="kpi-grid"></div>
                         <div class="charts-grid">
-                            <div class="glass-card chart-card"><div class="section-kicker">Claim Pipeline</div><h3>Pipeline Mix</h3><canvas id="admin-pipeline-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card chart-card"><div class="section-kicker">Zone Pricing</div><h3>Zone Premium Comparison</h3><canvas id="admin-zone-premium-chart" class="chart-canvas"></canvas></div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.dashboard.claim_pipeline">Claim Pipeline</div>
+                                        <h3 data-i18n="admin.dashboard.pipeline_mix">Pipeline Mix</h3>
+                                        <p class="chart-brief" data-i18n="admin.dashboard.pipeline_desc">Distribution of claims by automation outcome and manual review posture.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage chart-stage--compact">
+                                    <canvas id="admin-pipeline-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="admin-pipeline-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.dashboard.zone_pricing">Zone Pricing</div>
+                                        <h3 data-i18n="admin.dashboard.zone_premium_comp">Zone Premium Comparison</h3>
+                                        <p class="chart-brief" data-i18n="admin.dashboard.zone_pricing_desc">Compare premium levels across zones to spot underpriced exposure and concentration.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage">
+                                    <canvas id="admin-zone-premium-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="admin-zone-premium-facts" class="chart-facts"></div>
+                            </div>
                         </div>
-                        <div class="glass-card chart-card"><div class="section-kicker">Operations</div><h3>Daily Claims, Triggers & Payouts</h3><canvas id="admin-daily-activity-chart" class="chart-canvas"></canvas></div>
-                        <div class="glass-card"><div class="section-kicker">System Readiness</div><h3>Providers & Background Jobs</h3><div id="admin-readiness-panel" class="readiness-grid"></div></div>
+                        <div class="glass-card chart-card admin-activity-card">
+                            <div class="panel-head">
+                                <div>
+                                    <div class="section-kicker" data-i18n="admin.dashboard.operations">Operations</div>
+                                    <h3 data-i18n="admin.dashboard.daily_ops">Daily Claims, Triggers & Payouts</h3>
+                                    <p class="chart-brief" data-i18n="admin.dashboard.daily_ops_desc">Daily throughput across claims intake, triggers fired, and payout release.</p>
+                                </div>
+                            </div>
+                            <div class="chart-stage">
+                                <canvas id="admin-daily-activity-chart" class="chart-canvas"></canvas>
+                            </div>
+                            <div id="admin-daily-activity-facts" class="chart-facts"></div>
+                        </div>
+                        <div class="glass-card admin-map-card">
+                            <div class="admin-map-head">
+                                <div class="section-kicker" data-i18n="admin.dashboard.live_map">Live Zone Trigger Map</div>
+                                <div id="zone-intel-meta" class="map-live-pill">Live feeds loading</div>
+                            </div>
+                            <div id="zone-intel-summary" class="zone-intel-summary"></div>
+                            <div id="live-zone-map" class="admin-map-surface"></div>
+                            <div id="zone-intel-grid" class="zone-intel-grid"></div>
+                        </div>
+                        <div class="glass-card admin-decision-card">
+                            <div class="section-kicker" data-i18n="admin.dashboard.decision_logic">Decision logic</div>
+                            <h3 data-i18n="admin.dashboard.autopilot_posture">Autopilot approval posture</h3>
+                            <ul class="decision-list">
+                                <li data-i18n="admin.decision.1">Coverage is validated against an active weekly policy before release.</li>
+                                <li data-i18n="admin.decision.2">Dual-trigger confirmation is required before claim creation proceeds.</li>
+                                <li data-i18n="admin.decision.3">AMBER claims are held for review, while GREEN claims move to payout immediately.</li>
+                                <li data-i18n="admin.decision.4">Guidewire-ready records, payout references, and runtime signals stay visible to operations.</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card admin-runtime-card"><div class="section-kicker" data-i18n="admin.dashboard.system_readiness">System Readiness</div><h3 data-i18n="admin.dashboard.providers_jobs">Providers & Background Jobs</h3><div id="admin-readiness-panel" class="readiness-grid"></div></div>
                     </div>
                 </div>
 
                 <!-- Admin Policies -->
                 <div id="page-admin-policies" class="page">
-                    <div class="container"><h1>📋 All Policies</h1><div id="admin-policies-table" class="table-wrapper"></div></div>
+                    <div class="container"><span class="section-kicker" data-i18n="admin.policies.kicker">Policy inventory</span><h1 data-i18n="admin.policies.title">All Policies</h1><div id="admin-policies-table" class="table-wrapper"></div></div>
                 </div>
 
                 <!-- Admin Claims -->
                 <div id="page-admin-claims" class="page">
                     <div class="container">
-                        <h1>🔍 Claims Review Queue</h1>
-                        <p class="page-sub">Review AMBER and RED tier claims requiring manual verification</p>
+                        <span class="section-kicker" data-i18n="admin.claims.kicker">Fraud workflow</span>
+                        <h1 data-i18n="admin.claims.title">Claims Review Queue</h1>
+                        <p class="page-sub" data-i18n="admin.claims.desc">Review AMBER and RED tier claims requiring manual verification</p>
                         <div id="admin-claims-queue" class="claims-queue"></div>
-                        <h2 style="margin-top:2rem">📋 All Claims</h2>
+                        <h2 class="section-offset" data-i18n="admin.claims.all">All Claims</h2>
                         <div id="admin-all-claims" class="table-wrapper"></div>
                     </div>
                 </div>
@@ -494,23 +653,24 @@
                 <!-- Admin Triggers -->
                 <div id="page-admin-triggers" class="page">
                     <div class="container">
-                        <h1>⚡ Trigger Control Center</h1>
-                        <p class="page-sub">Simulate triggers to demonstrate the zero-touch claims pipeline</p>
+                        <span class="section-kicker" data-i18n="admin.triggers.kicker">Parametric controls</span>
+                        <h1 data-i18n="admin.triggers.title">Trigger Control Center</h1>
+                        <p class="page-sub" data-i18n="admin.triggers.desc">Simulate triggers to demonstrate the zero-touch claims pipeline</p>
                         <div class="glass-card trigger-sim-card">
-                            <h3>🧪 Simulate a Trigger Event</h3>
+                            <h3 data-i18n="admin.triggers.simulate_title">Simulate a Trigger Event</h3>
                             <div class="trigger-sim-grid">
                                 <div class="form-group">
-                                    <label>Trigger Type</label>
+                                    <label data-i18n="trigger.result.type">Trigger Type</label>
                                     <select id="sim-trigger-type">
-                                        <option value="rainfall">🌧️ Heavy Rainfall</option>
-                                        <option value="aqi">🌫️ Hazardous AQI</option>
-                                        <option value="heat">🔥 Extreme Heat</option>
-                                        <option value="curfew">🚧 Curfew / Strike</option>
-                                        <option value="flooding">🌊 Urban Flooding</option>
+                                        <option value="rainfall">Heavy Rainfall</option>
+                                        <option value="aqi">Hazardous AQI</option>
+                                        <option value="heat">Extreme Heat</option>
+                                        <option value="curfew">Curfew / Strike</option>
+                                        <option value="flooding">Urban Flooding</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Zone</label>
+                                    <label data-i18n="trigger.result.zone">Zone</label>
                                     <select id="sim-zone">
                                         <option value="Indiranagar">Indiranagar</option>
                                         <option value="Koramangala">Koramangala</option>
@@ -519,27 +679,88 @@
                                         <option value="Marathahalli">Marathahalli</option>
                                     </select>
                                 </div>
-                                <button class="btn-primary" onclick="simulateTrigger()" id="sim-btn">⚡ Fire Trigger</button>
+                                <button class="btn-primary" onclick="simulateTrigger()" id="sim-btn" data-i18n="trigger.simulate_action">Run Trigger Simulation</button>
                             </div>
                             <div id="trigger-result" class="trigger-result hidden"></div>
                         </div>
-                        <div class="glass-card" style="margin-top:1.5rem"><h3>⚙️ Trigger Configuration — Dual-Signal Thresholds</h3><div id="trigger-config-table"></div></div>
-                        <div class="glass-card" style="margin-top:1.5rem"><h3>📜 Trigger History</h3><div id="trigger-history"></div></div>
+                        <div class="glass-card stack-card"><h3 data-i18n="admin.triggers.config_title">Trigger Configuration — Dual-Signal Thresholds</h3><div id="trigger-config-table"></div></div>
+                        <div class="glass-card stack-card"><h3 data-i18n="admin.triggers.history_title">Trigger History</h3><div id="trigger-history"></div></div>
                     </div>
                 </div>
 
                 <!-- Admin Analytics -->
                 <div id="page-admin-analytics" class="page">
                     <div class="container">
-                        <h1>📈 Analytics</h1>
+                        <span class="section-kicker" data-i18n="admin.analytics.kicker">Portfolio intelligence</span>
+                        <h1 data-i18n="admin.analytics.title">Analytics</h1>
                         <div class="analytics-grid">
-                            <div class="glass-card chart-card"><div class="section-kicker">Pricing</div><h3>Premium vs Risk Score</h3><canvas id="analytics-premium-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card chart-card"><div class="section-kicker">Workforce</div><h3>Workers by Zone</h3><canvas id="analytics-zone-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card chart-card"><div class="section-kicker">Triggers</div><h3>Trigger Frequency</h3><canvas id="analytics-trigger-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card chart-card"><div class="section-kicker">Fraud</div><h3>Fraud Tier Distribution</h3><canvas id="analytics-fraud-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card chart-card analytics-wide"><div class="section-kicker">Activity</div><h3>7-Day Activity Timeline</h3><canvas id="analytics-activity-chart" class="chart-canvas"></canvas></div>
-                            <div class="glass-card"><div class="section-kicker">Heatmap</div><h3>Operational Pressure by Zone</h3><div id="analytics-heatmap" class="heatmap-grid"></div></div>
-                            <div class="glass-card"><div class="section-kicker">Runtime</div><h3>Integration & Job Status</h3><div id="analytics-runtime-panel" class="readiness-grid"></div></div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.analytics.pricing">Pricing</div>
+                                        <h3 data-i18n="admin.analytics.premium_vs_risk">Premium vs Risk Score</h3>
+                                        <p class="chart-brief" data-i18n="admin.analytics.premium_desc">Check whether premium levels are tracking risk across each zone.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage">
+                                    <canvas id="analytics-premium-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="analytics-premium-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.analytics.workforce">Workforce</div>
+                                        <h3 data-i18n="admin.analytics.workers_by_zone">Workers by Zone</h3>
+                                        <p class="chart-brief" data-i18n="admin.analytics.workers_desc">See where workforce concentration is highest before disruption hits.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage">
+                                    <canvas id="analytics-zone-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="analytics-zone-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.analytics.triggers">Triggers</div>
+                                        <h3 data-i18n="admin.analytics.trigger_freq">Trigger Frequency</h3>
+                                        <p class="chart-brief" data-i18n="admin.analytics.trigger_desc">Understand which disruption modes are driving most operational load.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage">
+                                    <canvas id="analytics-trigger-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="analytics-trigger-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card chart-card">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.analytics.fraud">Fraud</div>
+                                        <h3 data-i18n="admin.analytics.fraud_tiers">Fraud Tier Distribution</h3>
+                                        <p class="chart-brief" data-i18n="admin.analytics.fraud_desc">Monitor the balance between fast payout automation and manual investigation.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage chart-stage--compact">
+                                    <canvas id="analytics-fraud-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="analytics-fraud-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card chart-card analytics-wide">
+                                <div class="panel-head">
+                                    <div>
+                                        <div class="section-kicker" data-i18n="admin.analytics.activity">Activity</div>
+                                        <h3 data-i18n="admin.analytics.timeline">7-Day Activity Timeline</h3>
+                                        <p class="chart-brief" data-i18n="admin.analytics.activity_desc">Seven-day operating tempo for claims volume and payout release.</p>
+                                    </div>
+                                </div>
+                                <div class="chart-stage">
+                                    <canvas id="analytics-activity-chart" class="chart-canvas"></canvas>
+                                </div>
+                                <div id="analytics-activity-facts" class="chart-facts"></div>
+                            </div>
+                            <div class="glass-card"><div class="section-kicker" data-i18n="admin.analytics.heatmap">Heatmap</div><h3 data-i18n="admin.analytics.pressure">Operational Pressure by Zone</h3><div id="analytics-heatmap" class="heatmap-grid"></div></div>
+                            <div class="glass-card"><div class="section-kicker" data-i18n="admin.analytics.runtime">Runtime</div><h3 data-i18n="admin.analytics.runtime_status">Integration & Job Status</h3><div id="analytics-runtime-panel" class="readiness-grid"></div></div>
                         </div>
                     </div>
                 </div>
@@ -548,7 +769,7 @@
 
         <!-- Push Notification Simulation -->
         <div id="push-notification" class="push-notif hidden">
-            <div class="push-icon" id="push-icon">🌧️</div>
+            <div class="push-icon" id="push-icon">GS</div>
             <div class="push-content">
                 <strong id="push-title">GigShield Alert</strong>
                 <p id="push-body">Heavy rainfall detected in your area...</p>
@@ -560,6 +781,8 @@
         <div id="toast" class="toast hidden"><span id="toast-message"></span></div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="app.js?v=20260403-9"></script>
 </body>
 </html>

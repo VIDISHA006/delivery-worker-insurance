@@ -4,11 +4,19 @@ Trains an XGBoost-style premium model on synthetic IMD/CPCB-like data
 at module load time. Produces zone-specific weekly premiums with explainable
 factor breakdown for the submission environment.
 """
-import numpy as np
+import math
+import random
 import warnings
 from datetime import datetime
 
 warnings.filterwarnings("ignore", category=UserWarning)
+
+# Try to import numpy; fall back to pure-Python math otherwise
+try:
+    import numpy as np
+    _HAS_NUMPY = True
+except ImportError:
+    _HAS_NUMPY = False
 
 # ── Zone Risk Profiles (calibrated from 3-year IMD Bengaluru data) ────
 ZONE_PROFILES = {

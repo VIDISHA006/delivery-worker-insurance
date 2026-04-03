@@ -164,22 +164,6 @@ async def rate_limit_middleware(request: Request, call_next):
     return await call_next(request)
 
 
-# ── Mount Frontend Static Files ───────────────────────────────────────
-# When running as a unified Docker container, the frontend directory 
-# sits alongside backend or one level up depending on the build context.
-import os as _os
-_frontend_dir = _os.path.join(_os.path.dirname(__file__), "..", "..", "frontend")
-if not _os.path.exists(_frontend_dir):
-    # Try looking in the parent directory (Docker build might place it there)
-    _frontend_dir = _os.path.join(_os.path.dirname(__file__), "..", "frontend")
-
-if _os.path.exists(_frontend_dir):
-    logger.info("Mounting frontend static files from %s", _frontend_dir)
-    app.mount("/", StaticFiles(directory=_frontend_dir, html=True), name="frontend")
-else:
-    logger.warning("Frontend directory not found at %s. API will run headless.", _frontend_dir)
-
-
 @app.get("/api/info")
 def root():
     return {
@@ -248,3 +232,18 @@ def metrics():
         "counts": _collect_runtime_counts(),
         "runtime": get_runtime_state(),
     }
+
+
+# ── Mount Frontend Static Files ───────────────────────────────────────
+# IMPORTANT: This MUST be the last thing registered on the app.
+# StaticFiles at "/" will catch any path not matched by a route above.
+import os as _os
+_frontend_dir = _os.path.join(_os.path.dirname(__file__), "..", "..", "frontend")
+if not _os.path.exists(_frontend_dir):
+    _frontend_dir = _os.path.join(_os.path.dirname(__file__), "..", "frontend")
+
+if _os.path.exists(_frontend_dir):
+    logger.info("Mounting frontend static files from %s", _frontend_dir)
+    app.mount("/", StaticFiles(directory=_frontend_dir, html=True), name="frontend")
+else:
+    logger.warning("Frontend directory not found at %s. API will run headless.", _frontend_dir)

@@ -59,8 +59,6 @@ def _zone_seed(zone: str, salt: str = "") -> random.Random:
 
 def _fetch_real_weather(zone: str) -> Optional[dict]:
     """Fetch real weather data using Open-Meteo public APIs."""
-    if settings.demo_mode:
-        return None
     coords = ZONE_COORDS.get(zone)
     if not coords:
         return None
@@ -104,8 +102,6 @@ def _fetch_real_weather(zone: str) -> Optional[dict]:
 
 def _fetch_real_aqi(zone: str) -> Optional[dict]:
     """Fetch real AQI-style data using Open-Meteo air quality APIs."""
-    if settings.demo_mode:
-        return None
     coords = ZONE_COORDS.get(zone)
     if not coords:
         return None
