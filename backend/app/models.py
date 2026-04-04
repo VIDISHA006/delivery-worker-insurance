@@ -1,4 +1,4 @@
-"""SQLAlchemy ORM Models for GigShield."""
+"""SQLAlchemy ORM Models for GigBuddy."""
 import enum
 from datetime import datetime
 from sqlalchemy import (

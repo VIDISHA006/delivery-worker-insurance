@@ -23,7 +23,7 @@ COPY frontend ./frontend
 
 # Create database volume directory
 RUN mkdir -p /data
-ENV GIGSHIELD_DB_PATH=/data/gigshield.db
+ENV GIGBUDDY_DB_PATH=/data/gigbuddy.db
 
 # Expose port (7860 is default for Hugging Face Spaces, but Render uses PORT env var)
 # We will use the PORT environment variable if set by the hosting platform, otherwise 7860

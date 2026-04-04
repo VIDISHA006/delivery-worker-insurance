@@ -1,4 +1,4 @@
-"""GigShield — FastAPI application entry point and operational endpoints."""
+"""GigBuddy — FastAPI application entry point and operational endpoints."""
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -25,7 +25,7 @@ SERVICE_STARTED_AT = datetime.now(timezone.utc)
 RATE_LIMIT_WINDOW_SECONDS = 60
 RATE_LIMIT_EXEMPT_PATHS = {"/health", "/ready", "/metrics", "/openapi.json"}
 rate_limit_buckets: dict[str, deque[float]] = defaultdict(deque)
-logger = logging.getLogger("gigshield.api")
+logger = logging.getLogger("gigbuddy.api")
 if not logging.getLogger().handlers:
     logging.basicConfig(
         level=getattr(logging, settings.log_level, logging.INFO),

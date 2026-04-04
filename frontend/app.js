@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   GigShield — Premium Frontend Application
+   GigBuddy — Premium Frontend Application
    DEVTrails 2026 · Phase 2
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -9,7 +9,7 @@ const TRANSLATIONS = {
     "nav.worker": "Worker App", "nav.admin": "Admin Portal",
     "tab.onboarding": "Onboarding", "tab.dashboard": "Dashboard", "tab.claims": "Claims", "tab.premium": "Premium", "tab.settings": "Settings",
     "hero.title": "When it rains, your income doesn't have to stop.",
-    "hero.subtitle": "GigShield automatically detects weather disruptions and sends income-replacement payouts to your UPI — no claims, no paperwork, no waiting.",
+    "hero.subtitle": "GigBuddy automatically detects weather disruptions and sends income-replacement payouts to your UPI — no claims, no paperwork, no waiting.",
     "hero.stat1": "Max weekly premium", "hero.stat2": "Payout SLA", "hero.stat3": "Claims to file",
     "trust.1.title": "Zero-Touch Claims", "trust.1.desc": "Payouts triggered automatically by weather APIs — no forms ever",
     "trust.2.title": "AI-Powered Pricing", "trust.2.desc": "XGBoost ML model calculates fair premiums based on real risk data",
@@ -18,7 +18,7 @@ const TRANSLATIONS = {
     "reg.name": "Full Name", "reg.phone": "Phone Number", "reg.platform": "Platform", "reg.zone": "Zone",
     "reg.income": "Weekly Income (₹)", "reg.vehicle": "Vehicle", "reg.submit": "Register & Get OTP",
     "reg.login_link": "Already have an account? Login",
-    "login.title": "Worker Login", "login.desc": "Welcome back to GigShield",
+    "login.title": "Worker Login", "login.desc": "Welcome back to GigBuddy",
     "login.phone": "Phone Number", "login.otp": "OTP", "login.hint": "Request a one-time password to sign in.",
     "login.send_otp": "Send OTP", "login.submit": "Login", "login.register_link": "New worker? Register here",
     "consent.terms": "I agree to the Terms of Service.",
@@ -29,7 +29,7 @@ const TRANSLATIONS = {
     "quote.title": "Your Risk Profile & Premium", "quote.desc": "AI-powered pricing based on zone risk factors", "quote.accept": "Accept & Setup UPI",
     "upi.title": "UPI AutoPay Setup", "upi.desc": "Set up weekly automatic payment", "upi.id": "UPI ID",
     "upi.deduction": "Weekly Deduction", "upi.day": "Deduction Day", "upi.lockin": "Lock-in", "upi.none": "None — pause anytime", "upi.complete": "Complete Onboarding & Buy Policy",
-    "success.title": "Welcome to GigShield!", "success.desc": "Your policy is now ACTIVE. You're covered.", "success.go": "Go to Dashboard",
+    "success.title": "Welcome to GigBuddy!", "success.desc": "Your policy is now ACTIVE. You're covered.", "success.go": "Go to Dashboard",
     "dash.greeting": "Welcome", "dash.active": "Policy Active", "dash.logout": "Logout",
     "dash.policy": "Active Policy", "dash.weekly": "Weekly Premium", "dash.coverage": "Coverage",
     "dash.weeks": "Weeks Active", "dash.paid": "Total Paid", "dash.claimed": "Total Claimed",
@@ -41,21 +41,21 @@ const TRANSLATIONS = {
     "settings.title": "Settings & Privacy", "settings.desc": "Account control, support, and data management",
     "settings.account": "Account", "settings.support": "Support & Human Review",
     "settings.delete": "Delete Account", "settings.delete_btn": "Delete My Account",
-    "push.alert": "Weather alert detected in your area!", "push.payout": "Your GigShield payout is being processed.",
+    "push.alert": "Weather alert detected in your area!", "push.payout": "Your GigBuddy payout is being processed.",
     "push.confirmed": "has been sent to your UPI.",
   },
   hi: {
     "nav.worker": "कर्मचारी ऐप", "nav.admin": "एडमिन पोर्टल",
     "tab.onboarding": "ऑनबोर्डिंग", "tab.dashboard": "डैशबोर्ड", "tab.claims": "दावे", "tab.premium": "प्रीमियम", "tab.settings": "सेटिंग्स",
     "hero.title": "जब बारिश होती है, तो आपकी आय को रुकना नहीं चाहिए।",
-    "hero.subtitle": "GigShield स्वचालित रूप से मौसम व्यवधानों का पता लगाता है और आपके UPI पर आय-प्रतिस्थापन भुगतान भेजता है।",
+    "hero.subtitle": "GigBuddy स्वचालित रूप से मौसम व्यवधानों का पता लगाता है और आपके UPI पर आय-प्रतिस्थापन भुगतान भेजता है।",
     "hero.stat1": "अधिकतम साप्ताहिक प्रीमियम", "hero.stat2": "भुगतान SLA", "hero.stat3": "दावे दाखिल करने",
     "reg.title": "कर्मचारी पंजीकरण", "reg.desc": "शुरू करने के लिए अपना विवरण दर्ज करें",
     "reg.name": "पूरा नाम", "reg.phone": "फ़ोन नंबर", "reg.submit": "पंजीकरण करें और OTP प्राप्त करें",
-    "login.title": "कर्मचारी लॉगिन", "login.desc": "GigShield में वापस स्वागत है",
+    "login.title": "कर्मचारी लॉगिन", "login.desc": "GigBuddy में वापस स्वागत है",
     "otp.title": "फ़ोन सत्यापित करें", "otp.verify": "OTP सत्यापित करें",
     "kyc.title": "आधार e-KYC", "kyc.verify": "आधार सत्यापित करें",
-    "success.title": "GigShield में आपका स्वागत है!", "success.go": "डैशबोर्ड पर जाएं",
+    "success.title": "GigBuddy में आपका स्वागत है!", "success.go": "डैशबोर्ड पर जाएं",
     "dash.greeting": "स्वागत है", "dash.active": "पॉलिसी सक्रिय",
     "claims.title": "दावे इतिहास", "prem.title": "गतिशील प्रीमियम मूल्य निर्धारण",
     "settings.title": "सेटिंग्स और गोपनीयता",
@@ -64,10 +64,10 @@ const TRANSLATIONS = {
     "nav.worker": "ಕಾರ್ಮಿಕ ಅಪ್ಲಿಕೇಶನ್", "nav.admin": "ನಿರ್ವಾಹಕ ಪೋರ್ಟಲ್",
     "tab.onboarding": "ಆನ್‌ಬೋರ್ಡಿಂಗ್", "tab.dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", "tab.claims": "ಕ್ಲೈಮ್‌ಗಳು", "tab.premium": "ಪ್ರೀಮಿಯಂ", "tab.settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
     "hero.title": "ಮಳೆ ಬಂದಾಗ, ನಿಮ್ಮ ಆದಾಯ ನಿಲ್ಲಬೇಕಾಗಿಲ್ಲ.",
-    "hero.subtitle": "GigShield ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹವಾಮಾನ ಅಡೆತಡೆಗಳನ್ನು ಪತ್ತೆ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ UPI ಗೆ ಆದಾಯ-ಬದಲಿ ಪಾವತಿಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ.",
+    "hero.subtitle": "GigBuddy ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹವಾಮಾನ ಅಡೆತಡೆಗಳನ್ನು ಪತ್ತೆ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ UPI ಗೆ ಆದಾಯ-ಬದಲಿ ಪಾವತಿಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ.",
     "hero.stat1": "ಗರಿಷ್ಠ ಸಾಪ್ತಾಹಿಕ ಪ್ರೀಮಿಯಂ", "hero.stat2": "ಪಾವತಿ SLA", "hero.stat3": "ಕ್ಲೈಮ್ ಸಲ್ಲಿಸಲು",
     "reg.title": "ಕಾರ್ಮಿಕ ನೋಂದಣಿ", "reg.desc": "ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ",
-    "success.title": "GigShield ಗೆ ಸ್ವಾಗತ!", "success.go": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ",
+    "success.title": "GigBuddy ಗೆ ಸ್ವಾಗತ!", "success.go": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ",
     "dash.greeting": "ಸ್ವಾಗತ", "dash.active": "ಪಾಲಿಸಿ ಸಕ್ರಿಯ",
     "claims.title": "ಕ್ಲೈಮ್ ಇತಿಹಾಸ", "prem.title": "ಡೈನಾಮಿಕ್ ಪ್ರೀಮಿಯಂ ಬೆಲೆ",
     "settings.title": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ",
@@ -95,7 +95,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 // ── API Layer ────────────────────────────────────────────────────
 function getApiBase() {
-  if (window.GIGSHIELD_API_BASE) return window.GIGSHIELD_API_BASE.replace(/\/$/, '');
+  if (window.GIGBUDDY_API_BASE) return window.GIGBUDDY_API_BASE.replace(/\/$/, '');
 
   if (window.location.protocol === 'file:') {
     return 'http://127.0.0.1:8000';
@@ -114,8 +114,8 @@ const API = getApiBase();
 // ── State ────────────────────────────────────────────────────────
 let state = {
   currentStep: 1, worker: null, workerId: null, policy: null, premiumData: null,
-  authToken: localStorage.getItem('gigshield.workerToken'),
-  adminToken: localStorage.getItem('gigshield.adminToken'),
+  authToken: localStorage.getItem('gigbuddy.workerToken'),
+  adminToken: localStorage.getItem('gigbuddy.adminToken'),
   supportInfo: null, registrationOtpSession: null, loginOtpSession: null, charts: {},
 };
 
@@ -169,17 +169,17 @@ function authHeaders(role = 'public') {
 
 function setWorkerSession(token, worker) {
   state.authToken = token; state.worker = worker; state.workerId = worker?.id ?? null;
-  if (token) localStorage.setItem('gigshield.workerToken', token);
+  if (token) localStorage.setItem('gigbuddy.workerToken', token);
 }
 
 function clearWorkerSession(msg) {
   state.authToken = null; state.worker = null; state.workerId = null; state.policy = null;
-  localStorage.removeItem('gigshield.workerToken');
+  localStorage.removeItem('gigbuddy.workerToken');
   if (msg) showToast(msg);
 }
 
-function setAdminSession(token) { state.adminToken = token; localStorage.setItem('gigshield.adminToken', token); syncAdminUI(); }
-function clearAdminSession(msg) { state.adminToken = null; localStorage.removeItem('gigshield.adminToken'); syncAdminUI(); if (msg) showToast(msg); }
+function setAdminSession(token) { state.adminToken = token; localStorage.setItem('gigbuddy.adminToken', token); syncAdminUI(); }
+function clearAdminSession(msg) { state.adminToken = null; localStorage.removeItem('gigbuddy.adminToken'); syncAdminUI(); if (msg) showToast(msg); }
 
 function requireWorkerSession(label = 'continue') {
   if (state.authToken) return true;

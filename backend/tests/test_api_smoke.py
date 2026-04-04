@@ -1,4 +1,4 @@
-"""Smoke tests for GigShield's public and protected API surface."""
+"""Smoke tests for GigBuddy's public and protected API surface."""
 
 from uuid import uuid4
 
@@ -14,7 +14,7 @@ def test_health_endpoint():
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "healthy"
-    assert body["service"] == "GigShield API"
+    assert body["service"] == "GigBuddy API"
 
 
 def test_ready_endpoint_exposes_database_and_counts():

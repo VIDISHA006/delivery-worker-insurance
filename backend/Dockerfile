@@ -18,7 +18,7 @@ COPY app ./app
 
 RUN mkdir -p /data
 
-ENV GIGSHIELD_DB_PATH=/data/gigshield.db
+ENV GIGBUDDY_DB_PATH=/data/gigbuddy.db
 
 EXPOSE 8000
 

@@ -1,4 +1,4 @@
-# GigShield Architecture
+# GigBuddy Architecture
 
 This document describes the architecture that exists in the repo today, plus the clear extension points for the DEVTrails Guidewire story.
 

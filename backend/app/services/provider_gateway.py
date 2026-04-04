@@ -56,7 +56,7 @@ def send_otp(phone: str, purpose: str = "login") -> dict:
                 data={
                     "To": f"+91{phone}" if len(phone) == 10 else phone,
                     "From": settings.twilio_from_number,
-                    "Body": f"Your GigShield OTP is {otp}. It expires in {settings.otp_expiry_seconds // 60} minutes.",
+                    "Body": f"Your GigBuddy OTP is {otp}. It expires in {settings.otp_expiry_seconds // 60} minutes.",
                 },
                 timeout=10.0,
             )

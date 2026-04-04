@@ -1,4 +1,4 @@
-"""Seed database with demo data for GigShield Phase 2."""
+"""Seed database with demo data for GigBuddy Phase 2."""
 import random
 import string
 from datetime import datetime, timedelta
@@ -24,7 +24,7 @@ def seed_database():
         db.close()
         return
 
-    print("🌱 Seeding GigShield database...")
+    print("🌱 Seeding GigBuddy database...")
 
     # ── 1. Create Workers ─────────────────────────────────────────
     workers_data = [

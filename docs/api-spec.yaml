@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: GigShield API
+  title: GigBuddy API
   description: Parametric Income Protection for Q-Commerce Delivery Partners
   version: 2.1.0
 paths:
