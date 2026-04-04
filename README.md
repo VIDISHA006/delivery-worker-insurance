@@ -7,11 +7,37 @@ sdk: docker
 pinned: false
 app_port: 7860
 ---
-# GigBuddy
+# GigShield
 
 Automatic disruption payouts for delivery workers.
 
-GigBuddy is a full-stack demo that turns verified city signals into income-relief payouts for gig and q-commerce delivery partners. It is built around a simple idea: when work is materially disrupted by rain, flooding, air quality, heat, or civic shutdowns, the worker should not be forced to open a claim form and start proving the obvious.
+## About the Project
+
+**What inspired us**  
+GigShield was born from a simple realization: when work is materially disrupted by obvious, verifiable public events—like extreme rain, severe air quality (AQI) spikes, extreme heat, or civic curfews—delivery and gig workers shouldn't be forced to jump through bureaucratic hoops or fill out tedious claim forms. We were inspired to build a platform that turns verified city signals automatically into income-relief payouts. Instead of treating gig-worker insurance as a standard policy, we treat disruption as an operations problem.
+
+**How we built it**  
+We architected GigShield as a highly decoupled full-stack application explicitly designed for low-friction worker use, including multi-lingual support, OTP login, and seamless UPI mandate setups. 
+
+The system relies on a **FastAPI** backend that manages state via **SQLAlchemy** (with a **PostgreSQL** database environment orchestrated via **Docker Compose**). Under the hood, we developed a dual-signal trigger engine that continuously polls external weather and AQI integrations. If a disruption is verified, the system leverages automated claim creation and fraud-routing tiers. 
+
+For the pricing engine, we utilize machine learning models powered by **XGBoost** and **Scikit-learn** to compute zone-specific weekly premiums. We implemented an explainable factor breakdown where the premium is calculated as a function of environmental variables and localized risk tiers, roughly following the equation:
+$$ P(x) = P_{base} \times \left(1 + \sum_{i=1}^{n} w_i f(x_i) \right) $$
+
+**What we learned**  
+We gathered a wealth of knowledge on how to structure a truly worker-centric insurance pipeline. A major insight was realizing that workers need to be treated as participants rather than just policyholders. We learned how to build a dynamic post-payout worker feedback loop that safely stores insights in the backend and creates real renewal credits. From a technical standpoint, we deepened our expertise in dual-signal trigger engineering, integrating synchronous FastAPI event routing with delayed background claim-review tasks using **APScheduler**.
+
+**The challenges we faced**  
+1. **Calibrating Triggers:** Tuning the dual-signal logic to accurately distinguish between a minor inconvenience and a material disruption (e.g., rainfall vs. flooding) without creating a high false-positive claim rate. 
+2. **Abstracting Integrations:** Finding the right balance between mimicking realistic provider behaviors (like Guidewire, mock Aadhaar eKYC, and UPI payouts) and relying securely on sandbox fallbacks for testing. 
+3. **Data Synthesis:** Safely generating synthetic, yet demographically realistic, training data for the `scikit-learn` disruption predictor was incredibly challenging but vital for demo realism.
+
+## Built With
+FastAPI, PostgreSQL, SQLAlchemy, XGBoost, Scikit-learn, APScheduler, Docker, Docker Compose, Nginx, HTML, Vanilla JavaScript, CSS
+
+---
+
+GigShield is a full-stack demo that turns verified city signals into income-relief payouts for gig and q-commerce delivery partners. It is built around a simple idea: when work is materially disrupted by rain, flooding, air quality, heat, or civic shutdowns, the worker should not be forced to open a claim form and start proving the obvious.
 
 This repo has been overhauled for Phase 2 to be more honest, more distinctive, and more defensible in judging:
 
