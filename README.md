@@ -3,6 +3,12 @@
   <p><strong>Parametric income protection for gig and q-commerce delivery workers.</strong></p>
   
   <p>
+    <a href="https://huggingface.co/spaces/silentkiller61/GigBuddy">
+      <img src="https://img.shields.io/badge/Live_Demo-Hugging_Face-blue?style=for-the-badge&logo=huggingface" alt="Live Demo" />
+    </a>
+  </p>
+
+  <p>
     <a href="#-about-the-project">About The Project</a> •
     <a href="#-built-with">Built With</a> •
     <a href="#-architecture--scope">Architecture</a> •
