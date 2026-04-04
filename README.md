@@ -1,3 +1,13 @@
+---
+title: GigBuddy
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 <div align="center">
   <h1>🛡️ GigBuddy</h1>
   <p><strong>Parametric income protection for gig and q-commerce delivery workers.</strong></p>
